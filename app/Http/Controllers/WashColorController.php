@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Setting;
-use App\Http\Requests\StoreSettingRequest;
-use App\Http\Requests\UpdateSettingRequest;
+use Illuminate\Http\Request;
 
+use App\Models\WashColor;
 
-class SettingController extends Controller
+class WashColorController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -28,7 +27,7 @@ class SettingController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreSettingRequest $request)
+    public function store(Request $request)
     {
         //
     }
@@ -36,7 +35,7 @@ class SettingController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Setting $setting)
+    public function show(string $id)
     {
         //
     }
@@ -44,7 +43,7 @@ class SettingController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Setting $setting)
+    public function edit(string $id)
     {
         //
     }
@@ -52,7 +51,7 @@ class SettingController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateSettingRequest $request, Setting $setting)
+    public function update(Request $request, string $id)
     {
         //
     }
@@ -60,7 +59,7 @@ class SettingController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Setting $setting)
+    public function destroy(string $id)
     {
         //
     }
