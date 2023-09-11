@@ -6,7 +6,7 @@
 
 @component('components.breadcrumb')
 @slot('li_1') Dashboard @endslot
-@slot('title') Starter Page @endslot
+@slot('title') Supplier List @endslot
 @endcomponent
 
 @endsection
