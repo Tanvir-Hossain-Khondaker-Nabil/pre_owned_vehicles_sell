@@ -13,7 +13,10 @@ class SupplierController extends Controller
      */
     public function index()
     {
-        //
+        $data = [
+            'suppliers' => Supplier::paginate(),
+        ];
+        return view('supplier.list', $data);
     }
 
     /**
@@ -21,7 +24,7 @@ class SupplierController extends Controller
      */
     public function create()
     {
-        //
+        return view('supplier.create');
     }
 
     /**
