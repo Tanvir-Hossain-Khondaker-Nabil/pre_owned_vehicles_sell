@@ -5,19 +5,19 @@
             <div class="navbar-brand-box">
                 <a href="index" class="logo logo-dark">
                     <span class="logo-sm">
-                        <img src="{{ URL::asset ('/assets/images/logo.svg') }}" alt="" height="22">
+                        <img src="{{ asset ('backend/assets/images/logo.svg') }}" alt="" height="22">
                     </span>
                     <span class="logo-lg">
-                        <img src="{{ URL::asset ('/assets/images/logo-dark.png') }}" alt="" height="17">
+                        <img src="{{ asset ('backend/assets/images/logo-dark.png') }}" alt="" height="17">
                     </span>
                 </a>
 
                 <a href="index" class="logo logo-light">
                     <span class="logo-sm">
-                        <img src="{{ URL::asset ('/assets/images/logo-light.svg') }}" alt="" height="22">
+                        <img src="{{ asset ('backend/assets/images/logo-light.svg') }}" alt="" height="22">
                     </span>
                     <span class="logo-lg">
-                        <img src="{{ URL::asset ('/assets/images/logo-light.png') }}" alt="" height="19">
+                        <img src="{{ asset ('backend/assets/images/logo-light.png') }}" alt="" height="19">
                     </span>
                 </a>
             </div>
@@ -177,7 +177,7 @@
 
                                 <div class="col-sm-5">
                                     <div>
-                                        <img src="{{ URL::asset ('/assets/images/megamenu-img.png') }}" alt=""
+                                        <img src="{{ asset ('backend/assets/images/megamenu-img.png') }}" alt=""
                                             class="img-fluid mx-auto d-block">
                                     </div>
                                 </div>
@@ -217,23 +217,23 @@
                     aria-haspopup="true" aria-expanded="false">
                     @switch(Session::get('lang'))
                     @case('ru')
-                    <img src="{{ URL::asset('/assets/images/flags/russia.jpg')}}" alt="Header Language" height="16">
+                    <img src="{{ asset('/backendassets/images/flags/russia.jpg')}}" alt="Header Language" height="16">
                     <span class="align-middle">Russian</span>
                     @break
                     @case('it')
-                    <img src="{{ URL::asset('/assets/images/flags/italy.jpg')}}" alt="Header Language" height="16">
+                    <img src="{{ asset('/backendassets/images/flags/italy.jpg')}}" alt="Header Language" height="16">
                     <span class="align-middle">Italian</span>
                     @break
                     @case('de')
-                    <img src="{{ URL::asset('/assets/images/flags/germany.jpg')}}" alt="Header Language" height="16">
+                    <img src="{{ asset('/backendassets/images/flags/germany.jpg')}}" alt="Header Language" height="16">
                     <span class="align-middle">German</span>
                     @break
                     @case('es')
-                    <img src="{{ URL::asset('/assets/images/flags/spain.jpg')}}" alt="Header Language" height="16">
+                    <img src="{{ asset('/backendassets/images/flags/spain.jpg')}}" alt="Header Language" height="16">
                     <span class="align-middle">Spanish</span>
                     @break
                     @default
-                    <img src="{{ URL::asset('/assets/images/flags/us.jpg')}}" alt="Header Language" height="16"> <span
+                    <img src="{{ asset('/backendassets/images/flags/us.jpg')}}" alt="Header Language" height="16"> <span
                         class="align-middle">English</span>
                     @endswitch
                 </button>
@@ -241,30 +241,30 @@
 
                     <!-- item-->
                     <a href="{{ url('index/en') }}" class="dropdown-item notify-item language" data-lang="eng">
-                        <img src="{{ URL::asset ('/assets/images/flags/us.jpg') }}" alt="user-image" class="me-1"
+                        <img src="{{ asset ('backend/assets/images/flags/us.jpg') }}" alt="user-image" class="me-1"
                             height="12"> <span class="align-middle">English</span>
                     </a>
                     <!-- item-->
                     <a href="{{ url('index/es') }}" class="dropdown-item notify-item language" data-lang="sp">
-                        <img src="{{ URL::asset ('/assets/images/flags/spain.jpg') }}" alt="user-image" class="me-1"
+                        <img src="{{ asset ('backend/assets/images/flags/spain.jpg') }}" alt="user-image" class="me-1"
                             height="12"> <span class="align-middle">Spanish</span>
                     </a>
 
                     <!-- item-->
                     <a href="{{ url('index/de') }}" class="dropdown-item notify-item language" data-lang="gr">
-                        <img src="{{ URL::asset ('/assets/images/flags/germany.jpg') }}" alt="user-image" class="me-1"
+                        <img src="{{ asset ('backend/assets/images/flags/germany.jpg') }}" alt="user-image" class="me-1"
                             height="12"> <span class="align-middle">German</span>
                     </a>
 
                     <!-- item-->
                     <a href="{{ url('index/it') }}" class="dropdown-item notify-item language" data-lang="it">
-                        <img src="{{ URL::asset ('/assets/images/flags/italy.jpg') }}" alt="user-image" class="me-1"
+                        <img src="{{ asset ('backend/assets/images/flags/italy.jpg') }}" alt="user-image" class="me-1"
                             height="12"> <span class="align-middle">Italian</span>
                     </a>
 
                     <!-- item-->
                     <a href="{{ url('index/ru') }}" class="dropdown-item notify-item language" data-lang="ru">
-                        <img src="{{ URL::asset ('/assets/images/flags/russia.jpg') }}" alt="user-image" class="me-1"
+                        <img src="{{ asset ('backend/assets/images/flags/russia.jpg') }}" alt="user-image" class="me-1"
                             height="12"> <span class="align-middle">Russian</span>
                     </a>
                 </div>
@@ -280,19 +280,20 @@
                         <div class="row g-0">
                             <div class="col">
                                 <a class="dropdown-icon-item" href="#">
-                                    <img src="{{ URL::asset ('/assets/images/brands/github.png') }}" alt="Github">
+                                    <img src="{{ asset ('backend/assets/images/brands/github.png') }}" alt="Github">
                                     <span>GitHub</span>
                                 </a>
                             </div>
                             <div class="col">
                                 <a class="dropdown-icon-item" href="#">
-                                    <img src="{{ URL::asset ('/assets/images/brands/bitbucket.png') }}" alt="bitbucket">
+                                    <img src="{{ asset ('backend/assets/images/brands/bitbucket.png') }}"
+                                        alt="bitbucket">
                                     <span>Bitbucket</span>
                                 </a>
                             </div>
                             <div class="col">
                                 <a class="dropdown-icon-item" href="#">
-                                    <img src="{{ URL::asset ('/assets/images/brands/dribbble.png') }}" alt="dribbble">
+                                    <img src="{{ asset ('backend/assets/images/brands/dribbble.png') }}" alt="dribbble">
                                     <span>Dribbble</span>
                                 </a>
                             </div>
@@ -301,20 +302,20 @@
                         <div class="row no-gutters">
                             <div class="col">
                                 <a class="dropdown-icon-item" href="#">
-                                    <img src="{{ URL::asset ('/assets/images/brands/dropbox.png') }}" alt="dropbox">
+                                    <img src="{{ asset ('backend/assets/images/brands/dropbox.png') }}" alt="dropbox">
                                     <span>Dropbox</span>
                                 </a>
                             </div>
                             <div class="col">
                                 <a class="dropdown-icon-item" href="#">
-                                    <img src="{{ URL::asset ('/assets/images/brands/mail_chimp.png') }}"
+                                    <img src="{{ asset ('backend/assets/images/brands/mail_chimp.png') }}"
                                         alt="mail_chimp">
                                     <span>Mail Chimp</span>
                                 </a>
                             </div>
                             <div class="col">
                                 <a class="dropdown-icon-item" href="#">
-                                    <img src="{{ URL::asset ('/assets/images/brands/slack.png') }}" alt="slack">
+                                    <img src="{{ asset ('backend/assets/images/brands/slack.png') }}" alt="slack">
                                     <span>Slack</span>
                                 </a>
                             </div>
@@ -370,7 +371,7 @@
                         </a>
                         <a href="" class="text-reset notification-item">
                             <div class="d-flex">
-                                <img src="{{ URL::asset ('/assets/images/users/avatar-3.jpg') }}"
+                                <img src="{{ asset ('backend/assets/images/users/avatar-3.jpg') }}"
                                     class="me-3 rounded-circle avatar-xs" alt="user-pic">
                                 <div class="flex-grow-1">
                                     <h6 class="mt-0 mb-1">@lang('translation.James_Lemire')</h6>
@@ -404,7 +405,7 @@
 
                         <a href="" class="text-reset notification-item">
                             <div class="d-flex">
-                                <img src="{{ URL::asset ('/assets/images/users/avatar-4.jpg') }}"
+                                <img src="{{ asset ('backend/assets/images/users/avatar-4.jpg') }}"
                                     class="me-3 rounded-circle avatar-xs" alt="user-pic">
                                 <div class="flex-grow-1">
                                     <h6 class="mt-0 mb-1">@lang('translation.Salena_Layfield')</h6>

@@ -1,9 +1,9 @@
 <!-- JAVASCRIPT -->
-<script src="{{ URL::asset('assets/libs/jquery/jquery.min.js')}}"></script>
-<script src="{{ URL::asset('assets/libs/bootstrap/bootstrap.min.js')}}"></script>
-<script src="{{ URL::asset('assets/libs/metismenu/metismenu.min.js')}}"></script>
-<script src="{{ URL::asset('assets/libs/simplebar/simplebar.min.js')}}"></script>
-<script src="{{ URL::asset('assets/libs/node-waves/node-waves.min.js')}}"></script>
+<script src="{{ asset('backend/assets/libs/jquery/jquery.min.js')}}"></script>
+<script src="{{ asset('backend/assets/libs/bootstrap/bootstrap.min.js')}}"></script>
+<script src="{{ asset('backend/assets/libs/metismenu/metismenu.min.js')}}"></script>
+<script src="{{ asset('backend/assets/libs/simplebar/simplebar.min.js')}}"></script>
+<script src="{{ asset('backend/assets/libs/node-waves/node-waves.min.js')}}"></script>
 <script>
     $('#change-password').on('submit',function(event){
         event.preventDefault();
@@ -27,11 +27,11 @@
                 $('#current_passwordError').text('');
                 $('#passwordError').text('');
                 $('#password_confirmError').text('');
-                if(response.isSuccess == false){ 
+                if(response.isSuccess == false){
                     $('#current_passwordError').text(response.Message);
                 }else if(response.isSuccess == true){
-                    setTimeout(function () {   
-                        window.location.href = "{{ route('root') }}"; 
+                    setTimeout(function () {
+
                     }, 1000);
                 }
             },
@@ -45,8 +45,9 @@
 </script>
 
 @yield('script')
+{{-- window.location.href = "{{ route('root') }}"; --}}
 
 <!-- App js -->
-<script src="{{ URL::asset('assets/js/app.min.js')}}"></script>
+<script src="{{ asset('backend/assets/js/app.min.js')}}"></script>
 
 @yield('script-bottom')
