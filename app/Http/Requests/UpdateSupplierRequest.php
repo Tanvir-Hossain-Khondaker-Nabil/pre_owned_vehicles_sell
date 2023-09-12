@@ -11,7 +11,7 @@ class UpdateSupplierRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return true;
+        return false;
     }
 
     /**
@@ -25,8 +25,8 @@ class UpdateSupplierRequest extends FormRequest
             'name' => ['required', 'max:255'],
             'phone_1' => ['required', 'numeric'],
             'nid' => ['required', 'numeric'],
-            'address' => ['required'],
-            'phone_2'=> ['required', 'numeric'],
+            'address' => ['required', 'max:255'],
+            'phone_2' => ['required', 'numeric'],
             'email' => ['required', 'email'],
             'driving_licence' => ['required', 'numeric'],
             'image' => ['required', 'mimes:png,jpg,jpeg,webp', 'max:1024'],

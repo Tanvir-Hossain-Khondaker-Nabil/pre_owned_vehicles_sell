@@ -22,9 +22,9 @@ class UpdateVehicleRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'company_name' => ['required', 'max:225'],
-            'company_logo' => ['required', 'mimes:png,jpg,jpeg,webp', 'max:1024'],
-            'type' => ['required'],
+            'company_name' => ['required', 'max:255'],
+            'company_logo' => ['required', 'max:255', 'mimes:png,jpg,jpeg,webp', 'max:1024'],
+            'type' => ['required', 'max:255'],
         ];
     }
 }

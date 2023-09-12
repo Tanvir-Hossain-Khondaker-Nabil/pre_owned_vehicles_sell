@@ -7,7 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class VehicleModel extends Model
 {
+    protected $fillable = [
+        'name'
+    ];
     use HasFactory;
-
-    protected $guarded = [];
 }

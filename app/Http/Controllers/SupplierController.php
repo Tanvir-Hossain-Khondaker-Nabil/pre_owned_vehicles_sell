@@ -6,8 +6,6 @@ use App\Models\Supplier;
 use App\Http\Requests\StoreSupplierRequest;
 use App\Http\Requests\UpdateSupplierRequest;
 
-
-
 class SupplierController extends Controller
 {
     /**

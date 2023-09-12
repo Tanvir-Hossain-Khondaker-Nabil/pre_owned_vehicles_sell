@@ -6,7 +6,6 @@ use App\Models\Setting;
 use App\Http\Requests\StoreSettingRequest;
 use App\Http\Requests\UpdateSettingRequest;
 
-
 class SettingController extends Controller
 {
     /**

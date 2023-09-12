@@ -11,7 +11,7 @@ class UpdateTransportRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return true;
+        return false;
     }
 
     /**
@@ -22,7 +22,7 @@ class UpdateTransportRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'details' => ['required'],
+            'details' => ['required', 'max:255'],
             'amount' => ['required', 'numeric'],
         ];
     }
