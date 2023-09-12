@@ -98,11 +98,12 @@
 
                                     <div class="mt-4">
                                         <form class="form-horizontal" method="POST" action="{{ route('password.update') }}">
+                                            @method('put')
                                             @csrf
-                                            <input type="hidden" name="token" value="{{ $token }}">
+                                            <input type="hidden" name="token" value="{{ $request->token}}">
                                             <div class="mb-3">
                                                 <label for="useremail" class="form-label">Email</label>
-                                                <input type="email" class="form-control @error('email') is-invalid @enderror" id="useremail" name="email" placeholder="Enter email" value="{{ $email ?? old('email') }}" id="email">
+                                                <input type="email" class="form-control @error('email') is-invalid @enderror" id="useremail" name="email" placeholder="Enter email" value="{{ $request->email ?? old('email') }}" id="email">
                                                 @error('email')
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }}</strong>

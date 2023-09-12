@@ -162,7 +162,8 @@
                                             </div>
                                         </form>
                                         <div class="mt-5 text-center">
-                                            <p>Don't have an account ? <a href="{{ url('register') }}" class="fw-medium text-primary"> Signup now </a> </p>
+                                            <p>Forget password? <a href="{{ route('password.request') }}" class="fw-medium text-primary"> Reset Password </a> </p>
+                                            <p>Not registered? <a href="{{ route('register') }}" class="fw-medium text-primary"> Register Here </a> </p>
                                         </div>
                                     </div>
                                 </div>

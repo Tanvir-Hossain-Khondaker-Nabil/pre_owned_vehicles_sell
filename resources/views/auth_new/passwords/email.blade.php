@@ -131,8 +131,8 @@
 
                                             </form>
                                             <div class="mt-5 text-center">
-                                                <p>Remember It ? <a href="{{ url('login') }}"
-                                                        class="font-weight-medium text-primary"> Sign In here</a> </p>
+                                                <p>Already registered? <a href="{{ url('login') }}" class="font-weight-medium text-primary"> Login here</a> </p>
+                                            <p>Not registered? <a href="{{ url('register') }}" class="font-weight-medium text-primary"> Register here</a> </p>
                                             </div>
                                         </div>
                                     </div>
