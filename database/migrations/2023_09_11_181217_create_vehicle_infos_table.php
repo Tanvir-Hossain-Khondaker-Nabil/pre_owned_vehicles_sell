@@ -1,11 +1,10 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      */
@@ -13,14 +12,14 @@ return new class extends Migration
     {
         Schema::create('vehicle_infos', function (Blueprint $table) {
             $table->id();
-
-            $table->string('chesis_no');
+            $table->string('chassis_no');
             $table->string('engine_no');
             $table->string('color');
-            $table->string('garage');
-            $table->string('workshop');
-            $table->string('wash_color');
-
+            $table->boolean('transport')->default(true);
+            $table->boolean('garage')->default(false);
+            $table->boolean('workshop')->default(false);
+            $table->boolean('wash_color')->default(false);
+            $table->morphs('sellable');
             $table->timestamps();
         });
     }

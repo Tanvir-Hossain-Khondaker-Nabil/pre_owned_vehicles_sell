@@ -2,14 +2,19 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\VehicleInfo;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Customer extends Model
 {
-    protected $fillable = [
-        'name','phone','nid','driving_licence','image','address','email'
-    ];
-
     use HasFactory;
+
+
+    protected $guards = [];
+
+    public function vehicleInfo()
+    {
+        return $this->morphOne(VehicleInfo::class, 'sellable');
+    }
 }
