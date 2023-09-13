@@ -78,6 +78,16 @@
                         </li>
                     </ul>
                 </li>
+                <li>
+                    <a href="javascript: void(1);" class="has-arrow waves-effect"  aria-expanded="true">
+                        <i class="bx bx-share-alt"></i>
+                        <span key="t-multi-level">Supplier</span>
+                    </a>
+                    <ul class="sub-menu" aria-expanded="true">
+                        <li><a href="{{ route('suppliers.create') }}" key="t-level-1-1">Create</a></li>
+                        <li><a href="{{ route('suppliers.index') }}" key="t-level-1-2">Table</a></li>
+                    </ul>
+                </li>
 
             </ul>
         </div>

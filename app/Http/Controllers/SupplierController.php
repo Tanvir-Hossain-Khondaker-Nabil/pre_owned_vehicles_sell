@@ -32,7 +32,19 @@ class SupplierController extends Controller
      */
     public function store(StoreSupplierRequest $request)
     {
-        //
+            $supplier_data = $request->except(['avatar']);
+
+            $file = " ";
+
+            if($file = $request->file('avatar')){
+                $imageName = time().'-supplier'.'.'.$file->getClientOriginalExtension();
+                $supplier_data['avatar'] = $file->move('upload/supplier/',$imageName);
+            }
+
+            Supplier::create($supplier_data);
+            session()->put('success', 'Item created successfully.');
+            return redirect()->route('suppliers.index');
+            
     }
 
     /**
@@ -48,15 +60,35 @@ class SupplierController extends Controller
      */
     public function edit(Supplier $supplier)
     {
-        //
+        return view ('supplier.create',compact('supplier'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateSupplierRequest $request, Supplier $supplier)
+    public function update(UpdateSupplierRequest $request, supplier $supplier)
     {
-        //
+        $supplier_data = $request->except(['avatar']);
+
+        $file = " ";
+        $deleteOldImage = $supplier->avatar;
+
+        if($file = $request->file('avatar')){
+            if(file_exists($deleteOldImage)){
+                unlink($deleteOldImage);
+            }
+            $imageName = time().'-supplier'.'.'.$file->getClientOriginalExtension();
+            $supplier_data['avatar'] = $file->move('upload/history/',$imageName);
+        }
+        else{
+            $supplier_data['avatar'] = $supplier->avatar;
+        }
+
+        $supplier->update($supplier_data);
+
+        session()->put('success', 'Item Updated successfully.');
+
+        return redirect()->route('suppliers.index');
     }
 
     /**
@@ -64,6 +96,13 @@ class SupplierController extends Controller
      */
     public function destroy(Supplier $supplier)
     {
-        //
+        $deleteOldImage = $supplier->avatar;
+        if(file_exists($deleteOldImage)){
+            unlink($deleteOldImage);
+        }
+
+        $supplier->delete();
+        session()->put('success', 'Item Deleted successfully.');
+        return redirect()->back();
     }
 }
