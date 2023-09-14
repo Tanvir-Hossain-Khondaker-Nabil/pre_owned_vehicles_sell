@@ -6,25 +6,25 @@
 
 @component('components.breadcrumb')
 @slot('li_1') Dashboard @endslot
-@if(isset($supplier))
-@slot('title') Supplier Edit @endslot
+@if(isset($customer))
+@slot('title') Customer Edit @endslot
 @else
-@slot('title') Supplier Create @endslot
+@slot('title') Customer Create @endslot
 @endif
 
 @endcomponent
 <div class="card">
     <div class="card-body">
-        <h4 class="card-title mb-4">Supplier Form</h4>        
-        <form method="POST" action="{{(@$supplier) ? route('suppliers.update',$supplier->id) : route('suppliers.store')}}" enctype="multipart/form-data">
+        <h4 class="card-title mb-4">Customer Form</h4>        
+        <form method="POST" action="{{(@$customer) ? route('customers.update',$customer->id) : route('customers.store')}}" enctype="multipart/form-data">
             @csrf
 
-            @if(isset($supplier))
+            @if(isset($customer))
             @method('put')
             @endif
             <div class="row">
                 <div class="col-xl-6">
-                    <x-input label='Name' :required=true placeholder="Enter Your Name" name="name" value="{{@$supplier->name ?? old('name')}}">
+                    <x-input label='Name' :required=true placeholder="Enter Your Name" name="name" value="{{@$customer->name ?? old('name')}}">
                     </x-input>
                 </div>
                 <div class="col-xl-6">
@@ -38,43 +38,38 @@
                 <!-- end col -->
                 <div class="col-xl-6">
                     <x-input label='Email' :required=true type="email" placeholder="Enter Your Email"
-                        name="email" value="{{@$supplier->email ?? old('email')}}">
+                        name="email" value="{{@$customer->email ?? old('email')}}">
                     </x-input>
                 </div>
                 <div class="col-xl-6">
                     <x-input label='NID' :required=true type="number" placeholder="Enter Your NID"
-                        name="nid" value="{{@$supplier->nid ?? old('nid')}}">
+                        name="nid" value="{{@$customer->nid ?? old('nid')}}">
                     </x-input>
                 </div>
                 <div class="col-xl-6">
-                    <x-input label='Phone One' :required=true type="tel" placeholder="Enter Your Phone One"
-                        name="phone_1" value="{{@$supplier->phone_1 ?? old('phone_1')}}">
+                    <x-input label='Phone' :required=true type="tel" placeholder="Enter Your Phone"
+                        name="phone" value="{{@$customer->phone ?? old('phone')}}">
                     </x-input>
-                </div>
-                <div class="col-xl-6">
-                    <x-input label='Phone Two' :required=true type="tel" placeholder="Enter Your Phone Two"
-                        name="phone_2" value="{{@$supplier->phone_2 ?? old('phone_2')}}">
-                    </x-input>
-                </div>
+                </div>                
                 
-                <div class="col-xl-6 mt-2">
+                <div class="col-xl-6">
+                    <x-input label='Driving License No' :required=true type="number"
+                        placeholder="Enter Your Driving License No" name="driving_license_no" value="{{@$customer->driving_license_no ?? old('driving_license_no')}}">
+                    </x-input>
+                </div>
+                <div class="mt-2">
                     <label class="form-label-lg fs-5 mx-3" for="avater">Address</label>
-                        <textarea class="form-control rounded-pill form-control-lg ps-3" required name="address" id="" cols="30" rows="2" placeholder="Enter Your Address" value="{{old('address')}}">{{ @$supplier->address  }}</textarea>
+                        <textarea class="form-control rounded-pill form-control-lg ps-3" required name="address" id="" cols="30" rows="2" placeholder="Enter Your Address" value="{{old('address')}}">{{ @$customer->address  }}</textarea>
                     @error('address')
                     <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
-                <div class="col-xl-6">
-                    <x-input label='Driving License No' :required=true type="number"
-                        placeholder="Enter Your Driving License No" name="driving_license_no" value="{{@$supplier->driving_license_no ?? old('driving_license_no')}}">
-                    </x-input>
-                </div>
-                
                 <div class="col-xl-12 m-4">
                     <div>
-                        <button type="submit" class="btn btn-primary w-md"> {{(@$supplier)?'Update':'Submit'}}</button>
+                        <button type="submit" class="btn btn-primary w-md"> {{(@$customer)?'Update':'Submit'}}</button>
                     </div>
                 </div>
+                
             </div>
         </form>
     </div>

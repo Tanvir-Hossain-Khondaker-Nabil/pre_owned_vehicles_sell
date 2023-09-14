@@ -11,7 +11,7 @@ class Customer extends Model
     use HasFactory;
 
 
-    protected $guards = [];
+    protected $guarded = [];  
 
     public function vehicleInfo()
     {
