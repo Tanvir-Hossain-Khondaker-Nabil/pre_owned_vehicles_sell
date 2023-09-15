@@ -2,9 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Vehicle;
+use App\Models\Customer;
+use App\Models\Supplier;
+use App\Models\VehicleInfo;
 use Illuminate\Http\Request;
 
-use App\Models\VehicleInfo;
+use App\Http\Requests\StoreVehicleInfoRequest;
 
 class VehicleInfoController extends Controller
 {
@@ -21,15 +25,20 @@ class VehicleInfoController extends Controller
      */
     public function create()
     {
-        //
+        $data = [
+            'vehicles'  => Vehicle::get(),
+            'suppliers' => Supplier::get(),
+            'customers' => Customer::get(),
+        ];
+        return view('vehicle_info.create_edit', $data);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreVehicleInfoRequest $request)
     {
-        //
+        dd($request->validated());
     }
 
     /**

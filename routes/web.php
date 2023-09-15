@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\SupplierController;
+use App\Http\Controllers\VehicleInfoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,8 +26,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
     })->name('dashboard');
 
     Route::resources([
-        'suppliers' => SupplierController::class,
-        'customers' => CustomerController::class
+        'suppliers'    => SupplierController::class,
+        'customers'    => CustomerController::class,
+        'vehicle-info' => VehicleInfoController::class,
     ]);
 });
 

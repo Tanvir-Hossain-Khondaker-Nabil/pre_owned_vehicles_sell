@@ -11,6 +11,16 @@
                 <li>
                     <a href="javascript: void(1);" class="has-arrow waves-effect" aria-expanded="true">
                         <i class="bx bx-share-alt"></i>
+                        <span key="t-multi-level">Vehicle Entry</span>
+                    </a>
+                    <ul class="sub-menu" aria-expanded="true">
+                        <li><a href="{{ route('vehicle-info.index') }}" key="t-level-1-2">Vehicle List</a></li>
+                        <li><a href="{{ route('vehicle-info.create') }}" key="t-level-1-1">Vehicle Entry</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="javascript: void(1);" class="has-arrow waves-effect" aria-expanded="true">
+                        <i class="bx bx-share-alt"></i>
                         <span key="t-multi-level">Supplier</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="true">

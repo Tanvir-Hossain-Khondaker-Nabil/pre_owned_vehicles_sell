@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\VehicleModel;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
@@ -16,7 +17,9 @@ return new class extends Migration {
             $table->string('engine_no');
             $table->string('color');
             $table->enum('current_status', ['transport', 'garage', 'workshop', 'wash_color'])->default('transport');
-            $table->morphs('sellable');
+            $table->string('details')->nullable();
+            // $table->foreignIdFor(VehicleModel::class)->cascadeOnUpdate()->restrictOnDelete();
+            $table->morphs('ownable');
             $table->timestamps();
         });
     }
