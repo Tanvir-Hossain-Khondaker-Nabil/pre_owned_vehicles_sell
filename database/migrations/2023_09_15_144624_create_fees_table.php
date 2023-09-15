@@ -10,13 +10,11 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('vehicle_infos', function (Blueprint $table) {
+        Schema::create('fees', function (Blueprint $table) {
             $table->id();
-            $table->string('chassis_no');
-            $table->string('engine_no');
-            $table->string('color');
-            $table->enum('current_status', ['transport', 'garage', 'workshop', 'wash_color'])->default('transport');
-            $table->morphs('sellable');
+            $table->foreignIdFor(VehicleInfo::class)->cascadeOnUpdate()->restrictOnDelete();
+            $table->morphs('workable');
+            $table->float('amount', 8, 2);
             $table->timestamps();
         });
     }
@@ -26,6 +24,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('vehicle_infos');
+        Schema::dropIfExists('fees');
     }
 };
