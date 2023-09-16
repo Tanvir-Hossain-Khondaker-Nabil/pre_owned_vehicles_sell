@@ -18,8 +18,7 @@ class VehicleInfoController extends Controller
     public function index()
     {
         $data = [
-            'vehiclesInfos' => VehicleInfo::with('ownable', 'documents', 'vehicleModel')
-                ->where('current_status', 'transport')->paginate(),
+            'vehiclesInfos' => VehicleInfo::with('ownable', 'documents', 'vehicleModel')->paginate(),
         ];
         return view('vehicle_info.list', $data);
     }
@@ -65,17 +64,32 @@ class VehicleInfoController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(VehicleInfo $vehicle_info)
     {
-        //
+        $data = [
+            'vehicles'     => Vehicle::with('vehicleModels')->get(),
+            'suppliers'    => Supplier::get(),
+            'customers'    => Customer::get(),
+            'vehicle_info' => $vehicle_info,
+        ];
+        return view('vehicle_info.create_edit', $data);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(StoreVehicleInfoRequest $request, VehicleInfo $vehicle_info)
     {
-        //
+        if ($request->validated('supplier_id')) {
+            $data['ownable_type'] = Supplier::class;
+            $data['ownable_id']   = $request->validated('supplier_id');
+        } elseif ($request->validated('customer_id')) {
+            $data['ownable_type'] = Customer::class;
+            $data['ownable_id']   = $request->validated('customer_id');
+        }
+
+        $vehicle_info->update(array_merge($request->validated(), $data));
+        return redirect()->back();
     }
 
     /**

@@ -19,7 +19,7 @@
 
 @component('components.breadcrumb')
 @slot('li_1') Dashboard @endslot
-@slot('title') @method( @$supplier ? 'Supplier Edit' : 'Supplier Create') @endslot
+@slot('title') @method( @$vehicle_info ? 'Supplier Edit' : 'Supplier Create') @endslot
 
 @endcomponent
 <div class="card">
@@ -35,25 +35,25 @@
         </div>
         @endif
         <form method="POST"
-            action="{{ @$supplier ? route('vehicle-info.update',$supplier->id) : route('vehicle-info.store')}}"
+            action="{{ @$vehicle_info ? route('vehicle-info.update',$vehicle_info->id) : route('vehicle-info.store')}}"
             enctype="multipart/form-data">
             @csrf
-            @method(@$supplier ? 'PUT' : 'POST')
+            @method(@$vehicle_info ? 'PUT' : 'POST')
             <div class="row">
                 <div class="col-xl-6">
                     <x-input label='Enter Your Chassis No' :required=true placeholder="Enter Your Chassis No"
-                        name="chassis_no" value="{{ old('chassis_no', @$supplier->chassis_no)}}">
+                        name="chassis_no" value="{{ old('chassis_no', @$vehicle_info->chassis_no)}}">
                     </x-input>
                 </div>
                 <div class="col-xl-6">
                     <x-input label='Enter Your Engine No' :required=true placeholder="Enter Your Engine No"
-                        name="engine_no" value="{{ old('engine_no', @$supplier->engine_no)}}">
+                        name="engine_no" value="{{ old('engine_no', @$vehicle_info->engine_no)}}">
                     </x-input>
                 </div>
                 <!-- end col -->
                 <div class="col-xl-6">
                     <x-input label='Enter Your Vehicle Color' :required=true placeholder="Enter Your Vehicle Color"
-                        name="color" value="{{ old('color', @$supplier->color)}}">
+                        name="color" value="{{ old('color', @$vehicle_info->color)}}">
                     </x-input>
                 </div>
                 <div class="col-xl-6">
@@ -64,7 +64,9 @@
                             @foreach ($vehicles as $vehicle)
                             <optgroup label="{{$vehicle->company_name}}">
                                 @foreach ($vehicle->vehicleModels as $vehicleModel)
-                                <option value="{{$vehicleModel->id}}" {{(old('vehicle_model_id')==$vehicleModel->id)?
+                                <option value="{{$vehicleModel->id}}" {{(old('vehicle_model_id',@$vehicle_info->
+                                    vehicle_model_id) ==
+                                    $vehicleModel->id) ?
                                     'selected' : ''}}>{{$vehicleModel->name}}</option>
                                 @endforeach
                             </optgroup>
@@ -75,13 +77,23 @@
                     <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
+                @if (@$vehicle_info->ownable_type == 'App\Models\Supplier')
+                @php
+                $supplierId = $vehicle_info->ownable->id
+                @endphp
+                @elseif (@$vehicle_info->ownable_type == 'App\Models\Customer')
+                @php
+                $customerId = $vehicle_info->ownable->id
+                @endphp
+                @endif
                 <div class="col-xl-6">
                     <div class="mb-3 @error('supplier_id') is-invalid @enderror">
                         <label class="form-label form-label-lg fs-5 mx-3">Select Supplier</label>
                         <select class="form-control rounded-pill form-control-lg ps-3 select2" name="supplier_id">
                             <option value="">Select--</option>
                             @forelse ($suppliers as $supplier)
-                            <option value="{{$supplier->id}}" {{(old('supplier_id')==$supplier->id)? 'selected' :
+                            <option value="{{$supplier->id}}" {{(old('supplier_id',($supplierId??null))==$supplier->id)?
+                                'selected' :
                                 ''}}>{{ $supplier->name}}</option>
                             @empty
                             <option>No Supplier Found</option>
@@ -98,7 +110,8 @@
                         <select class="form-control rounded-pill form-control-lg ps-3 select2" name="customer_id">
                             <option value="">Select--</option>
                             @forelse ($customers as $customer)
-                            <option value="{{$customer->id}}" {{(old('customer_id')==$customer->id)? 'selected' :
+                            <option value="{{$customer->id}}" {{(old('customer_id',($customerId??null))==$customer->id)?
+                                'selected' :
                                 ''}} >{{ $customer->name}}</option>
                             @empty
                             <option>No Custoner Found</option>
@@ -113,7 +126,7 @@
                 <div class="col-xl-6 mt-2">
                     <label class="form-label-lg fs-5 mx-3">Vehicle Details</label>
                     <textarea class="form-control form-control-lg ps-3" name="details" rows="4"
-                        placeholder="Enter Your Vehicle Details">{{ old('details', @$supplier->details)  }}</textarea>
+                        placeholder="Enter Your Vehicle Details">{{ old('details', @$vehicle_info->details)  }}</textarea>
                     @error('details')
                     <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
@@ -121,7 +134,8 @@
 
                 <div class="col-xl-12 m-4">
                     <div>
-                        <button type="submit" class="btn btn-primary w-md"> {{(@$supplier)?'Update':'Save'}}</button>
+                        <button type="submit" class="btn btn-primary w-md">
+                            {{(@$vehicle_info)?'Update':'Save'}}</button>
                     </div>
                 </div>
             </div>

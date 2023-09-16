@@ -22,26 +22,34 @@
                                 <th>Engine No</th>
                                 <th>Color</th>
                                 <th>Current Status</th>
-                                <th>Owner Name</th>
+                                <th>Amount</th>
                                 <th>Model Name</th>
-                                <th>Details</th>
+                                <th>T. Details</th>
+                                <th>WorkShop</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach($vehiclesInfos as $vehiclesInfo)
+                            @php
+                            $transport = $vehiclesInfo->fees->where('workable_type','transport')->first()
+                            @endphp
                             <tr data-id="{{++$loop->index}}">
                                 <td>{{++$loop->index}}</td>
                                 <td class="text-body fw-bold">{{$vehiclesInfo->chassis_no}}</td>
                                 <td class="text-body fw-bold">{{$vehiclesInfo->engine_no}}</td>
                                 <td>{{$vehiclesInfo->color}}</td>
                                 <td>{{$vehiclesInfo->current_status}}</td>
-                                <td>{{$vehiclesInfo->ownable->name}}</td>
+                                <td>{{$transport->amount}}</td>
                                 <td>{{$vehiclesInfo->vehicleModel->name}}</td>
-                                <td>{{$vehiclesInfo->details}}</td>
+                                <td>{{$transport->details}}</td>
+                                <td>
+                                    <a href="{{route('vehicle.transport.workshop',$vehiclesInfo->id)}}" class="btn btn-warning waves-effect btn-label waves-light"><i
+                                            class="bx bx-error label-icon "></i>Send WorkShop</a>
+                                </td>
                                 <td>
                                     <div class="d-flex gap-3">
-                                        @if ($vehiclesInfo->fees->where('workable_type','transport')->first())
+                                        @if ($transport)
                                         <a class="text-success"
                                             href="{{route('vehicle.transport.create',$vehiclesInfo->id)}}">
                                             <i class="mdi mdi-pencil font-size-18"></i>

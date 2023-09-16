@@ -47,6 +47,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('{vehicle_info}/transport/edit', 'vehicleTransportEdit')->name('edit');
         Route::put('{vehicle_info}/transport/update', 'vehicleTransportUpdate')->name('update');
         Route::delete('{vehicle_info}/transport/destroy', 'vehicleTransportDestroy')->name('destroy');
+        Route::get('{vehicle_info}/transport/workshop', 'vehicleTransportWorkshop')->name('workshop');
     });
 });
 

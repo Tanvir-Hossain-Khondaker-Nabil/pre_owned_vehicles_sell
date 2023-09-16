@@ -122,4 +122,14 @@ class TransportController extends Controller
         ];
         return view('transport.list', $data);
     }
+    public function vehicleTransportWorkshop(VehicleInfo $vehicle_info)
+    {
+        $vehicle_info->update([
+            'current_status' => 'workshop'
+        ]);
+        $data = [
+            'vehiclesInfos' => VehicleInfo::with('ownable', 'fees', 'vehicleModel')->where('current_status', 'transport')->paginate(),
+        ];
+        return view('transport.list', $data);
+    }
 }
