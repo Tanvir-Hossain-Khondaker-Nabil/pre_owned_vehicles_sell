@@ -122,7 +122,26 @@
                     <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
-
+                @if (@$vehicle_info)
+                <div class="col-xl-6">
+                    <div class="mb-3 @error('current_status') is-invalid @enderror">
+                        <label class="form-label form-label-lg fs-5 mx-3">Current Type</label>
+                        <select class="form-control rounded-pill form-control-lg ps-3" name="current_status">
+                            <option value="transport" {{(old('current_status',$vehicle_info->current_status )=='transport') ?
+                                'selected' : ''}}>Transport</option>
+                            <option value="workshop" {{(old('current_status',$vehicle_info->current_status )=='workshop') ?
+                                'selected' : ''}}>Workshop</option>
+                            <option value="wash_color" {{(old('current_status',$vehicle_info->current_status )=='wash_color') ?
+                                'selected' : ''}}>Wash/Color</option>
+                            <option value="garage" {{(old('current_status',$vehicle_info->current_status )=='garage') ?
+                                'selected' : ''}}>Garage</option>
+                        </select>
+                    </div>
+                    @error('current_status')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>
+                @endif
                 <div class="col-xl-6 mt-2">
                     <label class="form-label-lg fs-5 mx-3">Vehicle Details</label>
                     <textarea class="form-control form-control-lg ps-3" name="details" rows="4"

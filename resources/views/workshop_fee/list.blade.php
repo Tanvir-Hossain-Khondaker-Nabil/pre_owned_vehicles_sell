@@ -25,53 +25,53 @@
                                 <th>T. Amount</th>
                                 <th>Model Name</th>
                                 <th>T. Details</th>
-                                <th>WorkShop</th>
+                                <th>Wahs OR Color</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($vehiclesInfos as $vehiclesInfo)
-                            @php
-                            $transport = $vehiclesInfo->fees->where('workable_type','transport')->first()
-                            @endphp
+                            @foreach($vehiclesInfos as $vehiclesInfo)p
                             <tr data-id="{{++$loop->index}}">
                                 <td>{{++$loop->index}}</td>
                                 <td class="text-body fw-bold">{{$vehiclesInfo->chassis_no}}</td>
                                 <td class="text-body fw-bold">{{$vehiclesInfo->engine_no}}</td>
                                 <td>{{$vehiclesInfo->color}}</td>
                                 <td>
-                                    <span
-                                        class="badge badge-pill badge-soft-warning font-size-12">{{$vehiclesInfo->current_status}}</span>
+                                    <span class="badge badge-pill badge-soft-primary font-size-12">
+                                        {{$vehiclesInfo->current_status}}
+                                    </span>
                                 </td>
-                                <td>{{$transport->amount ?? "not Set"}}</td>
+                                <td>{{$vehiclesInfo->workshops->sum('pivot.amount') ?? "not Set"}}</td>
                                 <td>{{$vehiclesInfo->vehicleModel->name}}</td>
-                                <td>{{$transport->details}}</td>
                                 <td>
-                                    <a href="{{route('vehicle.transport.workshop',$vehiclesInfo->id)}}"
-                                        class="btn btn-warning waves-effect btn-label waves-light">
-                                        Send WorkShop <i class="bx bx-right-arrow-alt label-icon "></i></a>
+                                    <a href="{{route('vehicle.workshop.payment.view',$vehiclesInfo->id)}}"
+                                        class="btn btn-dark waves-effect btn-label waves-light">
+                                        Payment View <i class="bx bx-dollar label-icon "></i></a>
+                                </td>
+                                <td>
+                                    <a href="{{route('vehicle.workshop.wash.color',$vehiclesInfo->id)}}"
+                                        class="btn btn-primary waves-effect btn-label waves-light">
+                                        Send Wash/Color <i class="bx bx-right-arrow-alt label-icon "></i></a>
                                 </td>
                                 <td>
                                     <div class="d-flex gap-3">
-                                        @if ($transport)
                                         <a class="text-success"
-                                            href="{{route('vehicle.transport.create',$vehiclesInfo->id)}}">
+                                            href="{{route('vehicle.workshop.create',$vehiclesInfo->id)}}"
+                                            title="Create">
+                                            <i class="mdi mdi-plus font-size-18"></i>
+                                        </a>
+                                        <a class="text-success"
+                                            href="{{route('vehicle.workshop.edit',$vehiclesInfo->id)}}" title="Edit">
                                             <i class="mdi mdi-pencil font-size-18"></i>
                                         </a>
                                         <form method="post" id="{{'form_'.$vehiclesInfo->id}}"
-                                            action="{{route('vehicle.transport.destroy',$vehiclesInfo->id)}}">
+                                            action="{{route('vehicle.workshop.destroy',$vehiclesInfo->id)}}">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn p-0 text-danger"
                                                 data-id="{{$vehiclesInfo->id}}"><i
                                                     class="mdi mdi-delete font-size-18"></i></button>
                                         </form>
-                                        @else
-                                        <a class="text-success"
-                                            href="{{route('vehicle.transport.edit',$vehiclesInfo->id)}}" title="Edit">
-                                            <i class="mdi mdi-plus font-size-18"></i>
-                                        </a>
-                                        @endif
                                     </div>
                                 </td>
                             </tr>

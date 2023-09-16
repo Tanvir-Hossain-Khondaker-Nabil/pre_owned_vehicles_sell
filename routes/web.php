@@ -49,6 +49,18 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::delete('{vehicle_info}/transport/destroy', 'vehicleTransportDestroy')->name('destroy');
         Route::get('{vehicle_info}/transport/workshop', 'vehicleTransportWorkshop')->name('workshop');
     });
+
+
+    Route::prefix('vehicle')->as('vehicle.workshop.')->controller(WorkShopController::class)->group(function () {
+        Route::get('workshops/index', 'vehicleWorkshopsIndex')->name('index');
+        Route::get('{vehicle_info}/workshops/create', 'vehicleWorkshopsCreate')->name('create');
+        Route::get('{vehicle_info}/workshops/payment-view', 'vehicleWorkshopsPaymentView')->name('payment.view');
+        Route::post('{vehicle_info}/workshops/store', 'vehicleWorkshopsStore')->name('store');
+        Route::get('{vehicle_info}/workshops/edit', 'vehicleWorkshopsEdit')->name('edit');
+        Route::put('{vehicle_info}/workshops/update', 'vehicleWorkshopsUpdate')->name('update');
+        Route::delete('{vehicle_info}/workshops/destroy', 'vehicleWorkshopsDestroy')->name('destroy');
+        Route::get('{vehicle_info}/workshops/wash-color', 'vehicleWorkshopsWashColor')->name('wash.color');
+    });
 });
 
 Route::middleware('auth')->group(function () {

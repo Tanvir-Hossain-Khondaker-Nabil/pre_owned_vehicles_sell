@@ -17,6 +17,8 @@
                         <li><a href="{{ route('vehicle-info.index') }}" key="t-level-1-2">Vehicle List</a></li>
                         <li><a href="{{ route('vehicle-info.create') }}" key="t-level-1-1">Vehicle Entry</a></li>
                         <li><a href="{{ route('transport.index') }}" key="t-level-1-2">Vehicle Transport List</a></li>
+                        <li><a href="{{ route('vehicle.workshop.index') }}" key="t-level-1-2">Vehicle Workshop List</a>
+                        </li>
                     </ul>
                 </li>
                 <li>

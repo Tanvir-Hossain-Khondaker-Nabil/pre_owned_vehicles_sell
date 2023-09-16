@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
 use App\Models\WorkShop;
+
+use App\Models\VehicleInfo;
+use Illuminate\Http\Request;
+use Illuminate\Contracts\View\View;
+use Illuminate\Contracts\View\Factory;
 
 class WorkShopController extends Controller
 {
@@ -52,7 +55,7 @@ class WorkShopController extends Controller
      */
     public function edit(workshop $workshop)
     {
-        return view ('workshop.create',compact('workshop'));
+        return view('workshop.create', compact('workshop'));
     }
 
     /**
@@ -77,5 +80,78 @@ class WorkShopController extends Controller
         $washcolor->delete();
         session()->put('success', 'Item Deleted successfully.');
         return redirect()->back();
+    }
+
+    public function vehicleWorkshopsIndex(): Factory|View
+    {
+        $data = [
+            'vehiclesInfos' => VehicleInfo::with('ownable', 'vehicleModel')->where('current_status', 'workshop')->paginate(),
+        ];
+        return view('workshop_fee.list', $data);
+    }
+
+    public function vehicleWorkshopsCreate(VehicleInfo $vehicle_info): Factory|View
+    {
+        $data = [
+            'vehiclesInfo' => $vehicle_info,
+            'workshops'    => WorkShop::get(),
+        ];
+        return view('workshop_fee.create_edit', $data);
+    }
+
+    public function vehicleWorkshopsWashColor(VehicleInfo $vehicle_info): Factory|View
+    {
+        $vehicle_info->update([
+            'current_status' => 'wash_color'
+        ]);
+        $data = [
+            'vehiclesInfos' => VehicleInfo::with('ownable', 'vehicleModel')->where('current_status', 'workshop')->paginate(),
+        ];
+        return view('workshop_fee.list', $data);
+    }
+    public function vehicleWorkshopsStore(VehicleInfo $vehicle_info, Request $request): Factory|View
+    {
+
+
+        foreach ($request->workshop_id as $workshop_id) {
+            if ($request->workshop_id[$workshop_id]) {
+                $workshop = WorkShop::find($request->workshop_id[$workshop_id]);
+                $vehicle_info->fees()->updateOrCreate(
+                    [
+                        'workable_id' => $workshop->id,
+                    ],
+                    [
+                        'workable_id'   => $workshop->id,
+                        'workable_type' => WorkShop::class,
+                        'amount'        => $workshop->amount,
+                        'details'       => $request->details[$workshop_id],
+                    ]
+                );
+            }
+        }
+        $data = [
+            'vehiclesInfos' => VehicleInfo::with('ownable', 'vehicleModel')->where('current_status', 'workshop')->paginate(),
+        ];
+        return view('workshop_fee.list', $data);
+    }
+
+    public function vehicleWorkshopsPaymentView(VehicleInfo $vehicle_info)
+    {
+        $data = [
+            'vehiclesInfo' => $vehicle_info,
+        ];
+        return view('workshop_fee.show', $data);
+    }
+
+    public function vehicleWorkshopsDestroy(VehicleInfo $vehicle_info)
+    {
+        $vehicle_info->fees()
+            ->where('workable_type', 'App\Models\WorkShop')
+            ->delete();
+        $data = [
+            'vehiclesInfos' => VehicleInfo::with('ownable', 'fees', 'vehicleModel')
+                ->where('current_status', 'workshop')->paginate(),
+        ];
+        return view('workshop_fee.list', $data);
     }
 }

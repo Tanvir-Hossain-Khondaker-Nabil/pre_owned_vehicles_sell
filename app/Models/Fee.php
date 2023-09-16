@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\VehicleInfo;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -14,6 +15,11 @@ class Fee extends Model
 
     protected $guarded = [];
 
+    public function workable(): MorphTo
+    {
+        return $this->morphTo('workable', 'workable_id', 'workable_type');
+    }
+
     public function vehicleModel(): BelongsTo
     {
         return $this->belongsTo(VehicleInfo::class);
@@ -21,7 +27,6 @@ class Fee extends Model
 
     public function feeTransport()
     {
-        dd(342);
         return $this->morphOne(Transport::class, 'workable');
     }
 }
