@@ -22,9 +22,9 @@
                                 <th>Engine No</th>
                                 <th>Color</th>
                                 <th>Current Status</th>
-                                <th>T. Amount</th>
+                                <th>WS. Amount</th>
                                 <th>Model Name</th>
-                                <th>T. Details</th>
+                                <th>Payment View</th>
                                 <th>Wahs OR Color</th>
                                 <th>Action</th>
                             </tr>

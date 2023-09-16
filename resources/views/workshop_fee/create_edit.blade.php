@@ -40,7 +40,7 @@
                     <label class="col-sm-2 h5">{{$workshop->amount}}</label>
                     <div class="col-sm-3">
                         <textarea class="form-control form-control-lg ps-3" name="details[{{$workshop->id}}]" rows="1"
-                            placeholder="Enter Your Note">{{ old('details')  }}</textarea>
+                            placeholder="Enter Your Note"></textarea>
                         @error('details')
                         <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
@@ -73,4 +73,3 @@
 </div>
 <!-- end card -->
 @endsection
-

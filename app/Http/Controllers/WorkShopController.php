@@ -111,8 +111,10 @@ class WorkShopController extends Controller
     }
     public function vehicleWorkshopsStore(VehicleInfo $vehicle_info, Request $request): Factory|View
     {
-
-
+        $request->validate([
+            'workshop_id'   => 'required',
+            'workshop_id.*' => 'required',
+        ]);
         foreach ($request->workshop_id as $workshop_id) {
             if ($request->workshop_id[$workshop_id]) {
                 $workshop = WorkShop::find($request->workshop_id[$workshop_id]);
