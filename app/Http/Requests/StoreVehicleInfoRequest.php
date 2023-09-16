@@ -23,13 +23,14 @@ class StoreVehicleInfoRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'chassis_no'     => ['required'],
-            'engine_no'      => ['required'],
-            'color'          => ['required'],
-            'current_status' => ['nullable'],
-            'details'        => ['nullable'],
-            'supplier_id'    => ['nullable', new CustomerOrSupplier],
-            'customer_id'    => ['nullable', new CustomerOrSupplier],
+            'chassis_no'       => ['required'],
+            'engine_no'        => ['required'],
+            'color'            => ['required'],
+            'vehicle_model_id' => ['required'],
+            'current_status'   => ['nullable'],
+            'details'          => ['nullable'],
+            'supplier_id'      => ['nullable', new CustomerOrSupplier],
+            'customer_id'      => ['nullable', new CustomerOrSupplier],
         ];
     }
 }

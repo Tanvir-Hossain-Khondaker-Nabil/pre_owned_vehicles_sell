@@ -17,7 +17,11 @@ class VehicleInfoController extends Controller
      */
     public function index()
     {
-        //
+        $data = [
+            'vehiclesInfos' => VehicleInfo::with('ownable', 'documents', 'vehicleModel')
+                ->where('current_status', 'transport')->paginate(),
+        ];
+        return view('vehicle_info.list', $data);
     }
 
     /**
@@ -26,7 +30,7 @@ class VehicleInfoController extends Controller
     public function create()
     {
         $data = [
-            'vehicles'  => Vehicle::get(),
+            'vehicles'  => Vehicle::with('vehicleModels')->get(),
             'suppliers' => Supplier::get(),
             'customers' => Customer::get(),
         ];
@@ -38,7 +42,16 @@ class VehicleInfoController extends Controller
      */
     public function store(StoreVehicleInfoRequest $request)
     {
-        dd($request->validated());
+        if ($request->validated('supplier_id')) {
+            $data['ownable_type'] = Supplier::class;
+            $data['ownable_id']   = $request->validated('supplier_id');
+        } elseif ($request->validated('customer_id')) {
+            $data['ownable_type'] = Customer::class;
+            $data['ownable_id']   = $request->validated('customer_id');
+        }
+
+        VehicleInfo::create(array_merge($request->validated(), $data));
+        return redirect()->back();
     }
 
     /**

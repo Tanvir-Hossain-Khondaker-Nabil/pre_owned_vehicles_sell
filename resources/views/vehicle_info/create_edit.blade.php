@@ -57,25 +57,29 @@
                     </x-input>
                 </div>
                 <div class="col-xl-6">
-                    {{-- <div class="mb-3">
-                        <label class="form-label form-label-lg fs-5 mx-3">Single Select</label>
-                        <select class="form-control rounded-pill form-control-lg ps-3 select2" name="">
-                            <option>Select</option>
-                            <optgroup label="Alaskan/Hawaiian Time Zone">
-                                <option value="AK">Alaska</option>
-                                <option value="HI">Hawaii</option>
+                    <div class="mb-3 @error('vehicle_model_id') is-invalid @enderror">
+                        <label class="form-label form-label-lg fs-5 mx-3">Single Vehicle Model</label>
+                        <select class="form-control rounded-pill form-control-lg ps-3 select2" name="vehicle_model_id">
+                            <option value="">Select--</option>
+                            @foreach ($vehicles as $vehicle)
+                            <optgroup label="{{$vehicle->company_name}}">
+                                @foreach ($vehicle->vehicleModels as $vehicleModel)
+                                <option value="{{$vehicleModel->id}}" {{(old('vehicle_model_id')==$vehicleModel->id)?
+                                    'selected' : ''}}>{{$vehicleModel->name}}</option>
+                                @endforeach
                             </optgroup>
+                            @endforeach
                         </select>
-                        @error('')
-                        <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
-                    </div> --}}
+                    </div>
+                    @error('vehicle_model_id')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
                 </div>
                 <div class="col-xl-6">
                     <div class="mb-3 @error('supplier_id') is-invalid @enderror">
                         <label class="form-label form-label-lg fs-5 mx-3">Select Supplier</label>
                         <select class="form-control rounded-pill form-control-lg ps-3 select2" name="supplier_id">
-                            <option>Select</option>
+                            <option value="">Select--</option>
                             @forelse ($suppliers as $supplier)
                             <option value="{{$supplier->id}}" {{(old('supplier_id')==$supplier->id)? 'selected' :
                                 ''}}>{{ $supplier->name}}</option>
@@ -92,7 +96,7 @@
                     <div class="mb-3 @error('customer_id') is-invalid @enderror">
                         <label class="form-label form-label-lg fs-5 mx-3">Select Customer</label>
                         <select class="form-control rounded-pill form-control-lg ps-3 select2" name="customer_id">
-                            <option>Select--</option>
+                            <option value="">Select--</option>
                             @forelse ($customers as $customer)
                             <option value="{{$customer->id}}" {{(old('customer_id')==$customer->id)? 'selected' :
                                 ''}} >{{ $customer->name}}</option>

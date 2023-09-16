@@ -11,7 +11,7 @@ class StoreTransportRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,8 +22,8 @@ class StoreTransportRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'details' => ['required', 'max:255'],
-            'amount' => ['required', 'numeric'],
+            'details' => ['nullable', 'max:255'],
+            'amount'  => ['required', 'numeric'],
         ];
     }
 }

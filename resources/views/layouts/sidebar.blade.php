@@ -16,6 +16,7 @@
                     <ul class="sub-menu" aria-expanded="true">
                         <li><a href="{{ route('vehicle-info.index') }}" key="t-level-1-2">Vehicle List</a></li>
                         <li><a href="{{ route('vehicle-info.create') }}" key="t-level-1-1">Vehicle Entry</a></li>
+                        <li><a href="{{ route('transport.index') }}" key="t-level-1-2">Vehicle Transport List</a></li>
                     </ul>
                 </li>
                 <li>
@@ -39,7 +40,7 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="javascript: void(1);" class="has-arrow waves-effect"  aria-expanded="true">
+                    <a href="javascript: void(1);" class="has-arrow waves-effect" aria-expanded="true">
                         <i class="bx bx-share-alt"></i>
                         <span key="t-multi-level">Vehicle</span>
                     </a>
@@ -50,7 +51,7 @@
                 </li>
 
                 <li>
-                    <a href="javascript: void(1);" class="has-arrow waves-effect"  aria-expanded="true">
+                    <a href="javascript: void(1);" class="has-arrow waves-effect" aria-expanded="true">
                         <i class="bx bx-share-alt"></i>
                         <span key="t-multi-level">Vehicle Model</span>
                     </a>
@@ -61,7 +62,7 @@
                 </li>
 
                 <li>
-                    <a href="javascript: void(1);" class="has-arrow waves-effect"  aria-expanded="true">
+                    <a href="javascript: void(1);" class="has-arrow waves-effect" aria-expanded="true">
                         <i class="bx bx-share-alt"></i>
                         <span key="t-multi-level">Wash Color</span>
                     </a>
@@ -72,7 +73,7 @@
                 </li>
 
                 <li>
-                    <a href="javascript: void(1);" class="has-arrow waves-effect"  aria-expanded="true">
+                    <a href="javascript: void(1);" class="has-arrow waves-effect" aria-expanded="true">
                         <i class="bx bx-share-alt"></i>
                         <span key="t-multi-level">Work Shop</span>
                     </a>

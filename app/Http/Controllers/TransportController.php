@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Fee;
 use App\Models\Transport;
+use App\Models\VehicleInfo;
 use App\Http\Requests\StoreTransportRequest;
 use App\Http\Requests\UpdateTransportRequest;
 
@@ -13,15 +15,27 @@ class TransportController extends Controller
      */
     public function index()
     {
-        //
+        $data = [
+            'vehiclesInfos' => VehicleInfo::with('ownable', 'vehicleModel')->where('current_status', 'transport')->paginate(),
+        ];
+        return view('transport.list', $data);
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(VehicleInfo $vehicleInfo)
     {
         //
+    }
+
+    public function vehicleTransportCreate(VehicleInfo $vehicle_info): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+    {
+        $data = [
+            'vehiclesInfo' => $vehicle_info,
+            'transport'    => $vehicle_info->fees->where('workable_type', 'transport')->first(),
+        ];
+        return view('transport.create_edit', $data);
     }
 
     /**
@@ -30,6 +44,18 @@ class TransportController extends Controller
     public function store(StoreTransportRequest $request)
     {
         //
+    }
+    public function vehicleTransportStore(VehicleInfo $vehicle_info, StoreTransportRequest $request)
+    {
+        $vehicle_info->fees()->create([
+            'workable_type' => 'transport',
+            'amount'        => $request->amount,
+            'details'       => $request->details,
+        ]);
+        $data = [
+            'vehiclesInfos' => VehicleInfo::with('ownable', 'fees', 'vehicleModel')->where('current_status', 'transport')->paginate(),
+        ];
+        return view('transport.list', $data);
     }
 
     /**
@@ -47,6 +73,14 @@ class TransportController extends Controller
     {
         //
     }
+    public function vehicleTransportEdit(VehicleInfo $vehicle_info)
+    {
+        $data = [
+            'vehiclesInfo' => $vehicle_info,
+            'transport'    => $vehicle_info->fees->where('workable_type', 'transport')->first(),
+        ];
+        return view('transport.create_edit', $data);
+    }
 
     /**
      * Update the specified resource in storage.
@@ -55,6 +89,20 @@ class TransportController extends Controller
     {
         //
     }
+    public function vehicleTransportUpdate(StoreTransportRequest $request, VehicleInfo $vehicle_info)
+    {
+        $vehicle_info->fees()
+            ->where('workable_type', 'transport')
+            ->first()
+            ->update([
+                'amount'  => $request->amount,
+                'details' => $request->details,
+            ]);
+        $data = [
+            'vehiclesInfos' => VehicleInfo::with('ownable', 'fees', 'vehicleModel')->where('current_status', 'transport')->paginate(),
+        ];
+        return view('transport.list', $data);
+    }
 
     /**
      * Remove the specified resource from storage.
@@ -62,5 +110,16 @@ class TransportController extends Controller
     public function destroy(Transport $transport)
     {
         //
+    }
+    public function vehicleTransportDestroy(VehicleInfo $vehicle_info)
+    {
+        $vehicle_info->fees()
+            ->where('workable_type', 'transport')
+            ->first()
+            ->delete();
+        $data = [
+            'vehiclesInfos' => VehicleInfo::with('ownable', 'fees', 'vehicleModel')->where('current_status', 'transport')->paginate(),
+        ];
+        return view('transport.list', $data);
     }
 }
