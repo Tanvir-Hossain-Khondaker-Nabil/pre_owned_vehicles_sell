@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\GarageController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\VehicleController;
 use App\Http\Controllers\CustomerController;
@@ -60,6 +61,22 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::put('{vehicle_info}/workshops/update', 'vehicleWorkshopsUpdate')->name('update');
         Route::delete('{vehicle_info}/workshops/destroy', 'vehicleWorkshopsDestroy')->name('destroy');
         Route::get('{vehicle_info}/workshops/wash-color', 'vehicleWorkshopsWashColor')->name('wash.color');
+    });
+
+    Route::prefix('vehicle')->as('vehicle.wash.color.')->controller(WashColorController::class)->group(function () {
+        Route::get('wash-colors/index', 'vehicleWashColorsIndex')->name('index');
+        Route::get('{vehicle_info}/wash-colors/create', 'vehicleWashColorsCreate')->name('create');
+        Route::get('{vehicle_info}/wash-colors/payment-view', 'vehicleWashColorsPaymentView')->name('payment.view');
+        Route::post('{vehicle_info}/wash-colors/store', 'vehicleWashColorsStore')->name('store');
+        Route::get('{vehicle_info}/wash-colors/edit', 'vehicleWashColorsEdit')->name('edit');
+        Route::put('{vehicle_info}/wash-colors/update', 'vehicleWashColorsUpdate')->name('update');
+        Route::delete('{vehicle_info}/wash-colors/destroy', 'vehicleWashColorsDestroy')->name('destroy');
+        Route::get('{vehicle_info}/wash-colors/garage', 'vehicleWashColorsGarage')->name('garage');
+    });
+
+    Route::prefix('vehicle')->as('vehicle.garage.')->controller(GarageController::class)->group(function () {
+        Route::get('garage/index', 'vehicleGarageIndex')->name('index');
+        Route::get('{vehicle_info}/garage/payment-view', 'vehicleGaragePaymentView')->name('payment.view');
     });
 });
 

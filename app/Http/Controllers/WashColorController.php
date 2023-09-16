@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
 use App\Models\WashColor;
+
+use App\Models\VehicleInfo;
+use Illuminate\Http\Request;
 
 class WashColorController extends Controller
 {
@@ -52,7 +53,7 @@ class WashColorController extends Controller
      */
     public function edit(washcolor $washcolor)
     {
-        return view ('washcolor.create',compact('washcolor'));
+        return view('washcolor.create', compact('washcolor'));
     }
 
     /**
@@ -77,5 +78,83 @@ class WashColorController extends Controller
         $washcolor->delete();
         session()->put('success', 'Item Deleted successfully.');
         return redirect()->back();
+    }
+
+    public function vehicleWashColorsIndex()
+    {
+        $data = [
+            'vehiclesInfos' => VehicleInfo::with('ownable', 'vehicleModel')->where('current_status', 'wash_color')->paginate(),
+        ];
+        return view('wash_colors_fee.list', $data);
+    }
+
+    public function vehicleWashColorsPaymentView(VehicleInfo $vehicle_info)
+    {
+        $data = [
+            'vehiclesInfo' => $vehicle_info,
+        ];
+        return view('wash_colors_fee.show', $data);
+    }
+    public function vehicleWashColorsCreate(VehicleInfo $vehicle_info)
+    {
+        $data = [
+            'vehiclesInfo' => $vehicle_info,
+            'washOrColors' => WashColor::get(),
+        ];
+        return view('wash_colors_fee.create_edit', $data);
+    }
+    public function vehicleWashColorsStore(VehicleInfo $vehicle_info, Request $request)
+    {
+        $request->validate([
+            'washOrColor_id'   => 'required',
+            'washOrColor_id.*' => 'required',
+        ]);
+        foreach ($request->washOrColor_id as $washOrColor) {
+            if ($request->washOrColor_id[$washOrColor]) {
+                $washColor = WashColor::find($request->washOrColor_id[$washOrColor]);
+                $vehicle_info->fees()->updateOrCreate(
+                    [
+                        'workable_id' => $washColor->id,
+                    ],
+                    [
+                        'workable_id'   => $washColor->id,
+                        'workable_type' => WashColor::class,
+                        'amount'        => $washColor->amount,
+                        'details'       => $request->details[$washOrColor],
+                    ]
+                );
+            }
+        }
+        $data = [
+            'vehiclesInfos' => VehicleInfo::with('ownable', 'vehicleModel')->where('current_status', 'wash_color')->paginate(),
+        ];
+        return view('wash_colors_fee.list', $data);
+    }
+    public function vehicleWashColorsEdit(VehicleInfo $vehicle_info)
+    {
+    }
+    public function vehicleWashColorsUpdate(VehicleInfo $vehicle_info)
+    {
+    }
+    public function vehicleWashColorsDestroy(VehicleInfo $vehicle_info)
+    {
+        $vehicle_info->fees()
+            ->where('workable_type', 'App\Models\WashColor')
+            ->delete();
+        $data = [
+            'vehiclesInfos' => VehicleInfo::with('ownable', 'fees', 'vehicleModel')
+                ->where('current_status', 'wash_color')->paginate(),
+        ];
+        return view('wash_colors_fee.list', $data);
+    }
+    public function vehicleWashColorsGarage(VehicleInfo $vehicle_info)
+    {
+        $vehicle_info->update([
+            'current_status' => 'garage'
+        ]);
+        $data = [
+            'vehiclesInfos' => VehicleInfo::with('ownable', 'vehicleModel')->where('current_status', 'wash_color')->paginate(),
+        ];
+        return view('wash_colors_fee.list', $data);
     }
 }

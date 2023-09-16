@@ -6,7 +6,7 @@
 
 @component('components.breadcrumb')
 @slot('li_1') Dashboard @endslot
-@slot('title') Workshop Payment @endslot
+@slot('title') Wash/Color payment @endslot
 
 @endcomponent
 <div class="card">
@@ -22,10 +22,8 @@
             </ul>
         </div>
         @endif
-        <form method="POST"
-            action="{{ @$transport ? route('vehicle.workshop.update',$vehiclesInfo->id) : route('vehicle.workshop.store',$vehiclesInfo->id)}}">
+        <form method="POST" action="{{ route('vehicle.wash.color.store',$vehiclesInfo->id)}}">
             @csrf
-            @method(@$transport ? 'PUT' : 'POST')
             <div class="row">
                 <div class="row mb-4">
                     <label class="col-sm-1 h5">#</label>
@@ -34,23 +32,23 @@
                     <label class="col-sm-3 h5">Note</label>
                     <label class="col-sm-2 h5">Action</label>
                 </div>
-                @forelse ($workshops as $workshop)
+                @forelse ($washOrColors as $washOrColor)
                 <div class="row mb-4">
                     <label class="col-sm-1 h5">{{++$loop->index}}</label>
-                    <label class="col-sm-4 h5">{{$workshop->work}}</label>
-                    <label class="col-sm-2 h5">{{$workshop->amount}}</label>
+                    <label class="col-sm-4 h5">{{$washOrColor->work}}</label>
+                    <label class="col-sm-2 h5">{{$washOrColor->amount}}</label>
                     <div class="col-sm-3">
-                        <textarea class="form-control form-control-lg ps-3" name="details[{{$workshop->id}}]" rows="1"
-                            placeholder="Enter Your Note"></textarea>
+                        <textarea class="form-control form-control-lg ps-3" name="details[{{$washOrColor->id}}]"
+                            rows="1" placeholder="Enter Your Note"></textarea>
                         @error('details')
                         <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
                     <div class="col-sm-2">
                         <div class="form-check form-checkbox-outline form-check-success mb-3">
-                            <input class="form-check-input" id="workshop_id{{$workshop->id}}" type="checkbox"
-                                name="workshop_id[{{$workshop->id}}]" value="{{$workshop->id}}">
-                            <label class="form-check-label" for="workshop_id{{$workshop->id}}">
+                            <input class="form-check-input" id="washOrColor_id{{$washOrColor->id}}" type="checkbox"
+                                name="washOrColor_id[{{$washOrColor->id}}]" value="{{$washOrColor->id}}">
+                            <label class="form-check-label" for="washOrColor_id{{$washOrColor->id}}">
                                 Check For pay
                             </label>
                         </div>
@@ -64,7 +62,7 @@
 
                 <div class="col-xl-12 m-4">
                     <div>
-                        <button type="submit" class="btn btn-primary w-md"> {{(@$transport)?'Update':'Save'}}</button>
+                        <button type="submit" class="btn btn-primary w-md"> Save</button>
                     </div>
                 </div>
             </div>

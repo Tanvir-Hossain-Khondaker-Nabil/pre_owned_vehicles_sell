@@ -6,12 +6,13 @@
 
 @component('components.breadcrumb')
 @slot('li_1') Dashboard @endslot
-@slot('title') @method( @$transport ? 'Supplier Edit' : 'Supplier Create') @endslot
+@slot('title') Tranport Payment @endslot
 
 @endcomponent
 <div class="card">
     <div class="card-body">
-        <h4 class="card-title">Vehicle Chassis No {{$vehiclesInfo->chassis_no}}</h4>
+        <h4 class="card-title">Vehicle Chassis No <span
+                class="badge badge-pill badge-soft-success font-size-12">{{$vehiclesInfo->chassis_no}}</span></h4>
         @if ($errors->any())
         <div class="alert alert-danger">
             <ul>
