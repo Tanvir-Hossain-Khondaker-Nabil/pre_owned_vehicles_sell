@@ -14,8 +14,8 @@ return new class extends Migration {
     {
         Schema::create('document_vehicle_info', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(Document::class);
-            $table->foreignIdFor(VehicleInfo::class);
+            $table->foreignIdFor(Document::class)->cascadeOnUpdate()->restrictOnDelete();
+            $table->foreignIdFor(VehicleInfo::class)->cascadeOnUpdate()->restrictOnDelete();
             $table->string('path')->nullable();
             $table->timestamps();
         });

@@ -22,14 +22,25 @@ class StoreSupplierRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => ['required', 'max:255'],
-            'phone_1' => ['required', 'numeric'],
-            'nid' => ['required', 'numeric'],
-            'address' => ['required', 'max:255'],
-            'phone_2' => ['required', 'numeric'],
-            'email' => ['required', 'email'],
+            'name'               => ['required', 'max:255'],
+            'phone_1'            => ['required', 'phone:BD'],
+            'phone_2'            => ['required', 'phone:BD'],
+            'nid'                => ['required', 'numeric'],
+            'address'            => ['required', 'max:255'],
+            'email'              => ['required', 'email'],
             'driving_license_no' => ['required', 'numeric'],
-            'avatar' => ['required', 'mimes:png,jpg,jpeg,webp', 'max:1024'],
+            'avatar'             => ['required', 'mimes:png,jpg,jpeg,webp', 'max:1024'],
+        ];
+    }
+
+    /**
+     * @return array|string[]
+     */
+    public function messages(): array
+    {
+        return [
+            'phone_1.phone' => 'Enter A Valid BD Phone Number',
+            'phone_2.phone' => 'Enter A Valid BD Phone Number',
         ];
     }
 }

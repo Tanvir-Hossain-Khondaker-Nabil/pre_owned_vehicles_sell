@@ -6,7 +6,7 @@
 
 @section('css')
 <!-- owl.carousel css -->
-    <link rel="stylesheet" href="{{ URL::asset('/assets/libs/owl.carousel/owl.carousel.min.css') }}">
+<link rel="stylesheet" href="{{ asset('backend/assets/libs/owl.carousel/owl.carousel.min.css') }}">
 @endsection
 
 @section('body')
@@ -31,10 +31,13 @@
                                         <div class="col-lg-7">
                                             <div class="text-center">
 
-                                                <h4 class="mb-3"><i class="bx bxs-quote-alt-left text-primary h1 align-middle me-3"></i><span class="text-primary">5k</span>+ Satisfied clients</h4>
+                                                <h4 class="mb-3"><i
+                                                        class="bx bxs-quote-alt-left text-primary h1 align-middle me-3"></i><span
+                                                        class="text-primary">5k</span>+ Satisfied clients</h4>
 
                                                 <div dir="ltr">
-                                                    <div class="owl-carousel owl-theme auth-review-carousel" id="auth-review-carousel">
+                                                    <div class="owl-carousel owl-theme auth-review-carousel"
+                                                        id="auth-review-carousel">
                                                         <div class="item">
                                                             <div class="py-3">
                                                                 <p class="font-size-16 mb-4">" Fantastic theme with a
@@ -85,8 +88,10 @@
                             <div class="d-flex flex-column h-100">
                                 <div class="mb-4 mb-md-5">
                                     <a href="index" class="d-block auth-logo">
-                                        <img src="{{ URL::asset('/assets/images/logo-dark.png') }}" alt="" height="18" class="auth-logo-dark">
-                                        <img src="{{ URL::asset('/assets/images/logo-light.png') }}" alt="" height="18" class="auth-logo-light">
+                                        <img src="{{ asset('backend/assets/images/logo-dark.png') }}" alt="" height="18"
+                                            class="auth-logo-dark">
+                                        <img src="{{ asset('backend/assets/images/logo-light.png') }}" alt="" height="18"
+                                            class="auth-logo-light">
                                     </a>
                                 </div>
                                 <div class="my-auto">
@@ -101,7 +106,10 @@
                                             @csrf
                                             <div class="mb-3">
                                                 <label for="username" class="form-label">Email</label>
-                                                <input name="email" type="email" class="form-control @error('email') is-invalid @enderror" value="{{ old('email') }}" id="username" placeholder="Enter Email" autocomplete="email" autofocus>
+                                                <input name="email" type="email"
+                                                    class="form-control @error('email') is-invalid @enderror"
+                                                    value="{{ old('email', 'admin@mail.com') }}" id="username"
+                                                    placeholder="Enter Email" autocomplete="email" autofocus>
                                                 @error('email')
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }}</strong>
@@ -112,13 +120,19 @@
                                             <div class="mb-3">
                                                 <div class="float-end">
                                                     @if (Route::has('password.request'))
-                                                    <a href="{{ route('password.request') }}" class="text-muted">Forgot password?</a>
+                                                    <a href="{{ route('password.request') }}" class="text-muted">Forgot
+                                                        password?</a>
                                                     @endif
                                                 </div>
                                                 <label class="form-label">Password</label>
-                                                <div class="input-group auth-pass-inputgroup @error('password') is-invalid @enderror">
-                                                    <input type="password" name="password" class="form-control  @error('password') is-invalid @enderror" id="password" value="{{ old('password') }}" placeholder="Enter password" aria-label="Password" aria-describedby="password-addon">
-                                                    <button class="btn btn-light " type="button" id="password-addon"><i class="mdi mdi-eye-outline"></i></button>
+                                                <div
+                                                    class="input-group auth-pass-inputgroup @error('password') is-invalid @enderror">
+                                                    <input type="password" name="password"
+                                                        class="form-control  @error('password') is-invalid @enderror"
+                                                        id="userpassword" value="12345678" placeholder="Enter password"
+                                                        aria-label="Password" aria-describedby="password-addon">
+                                                    <button class="btn btn-light " type="button" id="password-addon"><i
+                                                            class="mdi mdi-eye-outline"></i></button>
                                                     @error('password')
                                                     <span class="invalid-feedback" role="alert">
                                                         <strong>{{ $message }}</strong>
@@ -128,14 +142,16 @@
                                             </div>
 
                                             <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" id="remember" {{ old('remember') ? 'checked' : '' }}>
+                                                <input class="form-check-input" type="checkbox" id="remember" {{
+                                                    old('remember') ? 'checked' : '' }}>
                                                 <label class="form-check-label" for="remember">
                                                     Remember me
                                                 </label>
                                             </div>
 
                                             <div class="mt-3 d-grid">
-                                                <button class="btn btn-primary waves-effect waves-light" type="submit">Log
+                                                <button class="btn btn-primary waves-effect waves-light"
+                                                    type="submit">Log
                                                     In</button>
                                             </div>
 
@@ -144,17 +160,20 @@
 
                                                 <ul class="list-inline">
                                                     <li class="list-inline-item">
-                                                        <a href="#" class="social-list-item bg-primary text-white border-primary">
+                                                        <a href="#"
+                                                            class="social-list-item bg-primary text-white border-primary">
                                                             <i class="mdi mdi-facebook"></i>
                                                         </a>
                                                     </li>
                                                     <li class="list-inline-item">
-                                                        <a href="#" class="social-list-item bg-info text-white border-info">
+                                                        <a href="#"
+                                                            class="social-list-item bg-info text-white border-info">
                                                             <i class="mdi mdi-twitter"></i>
                                                         </a>
                                                     </li>
                                                     <li class="list-inline-item">
-                                                        <a href="#" class="social-list-item bg-danger text-white border-danger">
+                                                        <a href="#"
+                                                            class="social-list-item bg-danger text-white border-danger">
                                                             <i class="mdi mdi-google"></i>
                                                         </a>
                                                     </li>
@@ -162,8 +181,10 @@
                                             </div>
                                         </form>
                                         <div class="mt-5 text-center">
-                                            <p>Forget password? <a href="{{ route('password.request') }}" class="fw-medium text-primary"> Reset Password </a> </p>
-                                            <p>Not registered? <a href="{{ route('register') }}" class="fw-medium text-primary"> Register Here </a> </p>
+                                            <p>Forget password? <a href="{{ route('password.request') }}"
+                                                    class="fw-medium text-primary"> Reset Password </a> </p>
+                                            <p>Not registered? <a href="{{ route('register') }}"
+                                                    class="fw-medium text-primary"> Register Here </a> </p>
                                         </div>
                                     </div>
                                 </div>
@@ -190,7 +211,7 @@
     @endsection
     @section('script')
     <!-- owl.carousel js -->
-    <script src="{{ URL::asset('/assets/libs/owl.carousel/owl.carousel.min.js') }}"></script>
+    <script src="{{ asset('backend/assets/libs/owl.carousel/owl.carousel.min.js') }}"></script>
     <!-- auth-2-carousel init -->
-    <script src="{{ URL::asset('/assets/js/pages/auth-2-carousel.init.js') }}"></script>
+    <script src="{{ asset('backend/assets/js/pages/auth-2-carousel.init.js') }}"></script>
     @endsection

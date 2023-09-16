@@ -8,6 +8,7 @@ use App\Http\Controllers\VehicleController;
 use App\Http\Controllers\VehicleModelController;
 use App\Http\Controllers\WashColorController;
 use App\Http\Controllers\WorkShopController;
+use App\Http\Controllers\VehicleInfoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,6 +36,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
         'vehiclemodels' => VehicleModelController::class,
         'washcolors' => WashColorController::class,
         'workshops' => WorkShopController::class,
+        'suppliers'    => SupplierController::class,
+        'customers'    => CustomerController::class,
+        'vehicle-info' => VehicleInfoController::class,
     ]);
 });
 

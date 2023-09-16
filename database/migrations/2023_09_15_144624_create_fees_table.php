@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\VehicleInfo;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
@@ -10,15 +11,11 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('customers', function (Blueprint $table) {
+        Schema::create('fees', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('email')->nullable();
-            $table->string('avatar')->nullable();
-            $table->string('phone');
-            $table->string('nid');
-            $table->string('driving_license_no')->nullable();
-            $table->string('address');
+            $table->foreignIdFor(VehicleInfo::class)->cascadeOnUpdate()->restrictOnDelete();
+            $table->morphs('workable');
+            $table->float('amount', 8, 2);
             $table->timestamps();
         });
     }
@@ -28,6 +25,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('customers');
+        Schema::dropIfExists('fees');
     }
 };
