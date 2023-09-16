@@ -98,6 +98,49 @@
                         <li><a href="{{ route('customers.index') }}" key="t-level-1-2">Table</a></li>
                     </ul>
                 </li>
+                <li>
+                    <a href="javascript: void(1);" class="has-arrow waves-effect"  aria-expanded="true">
+                        <i class="bx bx-share-alt"></i>
+                        <span key="t-multi-level">Vehicle</span>
+                    </a>
+                    <ul class="sub-menu" aria-expanded="true">
+                        <li><a href="{{ route('vehicles.create') }}" key="t-level-1-1">Create</a></li>
+                        <li><a href="{{ route('vehicles.index') }}" key="t-level-1-2">Table</a></li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="javascript: void(1);" class="has-arrow waves-effect"  aria-expanded="true">
+                        <i class="bx bx-share-alt"></i>
+                        <span key="t-multi-level">Vehicle Model</span>
+                    </a>
+                    <ul class="sub-menu" aria-expanded="true">
+                        <li><a href="{{ route('vehiclemodels.create') }}" key="t-level-1-1">Create</a></li>
+                        <li><a href="{{ route('vehiclemodels.index') }}" key="t-level-1-2">Table</a></li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="javascript: void(1);" class="has-arrow waves-effect"  aria-expanded="true">
+                        <i class="bx bx-share-alt"></i>
+                        <span key="t-multi-level">Wash Color</span>
+                    </a>
+                    <ul class="sub-menu" aria-expanded="true">
+                        <li><a href="{{ route('washcolors.create') }}" key="t-level-1-1">Create</a></li>
+                        <li><a href="{{ route('washcolors.index') }}" key="t-level-1-2">Table</a></li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="javascript: void(1);" class="has-arrow waves-effect"  aria-expanded="true">
+                        <i class="bx bx-share-alt"></i>
+                        <span key="t-multi-level">Work Shop</span>
+                    </a>
+                    <ul class="sub-menu" aria-expanded="true">
+                        <li><a href="{{ route('workshops.create') }}" key="t-level-1-1">Create</a></li>
+                        <li><a href="{{ route('workshops.index') }}" key="t-level-1-2">Table</a></li>
+                    </ul>
+                </li>
             </ul>
         </div>
         <!-- Sidebar -->

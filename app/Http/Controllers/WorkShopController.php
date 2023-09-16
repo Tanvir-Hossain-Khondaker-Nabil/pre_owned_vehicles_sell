@@ -13,7 +13,10 @@ class WorkShopController extends Controller
      */
     public function index()
     {
-        //
+        $data = [
+            'workshops' => WorkShop::paginate(),
+        ];
+        return view('workshop.list', $data);
     }
 
     /**
@@ -21,7 +24,7 @@ class WorkShopController extends Controller
      */
     public function create()
     {
-        //
+        return view('workshop.create');
     }
 
     /**
@@ -29,7 +32,11 @@ class WorkShopController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $workshop_data = $request->all();
+
+        WorkShop::create($workshop_data);
+        session()->put('success', 'Item created successfully.');
+        return redirect()->route('washcolors.index');
     }
 
     /**
@@ -43,24 +50,32 @@ class WorkShopController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(workshop $workshop)
     {
-        //
+        return view ('workshop.create',compact('workshop'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, workshop $workshop)
     {
-        //
+        $workshop_data = $request->all();
+
+        $workshop->update($workshop_data);
+
+        session()->put('success', 'Item Updated successfully.');
+
+        return redirect()->route('workshops.index');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(workshop $workshop)
     {
-        //
+        $washcolor->delete();
+        session()->put('success', 'Item Deleted successfully.');
+        return redirect()->back();
     }
 }

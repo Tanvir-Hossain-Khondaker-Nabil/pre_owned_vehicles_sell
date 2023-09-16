@@ -4,6 +4,10 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\SupplierController;
+use App\Http\Controllers\VehicleController;
+use App\Http\Controllers\VehicleModelController;
+use App\Http\Controllers\WashColorController;
+use App\Http\Controllers\WorkShopController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,7 +30,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::resources([
         'suppliers' => SupplierController::class,
-        'customers' => CustomerController::class
+        'customers' => CustomerController::class,
+        'vehicles' => VehicleController::class,
+        'vehiclemodels' => VehicleModelController::class,
+        'washcolors' => WashColorController::class,
+        'workshops' => WorkShopController::class,
     ]);
 });
 

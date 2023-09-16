@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\VehicleModel;
+use App\Models\Vehicle;
 use App\Http\Requests\StoreVehicleModelRequest;
 use App\Http\Requests\UpdateVehicleModelRequest;
 
@@ -13,7 +14,12 @@ class VehicleModelController extends Controller
      */
     public function index()
     {
-        //
+        $data = [
+            'vehiclemodels' => VehicleModel::paginate(),
+        ];
+
+        $Vehicles = Vehicle::with('vehiclemodels')->get();
+        return view('vehiclemodel.list', compact('Vehicles'), $data);
     }
 
     /**
@@ -21,7 +27,8 @@ class VehicleModelController extends Controller
      */
     public function create()
     {
-        //
+        $vehicles = Vehicle::get();
+        return view('vehiclemodel.create', compact('vehicles'));
     }
 
     /**
@@ -29,7 +36,10 @@ class VehicleModelController extends Controller
      */
     public function store(StoreVehicleModelRequest $request)
     {
-        //
+        //dd($request->validated());
+        VehicleModel::create($request->validated());
+        session()->put('success', 'Item created successfully.');
+        return redirect()->route('vehiclemodels.index');
     }
 
     /**
@@ -45,7 +55,7 @@ class VehicleModelController extends Controller
      */
     public function edit(VehicleModel $vehicleModel)
     {
-        //
+        return view ('vehiclemodel.create',compact('vehiclemodel'));
     }
 
     /**
@@ -53,7 +63,13 @@ class VehicleModelController extends Controller
      */
     public function update(UpdateVehicleModelRequest $request, VehicleModel $vehicleModel)
     {
-        //
+        $vehiclemodel_data = $request;
+
+        $vehiclemodel->update($vehiclemodel_data);
+
+        session()->put('success', 'Item Updated successfully.');
+
+        return redirect()->route('vehiclemodels.index');
     }
 
     /**
@@ -61,6 +77,8 @@ class VehicleModelController extends Controller
      */
     public function destroy(VehicleModel $vehicleModel)
     {
-        //
+        $vehiclemodel->delete();
+        session()->put('success', 'Item Deleted successfully.');
+        return redirect()->back();
     }
 }

@@ -11,7 +11,7 @@ class UpdateVehicleModelRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,6 +22,7 @@ class UpdateVehicleModelRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'vehicle_id' => ['required'],
             'name' => ['required', 'max:255'],
         ];
     }

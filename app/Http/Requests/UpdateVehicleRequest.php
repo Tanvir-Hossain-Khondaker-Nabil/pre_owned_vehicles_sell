@@ -11,7 +11,7 @@ class UpdateVehicleRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,7 @@ class UpdateVehicleRequest extends FormRequest
         return [
             'company_name' => ['required', 'max:255'],
             'company_logo' => ['required', 'max:255', 'mimes:png,jpg,jpeg,webp', 'max:1024'],
-            'type' => ['required', 'max:255'],
+            'type' => ['required'],
         ];
     }
 }

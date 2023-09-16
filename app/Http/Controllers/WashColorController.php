@@ -13,7 +13,10 @@ class WashColorController extends Controller
      */
     public function index()
     {
-        //
+        $data = [
+            'washcolors' => WashColor::paginate(),
+        ];
+        return view('washcolor.list', $data);
     }
 
     /**
@@ -21,7 +24,7 @@ class WashColorController extends Controller
      */
     public function create()
     {
-        //
+        return view('washcolor.create');
     }
 
     /**
@@ -29,7 +32,11 @@ class WashColorController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $washcolor_data = $request->all();
+
+        WashColor::create($washcolor_data);
+        session()->put('success', 'Item created successfully.');
+        return redirect()->route('washcolors.index');
     }
 
     /**
@@ -43,24 +50,32 @@ class WashColorController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(washcolor $washcolor)
     {
-        //
+        return view ('washcolor.create',compact('washcolor'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, washcolor $washcolor)
     {
-        //
+        $washcolor_data = $request->all();
+
+        $washcolor->update($washcolor_data);
+
+        session()->put('success', 'Item Updated successfully.');
+
+        return redirect()->route('washcolors.index');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(WashColor $washcolor)
     {
-        //
+        $washcolor->delete();
+        session()->put('success', 'Item Deleted successfully.');
+        return redirect()->back();
     }
 }
