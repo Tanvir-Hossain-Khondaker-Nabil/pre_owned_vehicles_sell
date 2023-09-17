@@ -43,9 +43,9 @@
                                     <span
                                         class="badge badge-pill badge-soft-warning font-size-12">{{$vehiclesInfo->current_status}}</span>
                                 </td>
-                                <td>{{$transport->amount ?? "not Set"}}</td>
+                                <td>{{$transport->amount ?? "Not Set"}}</td>
                                 <td>{{$vehiclesInfo->vehicleModel->name}}</td>
-                                <td>{{$transport->details}}</td>
+                                <td>{{$transport->details ?? 'Not Set'}}</td>
                                 <td>
                                     <a href="{{route('vehicle.transport.workshop',$vehiclesInfo->id)}}"
                                         class="btn btn-warning waves-effect btn-label waves-light">
