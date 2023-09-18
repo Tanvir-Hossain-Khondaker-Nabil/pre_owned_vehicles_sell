@@ -28,18 +28,16 @@
                 </div>
             </div> --}}
             <!-- end page title -->
-
             <div class="row">
-                <div class="col-12">
-                    <div class="card">
-                        <div class="card-body">
-
-                            <h4 class="card-title">Customer Table</h4>
-                            <div class="table-responsive">
-                                <table class="table table-editable table-nowrap align-middle table-edits">
-                                    <thead>
-                                        <tr>
-                                            <th>ID</th>
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Supplier Table</h4>
+                <div class="table-responsive">
+                    <table class="table table-editable table-nowrap align-middle table-edits">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
                                             <th>Image</th>
                                             <th>Name</th>
                                             <th>Driving License No</th>
@@ -47,47 +45,46 @@
                                             <th>NID</th>
                                             <th>Phone</th>
                                             <th>Address</th>
-                                            <th>Edit</th>
-                                            <th>Delete</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @php
-                                        $sl=1
-                                        @endphp
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($customers as $customer)
+                            <tr data-id="{{++$loop->index}}">
+                                <td>{{++$loop->index}}</td>
+                                <td class="text-body fw-bold">{{$customer->name}}</td>
+                                <td><img src="{{$customer->avatar}}" class="rounded-circle avatar-md" alt="Profile Pic">
+                                </td>
+                                <td>{{$customer->driving_license_no}}</td>
+                                <td>{{$customer->email}}</td>
+                                <td>{{$customer->nid}}</td>
+                                <td>{{$customer->phone}}</td>
+                                <td>{{$customer->address}}</td>
+                                <td>
+                                    <div class="d-flex gap-3">
+                                        <a class="text-success" href="{{route('customers.edit',$customer->id)}}"
+                                            title="Edit">
+                                            <i class="mdi mdi-pencil font-size-18"></i>
+                                        </a>
+                                        <form method="post" id="{{'form_'.$customer->id}}" action="{{route('customers.destroy',$customer->id)}}">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn p-0 text-danger"
+                                                data-id="{{$customer->id}}"><i
+                                                    class="mdi mdi-delete font-size-18"></i></button>
+                                        </form>
+                                    </div>
+                                </td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
 
-                                        @foreach($customers as $customer)
-                                        <tr data-id="{{$sl++}}">
-                                            <td data-field="id" style="width: 80px">{{$sl++}}</td>
-                                            <td data-field="avatar" style="width: 80px"><img src="{{$customer->avatar}}" class="img-fluid" alt=""></td>
-                                            <td data-field="name">{{$customer->name}}</td>
-                                            <td data-field="driving_license_no">{{$customer->driving_license_no}}</td>
-                                            <td data-field="email">{{$customer->email}}</td>
-                                            <td data-field="nid">{{$customer->nid}}</td>
-                                            <td data-field="phone_1">{{$customer->phone}}</td>
-                                            <td data-field="address" >{{$customer->address}}</td>
-                                            <td style="width: 100px">
-                                                <a class="btn btn-outline-secondary btn-sm edit"  href="{{route('customers.edit',$customer->id)}}" title="Edit">
-                                                    <i class="fas fa-pencil-alt"></i>
-                                                </a>
-                                            </td>
-                                            <td>
-                                                <form method="post" id="{{'form_'.$customer->id}}" action="{{route('customers.destroy',$customer->id)}}">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="btn btn-outline-secondary btn-sm delete" data-id="{{$customer->id}}"><i class="fa-solid fa-trash"></i></button>
-                                                </form>
-                                            </td>
-                                        </tr>
-                                        @endforeach
-                                    </tbody>
-                                    </table>
-                            </div>
-
-                        </div>
-                    </div>
-                </div> <!-- end col -->
-            </div> <!-- end row -->
+            </div>
+        </div>
+    </div> <!-- end col -->
+</div>    
 
         </div> <!-- container-fluid -->
     {{-- </div> --}}
