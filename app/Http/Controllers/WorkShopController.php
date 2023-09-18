@@ -39,7 +39,7 @@ class WorkShopController extends Controller
 
         WorkShop::create($workshop_data);
         session()->put('success', 'Item created successfully.');
-        return redirect()->route('washcolors.index');
+        return redirect()->route('workshops.index');
     }
 
     /**
