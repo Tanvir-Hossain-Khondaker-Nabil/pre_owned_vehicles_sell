@@ -11,6 +11,7 @@ use App\Http\Controllers\TransportController;
 use App\Http\Controllers\WashColorController;
 use App\Http\Controllers\VehicleInfoController;
 use App\Http\Controllers\VehicleModelController;
+use App\Http\Controllers\VehicleDocumentController;
 
 /*
 |--------------------------------------------------------------------------
