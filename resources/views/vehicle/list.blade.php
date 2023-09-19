@@ -53,10 +53,13 @@
 
                                         @foreach($vehicles as $vehicle)
                                         <tr data-id="{{$sl++}}">
-                                            <td data-field="id" style="width: 80px">{{$sl++}}</td>
+                                            <td data-field="id" style="width: 80px">{{$sl}}</td>
 
                                             <td data-field="company_name">{{$vehicle->company_name}}</td>
-                                            <td data-field="company_logo" style="width: 80px"><img src="{{$vehicle->company_logo}}" class="img-fluid" alt=""></td>
+                                            <td>
+                                                <img src="{{$vehicle->company_logo}}" style="border-radius: 50%; width: 100px; height: 100px;" alt="Profile Pic">
+                                            </td>
+                                            {{-- <td data-field="company_logo" style="width: 80px"><img src="{{$vehicle->company_logo}}" class="img-fluid" alt=""></td> --}}
                                             <td data-field="type">{{$vehicle->type}}</td>
 
                                             {{-- <td style="width: 100px">
