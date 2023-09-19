@@ -43,8 +43,7 @@
                                             <th>Company Name</th>
                                             <th>Company Logo</th>
                                             <th>Type</th>
-                                            <th>Edit</th>
-                                            <th>Delete</th>
+                                            <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -60,7 +59,7 @@
                                             <td data-field="company_logo" style="width: 80px"><img src="{{$vehicle->company_logo}}" class="img-fluid" alt=""></td>
                                             <td data-field="type">{{$vehicle->type}}</td>
 
-                                            <td style="width: 100px">
+                                            {{-- <td style="width: 100px">
                                                 <a class="btn btn-outline-secondary btn-sm edit"  href="{{route('vehicles.edit',$vehicle->id)}}" title="Edit">
                                                     <i class="fas fa-pencil-alt"></i>
                                                 </a>
@@ -71,6 +70,22 @@
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-outline-secondary btn-sm delete" data-id="{{$vehicle->id}}"><i class="fa-solid fa-trash"></i></button>
                                                 </form>
+                                            </td> --}}
+                                            <td>
+                                                <div class="d-flex gap-3">
+                                                    <a class="text-success" href="{{route('vehicles.edit',$vehicle->id)}}"
+                                                        title="Edit">
+                                                        <i class="mdi mdi-pencil font-size-18"></i>
+                                                    </a>
+                                                    <form method="post" id="{{'form_'.$vehicle->id}}"
+                                                        action="{{route('vehicles.destroy',$vehicle->id)}}">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit" class="btn p-0 text-danger"
+                                                            data-id="{{$vehicle->id}}"><i
+                                                                class="mdi mdi-delete font-size-18"></i></button>
+                                                    </form>
+                                                </div>
                                             </td>
                                         </tr>
                                         @endforeach

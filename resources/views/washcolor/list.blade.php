@@ -44,8 +44,7 @@
                                             <th>Work</th>
                                             <th>Amount</th>
 
-                                            <th>Edit</th>
-                                            <th>Delete</th>
+                                            <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -60,7 +59,23 @@
                                             <td data-field="work">{{$washcolor->work}}</td>
                                             <td data-field="amount">{{$washcolor->amount}}</td>
 
-                                            <td style="width: 100px">
+                                            <td>
+                                                <div class="d-flex gap-3">
+                                                    <a class="text-success" href="{{route('washcolors.edit',$washcolor->id)}}"
+                                                        title="Edit">
+                                                        <i class="mdi mdi-pencil font-size-18"></i>
+                                                    </a>
+                                                    <form method="post" id="{{'form_'.$washcolor->id}}"
+                                                        action="{{route('washcolors.destroy',$washcolor->id)}}">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit" class="btn p-0 text-danger"
+                                                            data-id="{{$washcolor->id}}"><i
+                                                                class="mdi mdi-delete font-size-18"></i></button>
+                                                    </form>
+                                                </div>
+                                            </td>
+                                            {{-- <td style="width: 100px">
                                                 <a class="btn btn-outline-secondary btn-sm edit" href="{{route('washcolors.edit', $washcolor->id)}}" title="Edit">
                                                     <i class="fas fa-pencil-alt"></i>
                                                 </a>
@@ -73,7 +88,7 @@
                                                         <i class="fa-solid fa-trash"></i>
                                                     </button>
                                                 </form>
-                                            </td>
+                                            </td> --}}
                                         </tr>
                                         @endforeach
                                         {{-- @foreach($washcolors as $washcolor)

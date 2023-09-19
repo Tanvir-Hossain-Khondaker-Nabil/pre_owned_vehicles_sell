@@ -95,8 +95,9 @@ class VehicleInfoController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(VehicleInfo $vehicle_info)
     {
-        //
+        dd($vehicle_info);
+        return redirect()->back();
     }
 }

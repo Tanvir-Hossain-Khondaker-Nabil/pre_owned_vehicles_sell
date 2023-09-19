@@ -25,7 +25,8 @@
             <div class="row">
 
                 <div class="col-xl-6">
-                    <select class="form-select @error('vehicle_id') is-invalid @enderror" required name="vehicle_id"
+                    <label class="form-label m-2 font-size-15"><strong>Vehicle Name</strong></label>
+                    <select class="form-select m-2 @error('vehicle_id') is-invalid @enderror" required name="vehicle_id"
                         id="vehicle_id">
                         <option>Select Vehicle Name</option>
                         @foreach ($vehicles as $vehicle)

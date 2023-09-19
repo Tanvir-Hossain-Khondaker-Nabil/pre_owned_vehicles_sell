@@ -53,13 +53,14 @@
                 </div> --}}
 
                 <div class="col-xl-6">
-                    <label class="form-label"><strong>Car or Bikes</strong></label>
-                    <div class="form-check">
+
+                    <label class="form-label m-3 font-size-15"><strong>Car or Bikes</strong></label>
+                    <div class="form-check m-1 font-size-15">
                         <input type="radio" class="form-check-input" name="type" id="car" value="car"
                             @if (@$vehicle['type'] == 'car') checked @endif {{ old('type') == 'car' ? 'checked' : '' }}>
                         <label class="form-check-label" for="car">Car</label>
                     </div>
-                    <div class="form-check">
+                    <div class="form-check m-1 font-size-15">
                         <input type="radio" class="form-check-input" name="type" id="bike" value="bike"
                             @if (@$vehicle['type'] == 'bike') checked @endif {{ old('type') == 'bike' ? 'checked' : '' }}>
                         <label class="form-check-label" for="bike">Bike</label>
