@@ -16,10 +16,6 @@ class WorkShopController extends Controller
      */
     public function index()
     {
-        $data = [
-            'workshops' => WorkShop::paginate(),
-        ];
-        return view('workshop.list', $data);
     }
 
     /**

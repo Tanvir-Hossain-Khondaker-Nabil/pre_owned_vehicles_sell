@@ -34,7 +34,7 @@
             <div class="card-body">
                 <h4 class="card-title">Supplier Table</h4>
                 <div class="table-responsive">
-                    <table class="table table-editable table-nowrap align-middle table-edits">
+                    <table class="table table-editable align-middle table-edits">
                         <thead>
                             <tr>
                                 <th>ID</th>

@@ -14,10 +14,6 @@ class WashColorController extends Controller
      */
     public function index()
     {
-        $data = [
-            'washcolors' => WashColor::paginate(),
-        ];
-        return view('washcolor.list', $data);
     }
 
     /**
