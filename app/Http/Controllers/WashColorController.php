@@ -25,7 +25,10 @@ class WashColorController extends Controller
      */
     public function create()
     {
-        return view('washcolor.create');
+        $data = [
+            'washcolors' => WashColor::paginate(),
+        ];
+        return view('washcolor.create' , $data);
     }
 
     /**
@@ -37,7 +40,7 @@ class WashColorController extends Controller
 
         WashColor::create($washcolor_data);
         session()->put('success', 'Item created successfully.');
-        return redirect()->route('washcolors.index');
+        return redirect()->route('washcolors.create');
     }
 
     /**
@@ -53,7 +56,11 @@ class WashColorController extends Controller
      */
     public function edit(washcolor $washcolor)
     {
-        return view('washcolor.create', compact('washcolor'));
+        $edit = '';
+        $data = [
+            'washcolors' => WashColor::paginate(),
+        ];
+        return view('washcolor.create', compact('washcolor','edit'),$data);
     }
 
     /**
@@ -67,7 +74,7 @@ class WashColorController extends Controller
 
         session()->put('success', 'Item Updated successfully.');
 
-        return redirect()->route('washcolors.index');
+        return redirect()->route('washcolors.create');
     }
 
     /**

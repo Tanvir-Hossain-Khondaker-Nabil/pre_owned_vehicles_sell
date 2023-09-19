@@ -27,7 +27,10 @@ class WorkShopController extends Controller
      */
     public function create()
     {
-        return view('workshop.create');
+        $data = [
+            'workshops' => WorkShop::paginate(),
+        ];
+        return view('workshop.create', $data);
     }
 
     /**
@@ -39,7 +42,7 @@ class WorkShopController extends Controller
 
         WorkShop::create($workshop_data);
         session()->put('success', 'Item created successfully.');
-        return redirect()->route('workshops.index');
+        return redirect()->route('workshops.create');
     }
 
     /**
@@ -55,7 +58,11 @@ class WorkShopController extends Controller
      */
     public function edit(workshop $workshop)
     {
-        return view('workshop.create', compact('workshop'));
+        $edit = '';
+        $data = [
+            'workshops' => WorkShop::paginate(),
+        ];
+        return view('workshop.create', compact('workshop','edit'), $data);
     }
 
     /**
@@ -69,7 +76,7 @@ class WorkShopController extends Controller
 
         session()->put('success', 'Item Updated successfully.');
 
-        return redirect()->route('workshops.index');
+        return redirect()->route('workshops.create');
     }
 
     /**
@@ -77,7 +84,7 @@ class WorkShopController extends Controller
      */
     public function destroy(workshop $workshop)
     {
-        $washcolor->delete();
+        $workshop->delete();
         session()->put('success', 'Item Deleted successfully.');
         return redirect()->back();
     }
