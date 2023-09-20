@@ -41,7 +41,8 @@
                                         <tr>
                                             <th>ID</th>
 
-                                            <th>Name</th>
+                                            <th>Model Name</th>
+                                            <th>Company Name</th>
 
                                             <th>Action</th>
 
@@ -54,9 +55,10 @@
 
                                         @foreach($vehiclemodels as $vehiclemodel)
                                         <tr data-id="{{$sl++}}">
-                                            <td data-field="id" style="width: 80px">{{$sl++}}</td>
+                                            <td data-field="id" style="width: 80px">{{$sl}}</td>
 
                                             <td data-field="name">{{$vehiclemodel->name}}</td>
+                                            <td data-field="company_name">{{$vehiclemodel->vehicle->company_name}}</td>
 
                                             <td>
                                                 <div class="d-flex gap-3">
@@ -74,22 +76,10 @@
                                                     </form>
                                                 </div>
                                             </td>
-                                            {{-- <td style="width: 100px">
-                                                <a class="btn btn-outline-secondary btn-sm edit"  href="{{route('vehiclemodels.edit',$vehiclemodel->id)}}" title="Edit">
-                                                    <i class="fas fa-pencil-alt"></i>
-                                                </a>
-                                            </td>
-                                            <td>
-                                                <form method="post" id="{{'form_'.$vehiclemodel->id}}" action="{{route('vehiclemodels.destroy',$vehiclemodel->id)}}">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="btn btn-outline-secondary btn-sm delete" data-id="{{$vehiclemodel->id}}"><i class="fa-solid fa-trash"></i></button>
-                                                </form>
-                                            </td> --}}
                                         </tr>
                                         @endforeach
                                     </tbody>
-                                    </table>
+                                </table>
                             </div>
 
                         </div>

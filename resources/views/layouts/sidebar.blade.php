@@ -91,7 +91,6 @@
                     </a>
                     <ul class="sub-menu" aria-expanded="true">
                         <li><a href="{{ route('washcolors.create') }}" key="t-level-1-1">Create</a></li>
-                        <li><a href="{{ route('washcolors.index') }}" key="t-level-1-2">Table</a></li>
                     </ul>
                 </li>
 
@@ -102,7 +101,6 @@
                     </a>
                     <ul class="sub-menu" aria-expanded="true">
                         <li><a href="{{ route('workshops.create') }}" key="t-level-1-1">Create</a></li>
-                        <li><a href="{{ route('workshops.index') }}" key="t-level-1-2">Table</a></li>
                     </ul>
                 </li>
 
