@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\Document;
 
 use Illuminate\Http\Request;
 
@@ -9,9 +10,10 @@ class VehicleDocumentController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function list()
     {
-        //
+        $documents = Document::all();
+        return view('vehicle_doc.list', compact('documents'));
     }
 
     /**
@@ -19,7 +21,7 @@ class VehicleDocumentController extends Controller
      */
     public function create()
     {
-        //
+        return view('vehicle_doc.create');
     }
 
     /**
@@ -27,7 +29,21 @@ class VehicleDocumentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+
+            'name' => 'required|string',
+
+        ]);
+
+        $documents = new Document;
+
+        $documents->name = $request->name;
+
+        $documents->save();
+        return redirect()->route('vehicledoc.create')->with('success', "New vehicledoc create Successfully");
+
+
+    
     }
 
     /**
@@ -43,7 +59,8 @@ class VehicleDocumentController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $documents = Document::find($id);
+        return view('vehicle_doc.edit', compact('documents'));
     }
 
     /**
@@ -51,7 +68,19 @@ class VehicleDocumentController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $this->validate($request, [
+
+            'name' => 'required|string',
+          
+
+        ]);
+
+        $documents = Document::find($id);
+        $documents->name = $request->name;
+    
+        $documents->save();
+        return redirect()->route('vehicledoc.list')->with('success', "vehicle doc Update Successfully");
+        
     }
 
     /**
@@ -59,6 +88,12 @@ class VehicleDocumentController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $documents = Document::find($id);
+
+
+      
+
+        $documents->delete();
+        return redirect()->route('vehicledoc.list')->with('success','vehicle doc Deleteed Successfully');
     }
 }

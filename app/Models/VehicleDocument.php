@@ -7,5 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class VehicleDocument extends Model
 {
+
+    protected $fillable = [
+        'name'
+    ];
     use HasFactory;
 }

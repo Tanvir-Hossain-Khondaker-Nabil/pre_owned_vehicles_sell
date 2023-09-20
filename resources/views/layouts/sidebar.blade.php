@@ -105,6 +105,21 @@
                         <li><a href="{{ route('workshops.index') }}" key="t-level-1-2">Table</a></li>
                     </ul>
                 </li>
+
+
+                <li>
+                    <a href="javascript: void(1);" class="has-arrow waves-effect" aria-expanded="true">
+                        <i class="bx bx-link"></i>
+                        <span key="t-multi-level">Vehicle Documents</span>
+                    </a>
+                    <ul class="sub-menu" aria-expanded="true">
+                        <li><a href="{{ route('vehicledoc.create') }}" key="t-level-1-1">Create</a></li>
+                        <li><a href="{{ route('vehicledoc.list') }}" key="t-level-1-2">Table</a></li>
+                    </ul>
+                </li>
+
+
+
             </ul>
         </div>
         <!-- Sidebar -->

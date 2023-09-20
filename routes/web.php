@@ -13,6 +13,7 @@ use App\Http\Controllers\VehicleInfoController;
 use App\Http\Controllers\VehicleModelController;
 use App\Http\Controllers\VehicleDocumentController;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -32,6 +33,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
         return view('index');
     })->name('dashboard');
 
+
     Route::resources([
         'suppliers'     => SupplierController::class,
         'customers'     => CustomerController::class,
@@ -41,6 +43,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
         'washcolors'    => WashColorController::class,
         'workshops'     => WorkShopController::class,
         'vehicle-info'  => VehicleInfoController::class,
+
     ]);
 
     Route::prefix('vehicle')->as('vehicle.transport.')->controller(TransportController::class)->group(function () {
@@ -79,6 +82,25 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('garage/index', 'vehicleGarageIndex')->name('index');
         Route::get('{vehicle_info}/garage/payment-view', 'vehicleGaragePaymentView')->name('payment.view');
     });
+
+
+
+
+
+
+    // vehicle documents
+
+Route::get('/vehicledoc/create', [VehicleDocumentController::class, 'create'])->name('vehicledoc.create');
+Route::put('/vehicledoc/create', [VehicleDocumentController::class, 'store'])->name('vehicledoc.store');
+Route::get('/vehicledoc/list', [VehicleDocumentController::class, 'list'])->name('vehicledoc.list');
+Route::get('/vehicledoc/edit/{id}', [VehicleDocumentController::class, 'edit'])->name('vehicledoc.edit');
+Route::post('/vehicledoc/update/{id}', [VehicleDocumentController::class, 'update'])->name('vehicledoc.update');
+Route::delete('/vehicledoc/destroy/{id}', [VehicleDocumentController::class, 'destroy'])->name('vehicledoc.destroy');
+
+
+
+
+
 });
 
 Route::middleware('auth')->group(function () {

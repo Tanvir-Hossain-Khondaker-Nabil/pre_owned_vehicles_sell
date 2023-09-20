@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\VehicleModel;
+
 use App\Models\Vehicle;
 use App\Http\Requests\StoreVehicleModelRequest;
 use App\Http\Requests\UpdateVehicleModelRequest;
