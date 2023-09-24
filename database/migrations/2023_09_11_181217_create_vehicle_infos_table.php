@@ -20,7 +20,6 @@ return new class extends Migration {
             $table->string('details')->nullable();
             $table->foreignIdFor(VehicleModel::class)->cascadeOnUpdate()->restrictOnDelete();
             $table->morphs('ownable');
-            $table->timestamps();
         });
     }
 

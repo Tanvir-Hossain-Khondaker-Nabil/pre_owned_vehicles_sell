@@ -32,19 +32,19 @@ class SupplierController extends Controller
      */
     public function store(StoreSupplierRequest $request)
     {
-            $supplier_data = $request->except(['avatar']);
+        $supplier_data = $request->except(['avatar']);
 
-            $file = " ";
+        $file = " ";
 
-            if($file = $request->file('avatar')){
-                $imageName = time().'-supplier'.'.'.$file->getClientOriginalExtension();
-                $supplier_data['avatar'] = $file->move('upload/supplier/',$imageName);
-            }
+        if ($file = $request->file('avatar')) {
+            $imageName               = time() . '-supplier' . '.' . $file->getClientOriginalExtension();
+            $supplier_data['avatar'] = $file->move('upload/supplier/', $imageName);
+        }
 
-            Supplier::create($supplier_data);
-            session()->put('success', 'Item created successfully.');
-            return redirect()->route('suppliers.index');
-            
+        Supplier::create($supplier_data);
+        session()->put('success', 'Item created successfully.');
+        return redirect()->route('suppliers.index');
+
     }
 
     /**
@@ -60,7 +60,7 @@ class SupplierController extends Controller
      */
     public function edit(Supplier $supplier)
     {
-        return view ('supplier.create',compact('supplier'));
+        return view('supplier.create', compact('supplier'));
     }
 
     /**
@@ -70,17 +70,16 @@ class SupplierController extends Controller
     {
         $supplier_data = $request->except(['avatar']);
 
-        $file = " ";
+        $file           = " ";
         $deleteOldImage = $supplier->avatar;
 
-        if($file = $request->file('avatar')){
-            if(file_exists($deleteOldImage)){
+        if ($file = $request->file('avatar')) {
+            if (file_exists($deleteOldImage)) {
                 unlink($deleteOldImage);
             }
-            $imageName = time().'-supplier'.'.'.$file->getClientOriginalExtension();
-            $supplier_data['avatar'] = $file->move('upload/history/',$imageName);
-        }
-        else{
+            $imageName               = time() . '-supplier' . '.' . $file->getClientOriginalExtension();
+            $supplier_data['avatar'] = $file->move('upload/history/', $imageName);
+        } else {
             $supplier_data['avatar'] = $supplier->avatar;
         }
 
@@ -97,7 +96,7 @@ class SupplierController extends Controller
     public function destroy(Supplier $supplier)
     {
         $deleteOldImage = $supplier->avatar;
-        if(file_exists($deleteOldImage)){
+        if (file_exists($deleteOldImage)) {
             unlink($deleteOldImage);
         }
 
