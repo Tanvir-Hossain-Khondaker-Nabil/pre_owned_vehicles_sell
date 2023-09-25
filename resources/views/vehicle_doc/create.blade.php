@@ -17,28 +17,19 @@
     <div class="card-body">
         <h4 class="card-title mb-4">Work Shop Form</h4>
         <form method="POST" action="{{ route('vehicledoc.store') }}" enctype="multipart/form-data">
-          
-
             @csrf
             @method('PUT')
-
             <div class="row">
-
                 <div class="col-xl-6">
 
                     <x-input label='Name' :required=true placeholder="Enter Shop Name" name="name">
                     </x-input>
                 </div>
-
-              
-
-
                 <div class="col-xl-12 m-4">
                     <div>
                         <button type="submit" class="btn btn-primary w-md">Submit</button>
                     </div>
                 </div>
-
             </div>
         </form>
     </div>

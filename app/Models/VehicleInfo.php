@@ -27,7 +27,7 @@ class VehicleInfo extends Model
 
     public function documents(): BelongsToMany
     {
-        return $this->belongsToMany(Document::class, 'document_vehicle_info');
+        return $this->belongsToMany(Document::class, 'document_vehicle_info')->withPivot('path', 'details');
     }
 
     public function vehicleModel(): BelongsTo

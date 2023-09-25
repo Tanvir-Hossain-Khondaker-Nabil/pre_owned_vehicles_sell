@@ -24,7 +24,7 @@ class WashColorController extends Controller
         $data = [
             'washcolors' => WashColor::paginate(),
         ];
-        return view('washcolor.create' , $data);
+        return view('washcolor.create', $data);
     }
 
     /**
@@ -56,7 +56,7 @@ class WashColorController extends Controller
         $data = [
             'washcolors' => WashColor::paginate(),
         ];
-        return view('washcolor.create', compact('washcolor','edit'),$data);
+        return view('washcolor.create', compact('washcolor', 'edit'), $data);
     }
 
     /**
@@ -112,9 +112,9 @@ class WashColorController extends Controller
             'washOrColor_id'   => 'required',
             'washOrColor_id.*' => 'required',
         ]);
-        foreach ($request->washOrColor_id as $washOrColor) {
+        foreach ($request->washOrColor_id as $key => $washOrColor) {
             if ($request->washOrColor_id[$washOrColor]) {
-                $washColor = WashColor::find($request->washOrColor_id[$washOrColor]);
+                $washColor = WashColor::find($key);
                 $vehicle_info->fees()->updateOrCreate(
                     [
                         'workable_id' => $washColor->id,

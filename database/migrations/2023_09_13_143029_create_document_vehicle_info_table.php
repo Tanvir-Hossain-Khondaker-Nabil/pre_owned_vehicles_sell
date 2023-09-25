@@ -17,6 +17,7 @@ return new class extends Migration {
             $table->foreignIdFor(Document::class)->cascadeOnUpdate()->restrictOnDelete();
             $table->foreignIdFor(VehicleInfo::class)->cascadeOnUpdate()->restrictOnDelete();
             $table->string('path')->nullable();
+            $table->string('details')->nullable();
             $table->timestamps();
         });
     }

@@ -5,6 +5,7 @@ use App\Http\Controllers\GarageController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\VehicleController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\WorkShopController;
 use App\Http\Controllers\TransportController;
@@ -85,24 +86,19 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('{vehicle_info}/garage/payment-view', 'vehicleGaragePaymentView')->name('payment.view');
     });
 
-
-
-
-
+    Route::prefix('vehicle')->as('vehicle.document.')->controller(DocumentController::class)->group(function () {
+        Route::get('{vehicle_info}/document/create', 'documentCreate')->name('create');
+        Route::post('{vehicle_info}/document/store', 'vehicleDocumentStore')->name('store');
+        Route::get('{vehicle_info}/document/view', 'documentView')->name('view');
+    });
 
     // vehicle documents
-
-Route::get('/vehicledoc/create', [VehicleDocumentController::class, 'create'])->name('vehicledoc.create');
-Route::put('/vehicledoc/create', [VehicleDocumentController::class, 'store'])->name('vehicledoc.store');
-Route::get('/vehicledoc/list', [VehicleDocumentController::class, 'list'])->name('vehicledoc.list');
-Route::get('/vehicledoc/edit/{id}', [VehicleDocumentController::class, 'edit'])->name('vehicledoc.edit');
-Route::post('/vehicledoc/update/{id}', [VehicleDocumentController::class, 'update'])->name('vehicledoc.update');
-Route::delete('/vehicledoc/destroy/{id}', [VehicleDocumentController::class, 'destroy'])->name('vehicledoc.destroy');
-
-
-
-
-
+    Route::get('/vehicledoc/create', [VehicleDocumentController::class, 'create'])->name('vehicledoc.create');
+    Route::put('/vehicledoc/create', [VehicleDocumentController::class, 'store'])->name('vehicledoc.store');
+    Route::get('/vehicledoc/list', [VehicleDocumentController::class, 'list'])->name('vehicledoc.list');
+    Route::get('/vehicledoc/edit/{id}', [VehicleDocumentController::class, 'edit'])->name('vehicledoc.edit');
+    Route::post('/vehicledoc/update/{id}', [VehicleDocumentController::class, 'update'])->name('vehicledoc.update');
+    Route::delete('/vehicledoc/destroy/{id}', [VehicleDocumentController::class, 'destroy'])->name('vehicledoc.destroy');
 });
 
 Route::middleware('auth')->group(function () {
