@@ -12,6 +12,7 @@ use App\Http\Controllers\WashColorController;
 use App\Http\Controllers\VehicleInfoController;
 use App\Http\Controllers\VehicleModelController;
 use App\Http\Controllers\VehicleDocumentController;
+use App\Http\Controllers\AccountController;
 
 
 /*
@@ -43,6 +44,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
         'washcolors'    => WashColorController::class,
         'workshops'     => WorkShopController::class,
         'vehicle-info'  => VehicleInfoController::class,
+        'accounts'      => AccountController::class,
 
     ]);
 
