@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\GarageController;
+use App\Http\Controllers\AccountController;
+use App\Http\Controllers\ExpenseController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\VehicleController;
 use App\Http\Controllers\CustomerController;
@@ -12,8 +14,8 @@ use App\Http\Controllers\TransportController;
 use App\Http\Controllers\WashColorController;
 use App\Http\Controllers\VehicleInfoController;
 use App\Http\Controllers\VehicleModelController;
+use App\Http\Controllers\ExpenseCategoryController;
 use App\Http\Controllers\VehicleDocumentController;
-use App\Http\Controllers\AccountController;
 
 
 /*
@@ -46,6 +48,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
         'workshops'     => WorkShopController::class,
         'vehicle-info'  => VehicleInfoController::class,
         'accounts'      => AccountController::class,
+        'expenses'      => ExpenseController::class,
+        'expense-categories'      => ExpenseCategoryController::class,
 
     ]);
 
