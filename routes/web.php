@@ -3,10 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\GarageController;
 use App\Http\Controllers\AccountController;
-<<<<<<< HEAD
 use App\Http\Controllers\ExpenseController;
-=======
->>>>>>> b3b4240afc6e36ac47d9ded5491d410911101021
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\VehicleController;
 use App\Http\Controllers\CustomerController;
