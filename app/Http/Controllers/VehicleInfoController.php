@@ -49,6 +49,18 @@ class VehicleInfoController extends Controller
             $data['ownable_id']   = $request->validated('customer_id');
         }
 
+        if (VehicleInfo::latest()->first()?->serial_no) {
+            $currentRegNo = VehicleInfo::latest()->first()?->serial_no;
+            $currentYear  = substr($currentRegNo, 0, 4);
+            if ($currentYear === date('Y')) {
+                $data['serial_no'] = $currentRegNo + 1;
+            } else {
+                $data['serial_no'] = date('Y') . '0001';
+            }
+        } else {
+            $data['serial_no'] = date('Y') . '0001';
+        }
+
         VehicleInfo::create(array_merge($request->validated(), $data));
         return redirect()->back();
     }
@@ -98,6 +110,16 @@ class VehicleInfoController extends Controller
     public function destroy(VehicleInfo $vehicle_info)
     {
         dd($vehicle_info);
+        return redirect()->back();
+    }
+
+    public function bulkStatusChange(Request $request)
+    {
+        foreach ($request->vehicles_info_id ?? [] as $key => $vehicles_info_id) {
+            $vehicles_info = VehicleInfo::find($vehicles_info_id);
+            $vehicles_info->update(['current_status' => $request->current_status]);
+        }
+
         return redirect()->back();
     }
 }
