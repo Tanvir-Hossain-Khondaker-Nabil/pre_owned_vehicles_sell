@@ -3,7 +3,10 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\GarageController;
 use App\Http\Controllers\AccountController;
+<<<<<<< HEAD
 use App\Http\Controllers\ExpenseController;
+=======
+>>>>>>> b3b4240afc6e36ac47d9ded5491d410911101021
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\VehicleController;
 use App\Http\Controllers\CustomerController;
@@ -52,6 +55,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
         'expense-categories'      => ExpenseCategoryController::class,
 
     ]);
+
+    Route::post('vehicle-info/status/change', [VehicleInfoController::class, 'bulkStatusChange'])->name('bulk.status.change');
 
     Route::prefix('vehicle')->as('vehicle.transport.')->controller(TransportController::class)->group(function () {
         Route::get('{vehicle_info}/transport/create', 'vehicleTransportCreate')->name('create');
