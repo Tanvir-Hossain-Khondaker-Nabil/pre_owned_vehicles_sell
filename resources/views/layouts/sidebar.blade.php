@@ -142,6 +142,7 @@
                     </ul>
                 </li>
 
+
                 {{-- Accounting Menu-bar --}}
                 <li>
                     <a href="javascript: void(1);" class="has-arrow waves-effect" aria-expanded="true">
@@ -162,6 +163,32 @@
                         </li>
                     </ul>
                 </li>
+
+
+
+
+
+{{-- Money Transfer Menu-bar --}}
+
+                            {{-- <li>
+                                <a href="javascript: void(1);" class="has-arrow waves-effect" aria-expanded="true">
+                                    <i class="bx bx-window-open"></i>
+                                    <span key="t-multi-level">Accounting</span>
+                                </a>
+                                <ul class="sub-menu" aria-expanded="true">
+            
+                                    <li>
+                                        <a href="javascript: void(1);" class="has-arrow waves-effect" aria-expanded="true">
+                                            <i class="bx bxs-car"></i>
+                                            <span key="t-multi-level">Account</span>
+                                        </a>
+                                        <ul class="sub-menu" aria-expanded="true">
+                                            <li><a href="{{ route('accounts.create') }}" key="t-level-1-1">Add Account</a></li>
+                                            <li><a href="{{ route('accounts.index') }}" key="t-level-1-2">Account List</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li> --}}
 
 
 
