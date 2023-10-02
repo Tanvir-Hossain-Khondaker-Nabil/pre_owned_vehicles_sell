@@ -165,7 +165,7 @@
                             <a href="javascript: void(1);" class="has-arrow waves-effect" aria-expanded="true">
                                 <i class="bx bxs-car"></i>
                                 <span key="t-multi-level">Expense Category</span>
-                            </a>                            
+                            </a>
                             <ul class="sub-menu" aria-expanded="true">
                             <li><a href="{{ route('expense-categories.create') }}" key="t-level-1-1">Add</a></li>
                             <li><a href="{{ route('expense-categories.index') }}" key="t-level-1-2">List</a></li>
@@ -175,14 +175,25 @@
                             <a href="javascript: void(1);" class="has-arrow waves-effect" aria-expanded="true">
                                 <i class="bx bxs-car"></i>
                                 <span key="t-multi-level">Expense</span>
-                            </a>                            
+                            </a>
                             <ul class="sub-menu" aria-expanded="true">
                                 <li><a href="{{ route('expenses.create') }}" key="t-level-1-1">Add</a></li>
                                 <li><a href="{{ route('expenses.index') }}" key="t-level-1-2">List</a></li>
                             </ul>
                         </li>
-                        
-                        
+
+                        <li>
+                            <a href="javascript: void(1);" class="has-arrow waves-effect" aria-expanded="true">
+                                <i class="bx bxs-car"></i>
+                                <span key="t-multi-level">Payment</span>
+                            </a>
+                            <ul class="sub-menu" aria-expanded="true">
+                                <li><a href="{{ route('payments.create') }}" key="t-level-1-1">Add</a></li>
+                                {{-- <li><a href="{{ route('expenses.index') }}" key="t-level-1-2">List</a></li> --}}
+                            </ul>
+                        </li>
+
+
                     </ul>
                 </li>
 
@@ -198,7 +209,7 @@
                                     <span key="t-multi-level">Accounting</span>
                                 </a>
                                 <ul class="sub-menu" aria-expanded="true">
-            
+
                                     <li>
                                         <a href="javascript: void(1);" class="has-arrow waves-effect" aria-expanded="true">
                                             <i class="bx bxs-car"></i>

@@ -16,6 +16,7 @@ use App\Http\Controllers\VehicleInfoController;
 use App\Http\Controllers\VehicleModelController;
 use App\Http\Controllers\ExpenseCategoryController;
 use App\Http\Controllers\VehicleDocumentController;
+use App\Http\Controllers\PaymentController;
 
 
 /*
@@ -49,6 +50,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
         'vehicle-info'  => VehicleInfoController::class,
         'accounts'      => AccountController::class,
         'expenses'      => ExpenseController::class,
+        'payments'      => PaymentController::class,
         'expense-categories'      => ExpenseCategoryController::class,
 
     ]);
