@@ -159,6 +159,8 @@
                             <ul class="sub-menu" aria-expanded="true">
                                 <li><a href="{{ route('accounts.create') }}" key="t-level-1-1">Add Account</a></li>
                                 <li><a href="{{ route('accounts.index') }}" key="t-level-1-2">Account List</a></li>
+                                <li><a href="{{ url('balance-sheet') }}" key="t-level-1-2">Balance Sheet</a></li>
+                                <li><a href="{{ url('account-statement') }}" key="t-level-1-2">Accaccount-statement</a></li>
                             </ul>
                         </li>
                         <li>
