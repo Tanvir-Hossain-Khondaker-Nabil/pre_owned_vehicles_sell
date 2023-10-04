@@ -16,6 +16,7 @@ use App\Http\Controllers\VehicleInfoController;
 use App\Http\Controllers\VehicleModelController;
 use App\Http\Controllers\ExpenseCategoryController;
 use App\Http\Controllers\VehicleDocumentController;
+// use App\Http\Controllers\MoneyTransferController;
 
 
 /*
@@ -98,6 +99,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('{vehicle_info}/document/view', 'documentView')->name('view');
     });
 
+
     // vehicle documents
     Route::get('/vehicledoc/create', [VehicleDocumentController::class, 'create'])->name('vehicledoc.create');
     Route::put('/vehicledoc/create', [VehicleDocumentController::class, 'store'])->name('vehicledoc.store');
@@ -105,6 +107,16 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/vehicledoc/edit/{id}', [VehicleDocumentController::class, 'edit'])->name('vehicledoc.edit');
     Route::post('/vehicledoc/update/{id}', [VehicleDocumentController::class, 'update'])->name('vehicledoc.update');
     Route::delete('/vehicledoc/destroy/{id}', [VehicleDocumentController::class, 'destroy'])->name('vehicledoc.destroy');
+
+
+        // Money Transfer
+        // Route::get('/moneytr/create', [MoneyTransferController::class, 'create'])->name('moneytr.create');
+        // Route::put('/moneytr/create', [MoneyTransferController::class, 'store'])->name('moneytr.store');
+        // Route::get('/moneytr/list', [MoneyTransferController::class, 'list'])->name('moneytr.list');
+        // Route::get('/moneytr/edit/{id}', [MoneyTransferController::class, 'edit'])->name('moneytr.edit');
+        // Route::post('/moneytr/update/{id}', [MoneyTransferController::class, 'update'])->name('moneytr.update');
+        // Route::delete('/moneytr/destroy/{id}', [MoneyTransferController::class, 'destroy'])->name('moneytr.destroy');
+
 });
 
 Route::middleware('auth')->group(function () {

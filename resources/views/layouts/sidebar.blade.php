@@ -171,6 +171,8 @@
                             <li><a href="{{ route('expense-categories.index') }}" key="t-level-1-2">List</a></li>
                         </ul>
                         </li>
+
+
                         <li>
                             <a href="javascript: void(1);" class="has-arrow waves-effect" aria-expanded="true">
                                 <i class="bx bxs-car"></i>
@@ -181,6 +183,22 @@
                                 <li><a href="{{ route('expenses.index') }}" key="t-level-1-2">List</a></li>
                             </ul>
                         </li>
+
+{{-- Money Transfer Menu-bar --}}
+
+
+                        <li>
+                            <a href="javascript: void(1);" class="has-arrow waves-effect" aria-expanded="true">
+                                <i class="fa-solid fa-bangladeshi-taka-sign"></i>
+                                <span key="t-multi-level">Money Transfer</span>
+                            </a>
+                            <ul class="sub-menu" aria-expanded="true">
+                                <li><a href="{{ route('moneytr.create') }}" key="t-level-1-1">Create</a></li>
+                                <li><a href="{{ route('moneytr.list') }}" key="t-level-1-2">Table</a></li>
+                            </ul>
+                        </li>
+
+                    
                         
                         
                     </ul>
@@ -190,27 +208,9 @@
 
 
 
-{{-- Money Transfer Menu-bar --}}
 
-                            {{-- <li>
-                                <a href="javascript: void(1);" class="has-arrow waves-effect" aria-expanded="true">
-                                    <i class="bx bx-window-open"></i>
-                                    <span key="t-multi-level">Accounting</span>
-                                </a>
-                                <ul class="sub-menu" aria-expanded="true">
-            
-                                    <li>
-                                        <a href="javascript: void(1);" class="has-arrow waves-effect" aria-expanded="true">
-                                            <i class="bx bxs-car"></i>
-                                            <span key="t-multi-level">Account</span>
-                                        </a>
-                                        <ul class="sub-menu" aria-expanded="true">
-                                            <li><a href="{{ route('accounts.create') }}" key="t-level-1-1">Add Account</a></li>
-                                            <li><a href="{{ route('accounts.index') }}" key="t-level-1-2">Account List</a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </li> --}}
+
+                       
 
 
 
