@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\GarageController;
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\ExpenseController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\VehicleController;
 use App\Http\Controllers\CustomerController;
@@ -13,9 +14,11 @@ use App\Http\Controllers\WorkShopController;
 use App\Http\Controllers\TransportController;
 use App\Http\Controllers\WashColorController;
 use App\Http\Controllers\VehicleInfoController;
+use App\Http\Controllers\BalanceSheetController;
 use App\Http\Controllers\VehicleModelController;
 use App\Http\Controllers\ExpenseCategoryController;
 use App\Http\Controllers\VehicleDocumentController;
+
 // use App\Http\Controllers\MoneyTransferController;
 
 
@@ -50,9 +53,12 @@ Route::middleware(['auth', 'verified'])->group(function () {
         'vehicle-info'  => VehicleInfoController::class,
         'accounts'      => AccountController::class,
         'expenses'      => ExpenseController::class,
+        'payments'      => PaymentController::class,
         'expense-categories'      => ExpenseCategoryController::class,
 
     ]);
+    Route::get('balance-sheet',[BalanceSheetController::class,'index']);
+    Route::get('account-statement',[AccountStatementController::class,'index']);
 
     Route::post('vehicle-info/status/change', [VehicleInfoController::class, 'bulkStatusChange'])->name('bulk.status.change');
 

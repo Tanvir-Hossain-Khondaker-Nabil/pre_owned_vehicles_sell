@@ -159,13 +159,15 @@
                             <ul class="sub-menu" aria-expanded="true">
                                 <li><a href="{{ route('accounts.create') }}" key="t-level-1-1">Add Account</a></li>
                                 <li><a href="{{ route('accounts.index') }}" key="t-level-1-2">Account List</a></li>
+                                <li><a href="{{ url('balance-sheet') }}" key="t-level-1-2">Balance Sheet</a></li>
+                                <li><a href="{{ url('account-statement') }}" key="t-level-1-2">Accaccount-statement</a></li>
                             </ul>
                         </li>
                         <li>
                             <a href="javascript: void(1);" class="has-arrow waves-effect" aria-expanded="true">
                                 <i class="bx bxs-car"></i>
                                 <span key="t-multi-level">Expense Category</span>
-                            </a>                            
+                            </a>
                             <ul class="sub-menu" aria-expanded="true">
                             <li><a href="{{ route('expense-categories.create') }}" key="t-level-1-1">Add</a></li>
                             <li><a href="{{ route('expense-categories.index') }}" key="t-level-1-2">List</a></li>
@@ -177,7 +179,7 @@
                             <a href="javascript: void(1);" class="has-arrow waves-effect" aria-expanded="true">
                                 <i class="bx bxs-car"></i>
                                 <span key="t-multi-level">Expense</span>
-                            </a>                            
+                            </a>
                             <ul class="sub-menu" aria-expanded="true">
                                 <li><a href="{{ route('expenses.create') }}" key="t-level-1-1">Add</a></li>
                                 <li><a href="{{ route('expenses.index') }}" key="t-level-1-2">List</a></li>
@@ -187,7 +189,7 @@
 {{-- Money Transfer Menu-bar --}}
 
 
-                        <li>
+                        {{-- <li>
                             <a href="javascript: void(1);" class="has-arrow waves-effect" aria-expanded="true">
                                 <i class="fa-solid fa-bangladeshi-taka-sign"></i>
                                 <span key="t-multi-level">Money Transfer</span>
@@ -196,7 +198,7 @@
                                 <li><a href="{{ route('moneytr.create') }}" key="t-level-1-1">Create</a></li>
                                 <li><a href="{{ route('moneytr.list') }}" key="t-level-1-2">Table</a></li>
                             </ul>
-                        </li>
+                        </li> --}}
 
                     
                         
