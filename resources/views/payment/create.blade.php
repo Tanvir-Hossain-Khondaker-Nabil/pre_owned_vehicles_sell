@@ -14,6 +14,12 @@
 
 @endcomponent
 
+<style>
+    .custom-wide-dialog {
+        max-width: 1200px; /* Adjust the width as needed */
+    }
+</style>
+
 <div class="row">
     <div class="card col-xl-6">
         <div class="card-body">
@@ -323,14 +329,175 @@
 <div class="row">
     <div class="col-xl-6">
 
-        <button type="button" class="btn btn-primary waves-effect waves-light">
+        <button type="button" class="btn btn-primary waves-effect waves-light" data-bs-toggle="modal" data-bs-target="#card">
             <i class="bx bx-smile font-size-16 align-middle me-2"></i> Card
         </button>
 
+        <div class="modal fade" id="card" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered custom-wide-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="card">Finalize Sale</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
 
-        <button type="button" class="btn btn-primary waves-effect waves-light">
+                            <div class="col-xl-3">
+                                <div class="mb-3">
+                                    <label>Received Amount</label>
+                                    <input type="text" class="form-control" id="formrow-firstname-input" placeholder="Enter received amount">
+                                </div>
+                            </div>
+
+                            <div class="col-xl-3">
+                                <div class="mb-3">
+                                    <label>Paying Amount</label>
+                                    <input type="text" class="form-control" id="formrow-firstname-input" placeholder="Enter paying amount">
+                                </div>
+                            </div>
+
+                            <div class="col-xl-3">
+                                <div class="mb-3">
+                                    <label>Change</label>
+                                    <input type="text" class="form-control" id="formrow-firstname-input" placeholder="">
+                                </div>
+                            </div>
+
+                            <div class="col-xl-3">
+                                <div class="mb-3">
+                                    <label>Payed By</label>
+                                    <select class="form-control" name="pay_by" id="pay_by">
+                                        <option value=" ">Select</option>
+                                        <option value="Cash">Cash</option>
+                                        <option value="Card">Credit Card</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-xl-12">
+                                <div class="mb-3">
+                                    <label>Credit Card Number</label>
+                                    <input type="Number" class="form-control" id="formrow-firstname-input" placeholder="Enter Credit Card Number"/>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-xl-12">
+                                <div class="mb-3">
+                                    <label>Payment Note</label>
+                                    <textarea type="text" class="form-control" id="formrow-firstname-input" placeholder="Enter payment note"></textarea>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-xl-6">
+                                <div class="mb-3">
+                                    <label>Sale Note</label>
+                                    <textarea type="text" class="form-control" id="formrow-firstname-input" placeholder="Enter sale note"></textarea>
+                                </div>
+                            </div>
+                            <div class="col-xl-6">
+                                <div class="mb-3">
+                                    <label>Staff Note</label>
+                                    <textarea type="text" class="form-control" id="formrow-firstname-input" placeholder="Enter staff note"></textarea>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Submit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <button type="button" class="btn btn-primary waves-effect waves-light" data-bs-toggle="modal" data-bs-target="#cash">
             <i class="bx bx-smile font-size-16 align-middle me-2"></i> Cash
         </button>
+
+        <div class="modal fade" id="cash" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered custom-wide-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="cash">Finalize Sale</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+
+                            <div class="col-xl-3">
+                                <div class="mb-3">
+                                    <label>Received Amount</label>
+                                    <input type="text" class="form-control" id="formrow-firstname-input" placeholder="Enter received amount">
+                                </div>
+                            </div>
+
+                            <div class="col-xl-3">
+                                <div class="mb-3">
+                                    <label>Paying Amount</label>
+                                    <input type="text" class="form-control" id="formrow-firstname-input" placeholder="Enter paying amount">
+                                </div>
+                            </div>
+
+                            <div class="col-xl-3">
+                                <div class="mb-3">
+                                    <label>Change</label>
+                                    <input type="text" class="form-control" id="formrow-firstname-input" placeholder="">
+                                </div>
+                            </div>
+
+                            <div class="col-xl-3">
+                                <div class="mb-3">
+                                    <label>Payed By</label>
+                                    <select class="form-control" name="pay_by" id="pay_by">
+                                        <option value=" ">Select</option>
+                                        <option value="Cash">Cash</option>
+                                        <option value="Card">Credit Card</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-xl-12">
+                                <div class="mb-3">
+                                    <label>Payment Note</label>
+                                    <textarea type="text" class="form-control" id="formrow-firstname-input" placeholder="Enter payment note"></textarea>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-xl-6">
+                                <div class="mb-3">
+                                    <label>Sale Note</label>
+                                    <textarea type="text" class="form-control" id="formrow-firstname-input" placeholder="Enter sale note"></textarea>
+                                </div>
+                            </div>
+                            <div class="col-xl-6">
+                                <div class="mb-3">
+                                    <label>Staff Note</label>
+                                    <textarea type="text" class="form-control" id="formrow-firstname-input" placeholder="Enter staff note"></textarea>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Submit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
 
         <button type="button" class="btn btn-primary waves-effect waves-light">
@@ -346,7 +513,7 @@
         </button>
 
         <div class="modal fade" id="recenttransaction" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-dialog modal-dialog-centered custom-wide-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="recenttransaction">Recent Transaction</h5>

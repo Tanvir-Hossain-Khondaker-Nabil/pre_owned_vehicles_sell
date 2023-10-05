@@ -14,8 +14,8 @@
                         <span key="t-multi-level">Vehicle Entry</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="true">
-                        <li><a href="{{ route('vehicle-info.index') }}" key="t-level-1-2">Vehicle List</a></li>
-                        <li><a href="{{ route('vehicle-info.create') }}" key="t-level-1-1">Vehicle Entry</a></li>
+                        <li><a href="{{ route('vehicle-info.create') }}" key="t-level-1-1">Add</a></li>
+                        <li><a href="{{ route('vehicle-info.index') }}" key="t-level-1-2">List</a></li>
                     </ul>
                 </li>
 
@@ -29,28 +29,28 @@
                         <li>
                             <a href="{{ route('transport.index') }}" class=" waves-effect">
                                 <i class="bx bx-transfer-alt"></i>
-                                <span>Vehicle Transport List</span>
+                                <span>Transport List</span>
                             </a>
                         </li>
 
                         <li>
                             <a href="{{ route('vehicle.workshop.index') }}" class=" waves-effect">
                                 <i class="bx bx-wrench"></i>
-                                <span>Vehicle Workshop List</span>
+                                <span>Workshop List</span>
                             </a>
                         </li>
 
                         <li>
                             <a href="{{ route('vehicle.wash.color.index') }}" class=" waves-effect">
                                 <i class="bx bxs-color-fill"></i>
-                                <span>Vehicle Wash/Color List</span>
+                                <span>Wash/Color List</span>
                             </a>
                         </li>
 
                         <li>
                             <a href="{{ route('vehicle.garage.index') }}" class=" waves-effect">
                                 <i class="bx bx-store"></i>
-                                <span>Vehicle Garage List</span>
+                                <span>Garage List</span>
                             </a>
                         </li>
                     </ul>
@@ -63,8 +63,8 @@
                         <span key="t-multi-level">Supplier</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="true">
+                        <li><a href="{{ route('suppliers.create') }}" key="t-level-1-1">Add</a></li>
                         <li><a href="{{ route('suppliers.index') }}" key="t-level-1-2">List</a></li>
-                        <li><a href="{{ route('suppliers.create') }}" key="t-level-1-1">Create</a></li>
                     </ul>
                 </li>
                 <li>
@@ -73,8 +73,8 @@
                         <span key="t-multi-level">Customer</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="true">
+                        <li><a href="{{ route('customers.create') }}" key="t-level-1-1">Add</a></li>
                         <li><a href="{{ route('customers.index') }}" key="t-level-1-2">list</a></li>
-                        <li><a href="{{ route('customers.create') }}" key="t-level-1-1">Create</a></li>
                     </ul>
                 </li>
 
@@ -92,8 +92,8 @@
                                 <span key="t-multi-level">Vehicle</span>
                             </a>
                             <ul class="sub-menu" aria-expanded="true">
-                                <li><a href="{{ route('vehicles.create') }}" key="t-level-1-1">Create</a></li>
-                                <li><a href="{{ route('vehicles.index') }}" key="t-level-1-2">Table</a></li>
+                                <li><a href="{{ route('vehicles.create') }}" key="t-level-1-1">Add</a></li>
+                                <li><a href="{{ route('vehicles.index') }}" key="t-level-1-2">List</a></li>
                             </ul>
                         </li>
 
@@ -103,8 +103,8 @@
                                 <span key="t-multi-level">Vehicle Model</span>
                             </a>
                             <ul class="sub-menu" aria-expanded="true">
-                                <li><a href="{{ route('vehiclemodels.create') }}" key="t-level-1-1">Create</a></li>
-                                <li><a href="{{ route('vehiclemodels.index') }}" key="t-level-1-2">Table</a></li>
+                                <li><a href="{{ route('vehiclemodels.create') }}" key="t-level-1-1">Add</a></li>
+                                <li><a href="{{ route('vehiclemodels.index') }}" key="t-level-1-2">List</a></li>
                             </ul>
                         </li>
 
@@ -114,7 +114,7 @@
                                 <span key="t-multi-level">Wash Color</span>
                             </a>
                             <ul class="sub-menu" aria-expanded="true">
-                                <li><a href="{{ route('washcolors.create') }}" key="t-level-1-1">Create</a></li>
+                                <li><a href="{{ route('washcolors.create') }}" key="t-level-1-1">Add</a></li>
                             </ul>
                         </li>
 
@@ -124,18 +124,18 @@
                                 <span key="t-multi-level">Work Shop</span>
                             </a>
                             <ul class="sub-menu" aria-expanded="true">
-                                <li><a href="{{ route('workshops.create') }}" key="t-level-1-1">Create</a></li>
+                                <li><a href="{{ route('workshops.create') }}" key="t-level-1-1">Add</a></li>
                             </ul>
                         </li>
 
                         <li>
                             <a href="javascript: void(1);" class="has-arrow waves-effect" aria-expanded="true">
                                 <i class="bx bx-link"></i>
-                                <span key="t-multi-level">Vehicle Documents</span>
+                                <span key="t-multi-level">Vehicle Document</span>
                             </a>
                             <ul class="sub-menu" aria-expanded="true">
-                                <li><a href="{{ route('vehicledoc.create') }}" key="t-level-1-1">Create</a></li>
-                                <li><a href="{{ route('vehicledoc.list') }}" key="t-level-1-2">Table</a></li>
+                                <li><a href="{{ route('vehicledoc.create') }}" key="t-level-1-1">Add</a></li>
+                                <li><a href="{{ route('vehicledoc.list') }}" key="t-level-1-2">List</a></li>
                             </ul>
                         </li>
 
@@ -186,7 +186,18 @@
                             </ul>
                         </li>
 
-                        
+                        <li>
+                            <a href="javascript: void(1);" class="has-arrow waves-effect" aria-expanded="true">
+                                <i class="bx bxs-car"></i>
+                                <span key="t-multi-level">Payment</span>
+                            </a>
+                            <ul class="sub-menu" aria-expanded="true">
+                                <li><a href="{{ route('payments.create') }}" key="t-level-1-1">Add</a></li>
+                                {{-- <li><a href="{{ route('payments.index') }}" key="t-level-1-2">List</a></li> --}}
+                            </ul>
+                        </li>
+
+
 
 {{-- Money Transfer Menu-bar --}}
 
@@ -202,9 +213,9 @@
                             </ul>
                         </li> --}}
 
-                    
-                        
-                        
+
+
+
                     </ul>
                 </li>
 
@@ -214,7 +225,7 @@
 
 
 
-                       
+
 
 
 
