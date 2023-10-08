@@ -1,19 +1,16 @@
 <?php
 
-use App\Models\Sell;
-use App\Models\VehicleInfo;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      */
     public function up(): void
     {
-        Schema::create('sell_details', function (Blueprint $table) {
+        Schema::create('sale_details', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(Sell::class)->cascadeOnUpdate()->restrictOnDelete();
             $table->foreignIdFor(VehicleInfo::class)->cascadeOnUpdate()->restrictOnDelete();
@@ -27,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('sell_details');
+        Schema::dropIfExists('sale_details');
     }
 };

@@ -12,7 +12,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('sells', function (Blueprint $table) {
+        Schema::create('sales', function (Blueprint $table) {
+            $table->id();
             $table->id();
             $table->date('date');
             $table->string('reference')->nullable();
@@ -21,6 +22,7 @@ return new class extends Migration
             $table->enum('pay_type', ['card', 'cash','draft'])->default('cash');
             $table->integer('total_item');
             $table->float('payment_amount', 8, 2);
+            $table->enum('discount_type', ['card', 'cash','draft'])->default('cash');
             $table->float('discount_amount', 8, 2)->nullable;
             $table->float('total', 8, 2);
             $table->float('grand_total', 8, 2);
@@ -36,6 +38,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('sells');
+        Schema::dropIfExists('sales');
     }
 };
