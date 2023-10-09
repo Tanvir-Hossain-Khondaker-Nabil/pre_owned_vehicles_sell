@@ -5,24 +5,22 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      */
     public function up(): void
     {
-        Schema::create('sales', function (Blueprint $table) {
-            $table->id();
+        Schema::create('sells', function (Blueprint $table) {
             $table->id();
             $table->date('date');
             $table->string('reference')->nullable();
             $table->foreignIdFor(Customer::class)->cascadeOnUpdate()->restrictOnDelete();
             $table->float('amount', 8, 2);
-            $table->enum('pay_type', ['card', 'cash','draft'])->default('cash');
+            $table->enum('pay_type', ['card', 'cash', 'draft'])->default('cash');
             $table->integer('total_item');
             $table->float('payment_amount', 8, 2);
-            $table->enum('discount_type', ['card', 'cash','draft'])->default('cash');
+            $table->enum('discount_type', ['card', 'cash', 'draft'])->default('cash');
             $table->float('discount_amount', 8, 2)->nullable;
             $table->float('total', 8, 2);
             $table->float('grand_total', 8, 2);
@@ -38,6 +36,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('sales');
+        Schema::dropIfExists('sells');
     }
 };

@@ -2,14 +2,15 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class WashColor extends Model
+class Color extends Model
 {
 
     protected $fillable = [
-        'work','amount'
+        'name',
+        'code'
     ];
 
     use HasFactory;

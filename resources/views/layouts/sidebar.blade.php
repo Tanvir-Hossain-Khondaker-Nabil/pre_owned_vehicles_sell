@@ -111,10 +111,10 @@
                         <li>
                             <a href="javascript: void(1);" class="has-arrow waves-effect" aria-expanded="true">
                                 <i class="bx bx-wind"></i>
-                                <span key="t-multi-level">Wash Color</span>
+                                <span key="t-multi-level">Color</span>
                             </a>
                             <ul class="sub-menu" aria-expanded="true">
-                                <li><a href="{{ route('washcolors.create') }}" key="t-level-1-1">Add</a></li>
+                                <li><a href="{{ route('colors.create') }}" key="t-level-1-1">Create</a></li>
                             </ul>
                         </li>
 
@@ -160,7 +160,8 @@
                                 <li><a href="{{ route('accounts.create') }}" key="t-level-1-1">Add Account</a></li>
                                 <li><a href="{{ route('accounts.index') }}" key="t-level-1-2">Account List</a></li>
                                 <li><a href="{{ url('balance-sheet') }}" key="t-level-1-2">Balance Sheet</a></li>
-                                <li><a href="{{ url('account-statement') }}" key="t-level-1-2">Accaccount-statement</a></li>
+                                <li><a href="{{ url('account-statement') }}" key="t-level-1-2">Accaccount-statement</a>
+                                </li>
                             </ul>
                         </li>
                         <li>
@@ -169,9 +170,9 @@
                                 <span key="t-multi-level">Expense Category</span>
                             </a>
                             <ul class="sub-menu" aria-expanded="true">
-                            <li><a href="{{ route('expense-categories.create') }}" key="t-level-1-1">Add</a></li>
-                            <li><a href="{{ route('expense-categories.index') }}" key="t-level-1-2">List</a></li>
-                        </ul>
+                                <li><a href="{{ route('expense-categories.create') }}" key="t-level-1-1">Add</a></li>
+                                <li><a href="{{ route('expense-categories.index') }}" key="t-level-1-2">List</a></li>
+                            </ul>
                         </li>
 
 
@@ -199,7 +200,7 @@
 
 
 
-{{-- Money Transfer Menu-bar --}}
+                        {{-- Money Transfer Menu-bar --}}
 
 
                         {{-- <li>

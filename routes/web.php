@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ColorController;
 use App\Http\Controllers\GarageController;
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\ExpenseController;
@@ -12,7 +13,6 @@ use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\WorkShopController;
 use App\Http\Controllers\TransportController;
-use App\Http\Controllers\WashColorController;
 use App\Http\Controllers\VehicleInfoController;
 use App\Http\Controllers\BalanceSheetController;
 use App\Http\Controllers\VehicleModelController;
@@ -43,22 +43,22 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
 
     Route::resources([
-        'suppliers'     => SupplierController::class,
-        'customers'     => CustomerController::class,
-        'vehicles'      => VehicleController::class,
-        'transport'     => TransportController::class,
-        'vehiclemodels' => VehicleModelController::class,
-        'washcolors'    => WashColorController::class,
-        'workshops'     => WorkShopController::class,
-        'vehicle-info'  => VehicleInfoController::class,
-        'accounts'      => AccountController::class,
-        'expenses'      => ExpenseController::class,
-        'payments'      => PaymentController::class,
-        'expense-categories'      => ExpenseCategoryController::class,
+        'suppliers'          => SupplierController::class,
+        'customers'          => CustomerController::class,
+        'vehicles'           => VehicleController::class,
+        'transport'          => TransportController::class,
+        'vehiclemodels'      => VehicleModelController::class,
+        'colors'             => ColorController::class,
+        'workshops'          => WorkShopController::class,
+        'vehicle-info'       => VehicleInfoController::class,
+        'accounts'           => AccountController::class,
+        'expenses'           => ExpenseController::class,
+        'payments'           => PaymentController::class,
+        'expense-categories' => ExpenseCategoryController::class,
 
     ]);
-    Route::get('balance-sheet',[BalanceSheetController::class,'index']);
-    Route::get('account-statement',[AccountStatementController::class,'index']);
+    Route::get('balance-sheet', [BalanceSheetController::class, 'index']);
+    Route::get('account-statement', [AccountStatementController::class, 'index']);
 
     Route::post('vehicle-info/status/change', [VehicleInfoController::class, 'bulkStatusChange'])->name('bulk.status.change');
 
@@ -115,13 +115,13 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::delete('/vehicledoc/destroy/{id}', [VehicleDocumentController::class, 'destroy'])->name('vehicledoc.destroy');
 
 
-        // Money Transfer
-        // Route::get('/moneytr/create', [MoneyTransferController::class, 'create'])->name('moneytr.create');
-        // Route::put('/moneytr/create', [MoneyTransferController::class, 'store'])->name('moneytr.store');
-        // Route::get('/moneytr/list', [MoneyTransferController::class, 'list'])->name('moneytr.list');
-        // Route::get('/moneytr/edit/{id}', [MoneyTransferController::class, 'edit'])->name('moneytr.edit');
-        // Route::post('/moneytr/update/{id}', [MoneyTransferController::class, 'update'])->name('moneytr.update');
-        // Route::delete('/moneytr/destroy/{id}', [MoneyTransferController::class, 'destroy'])->name('moneytr.destroy');
+    // Money Transfer
+    // Route::get('/moneytr/create', [MoneyTransferController::class, 'create'])->name('moneytr.create');
+    // Route::put('/moneytr/create', [MoneyTransferController::class, 'store'])->name('moneytr.store');
+    // Route::get('/moneytr/list', [MoneyTransferController::class, 'list'])->name('moneytr.list');
+    // Route::get('/moneytr/edit/{id}', [MoneyTransferController::class, 'edit'])->name('moneytr.edit');
+    // Route::post('/moneytr/update/{id}', [MoneyTransferController::class, 'update'])->name('moneytr.update');
+    // Route::delete('/moneytr/destroy/{id}', [MoneyTransferController::class, 'destroy'])->name('moneytr.destroy');
 
 });
 
