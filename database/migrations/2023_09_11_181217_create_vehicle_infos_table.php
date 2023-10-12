@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Color;
 use App\Models\VehicleModel;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
@@ -13,14 +14,27 @@ return new class extends Migration {
     {
         Schema::create('vehicle_infos', function (Blueprint $table) {
             $table->id();
-            $table->string('serial_no');
-            $table->string('chassis_no');
-            $table->string('engine_no');
-            $table->string('color');
-            $table->enum('current_status', ['transport', 'garage', 'workshop', 'wash_color'])->default('transport');
+            $table->enum('registration_status', ['Registered', 'On-Test'])->nullable();
+            $table->enum('paper_status', ['Due', 'Provided'])->nullable();
+            $table->boolean('bank_payment')->nullable();
+            $table->string('key')->nullable();
+            $table->boolean('service_book')->nullable();
+            $table->float('buying_price', 8, 2)->nullable();
+            $table->float('delivery_charge', 8, 2)->nullable();
+            $table->float('selling_price', 8, 2)->def();
+            $table->string('first_purchase_date')->nullable();
+            $table->string('gate_pass_year')->nullable();
+            $table->string('model_year')->nullable();
+            $table->string('chassis_no')->nullable();
+            $table->string('engine_no')->nullable();
+            $table->string('vehicle_photo')->nullable();
+            $table->string('vehicle_doc')->nullable();
+            $table->string('serial_no')->nullable();
             $table->string('details')->nullable();
+            $table->foreignIdFor(Color::class)->cascadeOnUpdate()->restrictOnDelete();
             $table->foreignIdFor(VehicleModel::class)->cascadeOnUpdate()->restrictOnDelete();
             $table->morphs('ownable');
+            $table->timestamps();
         });
     }
 

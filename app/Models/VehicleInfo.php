@@ -44,8 +44,8 @@ class VehicleInfo extends Model
     {
         return $this->morphedByMany(WorkShop::class, 'workable', 'fees')->withPivot('amount', 'details');
     }
-    public function washColors()
+    public function color(): BelongsTo
     {
-        return $this->morphedByMany(WashColor::class, 'workable', 'fees')->withPivot('amount', 'details');
+        return $this->belongsTo(Color::class);
     }
 }

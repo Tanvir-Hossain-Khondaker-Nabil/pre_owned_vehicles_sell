@@ -19,8 +19,6 @@ use App\Http\Controllers\VehicleModelController;
 use App\Http\Controllers\ExpenseCategoryController;
 use App\Http\Controllers\VehicleDocumentController;
 
-// use App\Http\Controllers\MoneyTransferController;
-
 
 /*
 |--------------------------------------------------------------------------
@@ -59,7 +57,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
     ]);
     Route::get('balance-sheet', [BalanceSheetController::class, 'index']);
     Route::get('account-statement', [AccountStatementController::class, 'index']);
-
     Route::post('vehicle-info/status/change', [VehicleInfoController::class, 'bulkStatusChange'])->name('bulk.status.change');
 
     Route::prefix('vehicle')->as('vehicle.transport.')->controller(TransportController::class)->group(function () {
@@ -115,13 +112,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::delete('/vehicledoc/destroy/{id}', [VehicleDocumentController::class, 'destroy'])->name('vehicledoc.destroy');
 
 
-    // Money Transfer
-    // Route::get('/moneytr/create', [MoneyTransferController::class, 'create'])->name('moneytr.create');
-    // Route::put('/moneytr/create', [MoneyTransferController::class, 'store'])->name('moneytr.store');
-    // Route::get('/moneytr/list', [MoneyTransferController::class, 'list'])->name('moneytr.list');
-    // Route::get('/moneytr/edit/{id}', [MoneyTransferController::class, 'edit'])->name('moneytr.edit');
-    // Route::post('/moneytr/update/{id}', [MoneyTransferController::class, 'update'])->name('moneytr.update');
-    // Route::delete('/moneytr/destroy/{id}', [MoneyTransferController::class, 'destroy'])->name('moneytr.destroy');
 
 });
 

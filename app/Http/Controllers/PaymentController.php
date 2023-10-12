@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Payment;
 use App\Models\Account;
-use App\Http\Controllers\Controller;
+use App\Models\Payment;
+use App\Models\BankAccount;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class PaymentController extends Controller
 {
@@ -23,7 +24,7 @@ class PaymentController extends Controller
      */
     public function create()
     {
-        $accounts = Account::pluck('account_name','id');
+        $accounts = [];
         return view('payment.create', compact('accounts'));
     }
 
@@ -48,7 +49,7 @@ class PaymentController extends Controller
      */
     public function edit(Vehicle $vehicle)
     {
-        return view ('vehicle.create',compact('vehicle'));
+        return view('vehicle.create', compact('vehicle'));
     }
 
     /**
@@ -56,7 +57,7 @@ class PaymentController extends Controller
      */
     public function update(UpdateVehicleRequest $request, Vehicle $vehicle)
     {
-        return view ('vehicle.create',compact('vehicle'));
+        return view('vehicle.create', compact('vehicle'));
     }
 
     /**
@@ -64,6 +65,6 @@ class PaymentController extends Controller
      */
     public function destroy(Vehicle $vehicle)
     {
-        return view ('vehicle.create',compact('vehicle'));
+        return view('vehicle.create', compact('vehicle'));
     }
 }

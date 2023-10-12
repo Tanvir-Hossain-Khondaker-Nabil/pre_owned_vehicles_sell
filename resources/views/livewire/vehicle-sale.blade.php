@@ -97,7 +97,7 @@
                                                                 name="account_id">
                                                                 @if (isset($expense))
                                                                 <option value="{{ $expense->account_id }}">{{
-                                                                    $expense->account->account_name }}</option>
+                                                                    $expense->account->name }}</option>
                                                                 @else
                                                                 <option value=" ">Select</option>
                                                                 @endif

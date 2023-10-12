@@ -21,8 +21,8 @@ class DatabaseSeeder extends Seeder
 
 
         User::factory()->count(1)->create();
-        Supplier::factory()->count(30)->create();
-        Customer::factory()->count(30)->create();
+        // Supplier::factory()->count(30)->create();
+        // Customer::factory()->count(30)->create();
         Vehicle::factory()->has(VehicleModel::factory()->count(3))->count(3)->create();
     }
 }

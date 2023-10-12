@@ -23,14 +23,25 @@ class StoreVehicleInfoRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'chassis_no'       => ['required'],
-            'engine_no'        => ['required'],
-            'color'            => ['required'],
-            'vehicle_model_id' => ['required'],
-            'current_status'   => ['nullable'],
-            'details'          => ['nullable'],
-            'supplier_id'      => ['nullable', new CustomerOrSupplier],
-            'customer_id'      => ['nullable', new CustomerOrSupplier],
+            'registration_status' => ['required'],
+            'paper_status'        => ['required'],
+            'bank_payment'        => ['required'],
+            'key'                 => ['required'],
+            'service_book'        => ['required'],
+            'buying_price'        => ['required'],
+            'selling_price'       => ['required'],
+            'first_purchase_date' => ['required'],
+            'gate_pass_year'      => ['required'],
+            'model_year'          => ['required'],
+            'chassis_no'          => ['required'],
+            'engine_no'           => ['required'],
+            'vehicle_photo'       => ['nullable'],
+            'vehicle_doc'         => ['nullable'],
+            'details'             => ['nullable'],
+            'vehicle_model_id'    => ['required'],
+            'color_id'            => ['required'],
+            'supplier_id'         => ['nullable', new CustomerOrSupplier],
+            'customer_id'         => ['nullable', new CustomerOrSupplier],
         ];
     }
 }

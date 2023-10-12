@@ -9,53 +9,11 @@
             <ul class="metismenu list-unstyled" id="side-menu">
                 <li class="menu-title" key="t-menu">Basic</li>
                 <li>
-                    <a href="javascript: void(1);" class="has-arrow waves-effect" aria-expanded="true">
+                    <a href="{{ route('vehicle-info.index') }}">
                         <i class="bx bx-window-open"></i>
                         <span key="t-multi-level">Vehicle Entry</span>
                     </a>
-                    <ul class="sub-menu" aria-expanded="true">
-                        <li><a href="{{ route('vehicle-info.create') }}" key="t-level-1-1">Add</a></li>
-                        <li><a href="{{ route('vehicle-info.index') }}" key="t-level-1-2">List</a></li>
-                    </ul>
                 </li>
-
-                {{-- Status Menu-bar --}}
-                <li>
-                    <a href="javascript: void(1);" class="has-arrow waves-effect" aria-expanded="true">
-                        <i class="bx bx-window-open"></i>
-                        <span key="t-multi-level">Status</span>
-                    </a>
-                    <ul class="sub-menu" aria-expanded="true">
-                        <li>
-                            <a href="{{ route('transport.index') }}" class=" waves-effect">
-                                <i class="bx bx-transfer-alt"></i>
-                                <span>Transport List</span>
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="{{ route('vehicle.workshop.index') }}" class=" waves-effect">
-                                <i class="bx bx-wrench"></i>
-                                <span>Workshop List</span>
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="{{ route('vehicle.wash.color.index') }}" class=" waves-effect">
-                                <i class="bx bxs-color-fill"></i>
-                                <span>Wash/Color List</span>
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="{{ route('vehicle.garage.index') }}" class=" waves-effect">
-                                <i class="bx bx-store"></i>
-                                <span>Garage List</span>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-
 
                 <li>
                     <a href="javascript: void(1);" class="has-arrow waves-effect" aria-expanded="true">
@@ -115,27 +73,6 @@
                             </a>
                             <ul class="sub-menu" aria-expanded="true">
                                 <li><a href="{{ route('colors.create') }}" key="t-level-1-1">Create</a></li>
-                            </ul>
-                        </li>
-
-                        <li>
-                            <a href="javascript: void(1);" class="has-arrow waves-effect" aria-expanded="true">
-                                <i class="bx bx-link"></i>
-                                <span key="t-multi-level">Work Shop</span>
-                            </a>
-                            <ul class="sub-menu" aria-expanded="true">
-                                <li><a href="{{ route('workshops.create') }}" key="t-level-1-1">Add</a></li>
-                            </ul>
-                        </li>
-
-                        <li>
-                            <a href="javascript: void(1);" class="has-arrow waves-effect" aria-expanded="true">
-                                <i class="bx bx-link"></i>
-                                <span key="t-multi-level">Vehicle Document</span>
-                            </a>
-                            <ul class="sub-menu" aria-expanded="true">
-                                <li><a href="{{ route('vehicledoc.create') }}" key="t-level-1-1">Add</a></li>
-                                <li><a href="{{ route('vehicledoc.list') }}" key="t-level-1-2">List</a></li>
                             </ul>
                         </li>
 

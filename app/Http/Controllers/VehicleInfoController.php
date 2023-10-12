@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Color;
 use App\Models\Vehicle;
 use App\Models\Customer;
 use App\Models\Supplier;
 use App\Models\VehicleInfo;
-use Illuminate\Http\Request;
 
+use Illuminate\Http\Request;
 use App\Http\Requests\StoreVehicleInfoRequest;
 
 class VehicleInfoController extends Controller
@@ -15,10 +16,19 @@ class VehicleInfoController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
+        if ($request->supplier_id) {
+            $vehicleInfo = VehicleInfo::with('ownable', 'color', 'vehicleModel')->where([
+                'ownable_id'   => $request->supplier_id,
+                'ownable_type' => 'App\Models\Supplier',
+            ])->get();
+        } else {
+            $vehicleInfo = VehicleInfo::with('ownable', 'color', 'vehicleModel')->get();
+        }
         $data = [
-            'vehiclesInfos' => VehicleInfo::with('ownable', 'documents', 'vehicleModel')->paginate(),
+            'vehiclesInfos' => $vehicleInfo,
+            'suppliers'     => Supplier::get(),
         ];
         return view('vehicle_info.list', $data);
     }
@@ -32,8 +42,9 @@ class VehicleInfoController extends Controller
             'vehicles'  => Vehicle::with('vehicleModels')->get(),
             'suppliers' => Supplier::get(),
             'customers' => Customer::get(),
+            'colors'    => Color::get(),
         ];
-        return view('vehicle_info.create_edit', $data);
+        return view('vehicle_info.create', $data);
     }
 
     /**
@@ -49,16 +60,23 @@ class VehicleInfoController extends Controller
             $data['ownable_id']   = $request->validated('customer_id');
         }
 
-        if (VehicleInfo::latest()->first()?->serial_no) {
-            $currentRegNo = VehicleInfo::latest()->first()?->serial_no;
-            $currentYear  = substr($currentRegNo, 0, 4);
-            if ($currentYear === date('Y')) {
-                $data['serial_no'] = $currentRegNo + 1;
-            } else {
-                $data['serial_no'] = date('Y') . '0001';
-            }
+        if ($serial_no = 6000) {
+            $data['serial_no'] = $serial_no + 1;
         } else {
             $data['serial_no'] = date('Y') . '0001';
+        }
+
+        $vehPho = $request->validated('vehicle_photo');
+        $vehDoc = $request->validated('vehicle_doc');
+        if (file($vehPho)) {
+            $vehPhoName            = time() . '_photo_' . '.' . $vehPho->getClientOriginalExtension();
+            $vehPhoPath            = $vehPho->move('upload/photo/', $vehPhoName);
+            $data['vehicle_photo'] = $vehPhoPath;
+        }
+        if (file($vehDoc)) {
+            $vehDocName          = time() . '_doc_' . '.' . $vehDoc->getClientOriginalExtension();
+            $vehDocPath          = $vehDoc->move('upload/doc/', $vehDocName);
+            $data['vehicle_doc'] = $vehDocPath;
         }
 
         VehicleInfo::create(array_merge($request->validated(), $data));
@@ -82,9 +100,10 @@ class VehicleInfoController extends Controller
             'vehicles'     => Vehicle::with('vehicleModels')->get(),
             'suppliers'    => Supplier::get(),
             'customers'    => Customer::get(),
+            'colors'       => Color::get(),
             'vehicle_info' => $vehicle_info,
         ];
-        return view('vehicle_info.create_edit', $data);
+        return view('vehicle_info.edit', $data);
     }
 
     /**
@@ -98,6 +117,26 @@ class VehicleInfoController extends Controller
         } elseif ($request->validated('customer_id')) {
             $data['ownable_type'] = Customer::class;
             $data['ownable_id']   = $request->validated('customer_id');
+        }
+
+
+        $vehPho = $request->validated('vehicle_photo');
+        $vehDoc = $request->validated('vehicle_doc');
+        if (file_exists($vehPho)) {
+            if (file_exists(public_path($vehicle_info->vehicle_photo))) {
+                unlink(public_path($vehicle_info->vehicle_photo));
+            }
+            $vehPhoName            = time() . '_photo_' . '.' . $vehPho->getClientOriginalExtension();
+            $vehPhoPath            = $vehPho->move('upload/photo/', $vehPhoName);
+            $data['vehicle_photo'] = $vehPhoPath;
+        }
+        if (file_exists($vehDoc)) {
+            if (file_exists(public_path($vehicle_info->vehicle_doc))) {
+                unlink(public_path($vehicle_info->vehicle_doc));
+            }
+            $vehDocName          = time() . '_doc_' . '.' . $vehDoc->getClientOriginalExtension();
+            $vehDocPath          = $vehDoc->move('upload/doc/', $vehDocName);
+            $data['vehicle_doc'] = $vehDocPath;
         }
 
         $vehicle_info->update(array_merge($request->validated(), $data));

@@ -41,7 +41,8 @@ class VehicleSale extends Component
     public function render()
     {
         $date = [
-            'accounts' => Account::pluck('account_name', 'id'),
+            'accounts' => [],
+            // 'accounts' => Account::pluck('account_name', 'id'),
             'vehicles' => $this->vehicles,
         ];
         return view('livewire.vehicle-sale', $date);
