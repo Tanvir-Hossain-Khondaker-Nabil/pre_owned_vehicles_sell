@@ -61,8 +61,8 @@
                                 <span key="t-multi-level">Vehicle Model</span>
                             </a>
                             <ul class="sub-menu" aria-expanded="true">
-                                <li><a href="{{ route('vehiclemodels.create') }}" key="t-level-1-1">Add</a></li>
-                                <li><a href="{{ route('vehiclemodels.index') }}" key="t-level-1-2">List</a></li>
+                                <li><a href="{{ route('vehicle-models.create') }}" key="t-level-1-1">Add</a></li>
+                                <li><a href="{{ route('vehicle-models.index') }}" key="t-level-1-2">List</a></li>
                             </ul>
                         </li>
 

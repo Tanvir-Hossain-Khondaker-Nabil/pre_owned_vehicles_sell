@@ -152,14 +152,4 @@ class VehicleInfoController extends Controller
         dd($vehicle_info);
         return redirect()->back();
     }
-
-    public function bulkStatusChange(Request $request)
-    {
-        foreach ($request->vehicles_info_id ?? [] as $key => $vehicles_info_id) {
-            $vehicles_info = VehicleInfo::find($vehicles_info_id);
-            $vehicles_info->update(['current_status' => $request->current_status]);
-        }
-
-        return redirect()->back();
-    }
 }

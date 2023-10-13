@@ -14,6 +14,7 @@ use App\Http\Controllers\BalanceSheetController;
 use App\Http\Controllers\VehicleModelController;
 use App\Http\Controllers\ExpenseCategoryController;
 use App\Http\Controllers\VehicleDocumentController;
+use App\Http\Controllers\AccountStatementController;
 
 
 /*
@@ -40,7 +41,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
         'suppliers'          => SupplierController::class,
         'customers'          => CustomerController::class,
         'vehicles'           => VehicleController::class,
-        'vehiclemodels'      => VehicleModelController::class,
+        'vehicle-models'     => VehicleModelController::class,
         'colors'             => ColorController::class,
         'vehicle-info'       => VehicleInfoController::class,
         'accounts'           => AccountController::class,
@@ -51,16 +52,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     ]);
     Route::get('balance-sheet', [BalanceSheetController::class, 'index']);
     Route::get('account-statement', [AccountStatementController::class, 'index']);
-    Route::post('vehicle-info/status/change', [VehicleInfoController::class, 'bulkStatusChange'])->name('bulk.status.change');
 
-
-    // vehicle documents
-    Route::get('/vehicledoc/create', [VehicleDocumentController::class, 'create'])->name('vehicledoc.create');
-    Route::put('/vehicledoc/create', [VehicleDocumentController::class, 'store'])->name('vehicledoc.store');
-    Route::get('/vehicledoc/list', [VehicleDocumentController::class, 'list'])->name('vehicledoc.list');
-    Route::get('/vehicledoc/edit/{id}', [VehicleDocumentController::class, 'edit'])->name('vehicledoc.edit');
-    Route::post('/vehicledoc/update/{id}', [VehicleDocumentController::class, 'update'])->name('vehicledoc.update');
-    Route::delete('/vehicledoc/destroy/{id}', [VehicleDocumentController::class, 'destroy'])->name('vehicledoc.destroy');
 });
 
 Route::middleware('auth')->group(function () {
