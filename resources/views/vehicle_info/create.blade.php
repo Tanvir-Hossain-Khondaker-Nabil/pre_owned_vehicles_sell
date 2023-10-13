@@ -136,7 +136,7 @@
                     </select>
                 </div>
                 <div class="col-xl-6 mb-3">
-                    <x-input label='Buying Price' :required=true placeholder="Buying Price" name="buying_price"
+                    <x-input label='Buying Price' placeholder="Buying Price" name="buying_price"
                         value="{{ old('buying_price')}}">
                     </x-input>
                 </div>
@@ -146,14 +146,13 @@
                     </x-input>
                 </div>
                 <div class="col-xl-6 mb-3">
-                    <x-input label='Selling Price' :required=true placeholder="Selling Price" name="selling_price"
+                    <x-input label='Selling Price' placeholder="Selling Price" name="selling_price"
                         value="{{ old('selling_price')}}">
                     </x-input>
                 </div>
                 <div class="col-xl-6 mb-3">
-                    <x-input label='Date Of First Purchase' type='month' :required=true
-                        placeholder="Date Of First Purchase" name="first_purchase_date"
-                        value="{{ old('first_purchase_date')}}">
+                    <x-input label='Date Of First Purchase' type='month' placeholder="Date Of First Purchase"
+                        name="first_purchase_date" value="{{ old('first_purchase_date')}}">
                     </x-input>
                 </div>
                 <div class="col-xl-6 mb-3">
@@ -177,13 +176,12 @@
                     @enderror
                 </div>
                 <div class="col-xl-6 mb-3">
-                    <x-input label='Chassis No' :required=true placeholder="Chassis No" name="chassis_no"
+                    <x-input label='Chassis No' placeholder="Chassis No" name="chassis_no"
                         value="{{ old('chassis_no')}}">
                     </x-input>
                 </div>
                 <div class="col-xl-6 mb-3">
-                    <x-input label='Engine No' :required=true placeholder="Engine No" name="engine_no"
-                        value="{{ old('engine_no')}}">
+                    <x-input label='Engine No' placeholder="Engine No" name="engine_no" value="{{ old('engine_no')}}">
                     </x-input>
                 </div>
                 <div class="col-xl-6">
@@ -205,11 +203,11 @@
                     @enderror
                 </div>
                 <div class="col-xl-6">
-                    <x-input label='Vehicle Photo' type='file' :required=true name="vehicle_photo">
+                    <x-input label='Vehicle Photo' type='file' name="vehicle_photo">
                     </x-input>
                 </div>
                 <div class="col-xl-6">
-                    <x-input label='Vehicle Doc' type='file' :required=true name="vehicle_doc">
+                    <x-input label='Vehicle Doc' type='file' name="vehicle_doc">
                     </x-input>
                 </div>
                 <div class="col-xl-6 mt-2">

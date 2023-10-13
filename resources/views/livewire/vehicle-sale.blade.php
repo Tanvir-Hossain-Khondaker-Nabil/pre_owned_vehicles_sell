@@ -32,30 +32,47 @@
                                                 <h5 class="btn font-size-18 text-start p-0 my-1 d-block"
                                                     style="line-height: 1.2;"
                                                     wire:click.prevent="addVehicle({{$vehicle->id}})">
-                                                    {{$vehicle->chassis_no}}</h5>
+                                                    {{$vehicle->chassis_no}} {{$vehicle->serial_no}}</h5>
                                                 @endforeach
                                             </div>
                                         </div>
                                     </div>
                                     <div class="table-responsive">
-                                        <table class="table table-borderless mb-0">
+                                        <table class="table table-borderless mb-0 text-center">
                                             <thead>
                                                 <tr>
-                                                    <th>Product</th>
-                                                    <th>Batch No</th>
-                                                    <th>Price</th>
-                                                    <th>Quantity</th>
-                                                    <th>SubTotal</th>
+                                                    <th style="width: 20%">Model</th>
+                                                    <th style="width: 20%">Engine No</th>
+                                                    <th style="width: 20%">Chassis No</th>
+                                                    <th style="width: 20%">Color</th>
+                                                    <th style="width: 20%">Model Year</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @foreach ($vehicles as $vehicle)
+                                                @foreach ($cartVehicles as $cartVehicle)
                                                 <tr>
-                                                    <th scope="row">1</th>
-                                                    <td>{{$vehicle->chassis_no}}</td>
-                                                    <td>Otto</td>
-                                                    <td>@mdo</td>
-                                                    <td>1000</td>
+                                                    <th class="p-0">
+                                                        {{$cartVehicle->vehicleModel?->name}}</th>
+                                                    <th class="p-0">{{$cartVehicle->engine_no}}</th>
+                                                    <th class="p-0">{{$cartVehicle->chassis_no}}</th>
+                                                    <th class="p-0">{{$cartVehicle->color?->name}}</th>
+                                                    <th class="p-0 text-end">{{$cartVehicle->model_year}}</th>
+                                                </tr>
+                                                <tr>
+                                                    <td class="p-0 w-100" colspan="2">
+                                                        <input type="text" name="" class=" w-100" placeholder="Remark">
+                                                    </td>
+                                                    <td class="p-0 w-100" colspan="2">
+                                                        <select name="" id="" class="p-0 w-100">
+                                                            <option selected value="">status</option>
+                                                            <option value="All-Clear">All Clear</option>
+                                                            <option value="Processing">Processing</option>
+                                                        </select>
+                                                    </td>
+                                                    <td class="p-0 text-end">
+                                                        <span class="btn p-0 text-danger" type="submit"><i
+                                                                class="mdi mdi-delete font-size-18"></i></span>
+                                                    </td>
                                                 </tr>
                                                 @endforeach
                                             </tbody>

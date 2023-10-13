@@ -31,6 +31,8 @@ return new class extends Migration {
             $table->string('vehicle_doc')->nullable();
             $table->string('serial_no')->nullable();
             $table->string('details')->nullable();
+            $table->string('remark')->nullable();
+            $table->enum('status', ['All-Clear', 'Processing'])->nullable();
             $table->foreignIdFor(Color::class)->cascadeOnUpdate()->restrictOnDelete();
             $table->foreignIdFor(VehicleModel::class)->cascadeOnUpdate()->restrictOnDelete();
             $table->morphs('ownable');

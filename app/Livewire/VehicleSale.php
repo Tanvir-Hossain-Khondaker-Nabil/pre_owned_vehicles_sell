@@ -17,6 +17,7 @@ class VehicleSale extends Component
     public $amount;
     public $search = '';
     public $vehicles = [];
+    public $searchVehicleId = [];
 
     public function save()
     {
@@ -26,24 +27,23 @@ class VehicleSale extends Component
     public function updated($name, $value)
     {
         if ($name === 'search') {
-            $this->vehicles = VehicleInfo::where('chassis_no', 'LIKE', "%{$value}%")
-                ->orWhere('engine_no', 'LIKE', "%{$value}%")
-                ->orWhere('serial_no', 'LIKE', "%{$value}%")
+            $this->vehicles = VehicleInfo::where('serial_no', 'LIKE', "%{$value}%")
                 ->get();
         }
     }
 
     public function addVehicle($vehicleId)
     {
-        dd($vehicleId);
+        $this->searchVehicleId[] = $vehicleId;
     }
 
     public function render()
     {
         $date = [
-            'accounts' => [],
+            'cartVehicles' => VehicleInfo::find($this->searchVehicleId) ?? [],
+            'accounts'     => [],
             // 'accounts' => Account::pluck('account_name', 'id'),
-            'vehicles' => $this->vehicles,
+            'vehicles'     => $this->vehicles,
         ];
         return view('livewire.vehicle-sale', $date);
     }

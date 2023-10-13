@@ -25,9 +25,36 @@
             <button type="button" class="btn btn-sm px-3 font-size-16 header-item waves-effect" id="vertical-menu-btn">
                 <i class="fa fa-fw fa-bars"></i>
             </button>
+            <div class="dropdown d-inline-block">
+                <button type="button" class="btn header-item waves-effect" data-bs-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+                    <strong class="input-group-text btn btn-warning">
+                        <i class="bx bx-plus-medical" style="line-height: 2"></i>
+                    </strong>
+                </button>
+                <div class="dropdown-menu dropdown-menu-start">
+
+                    <!-- item-->
+                    <a href="{{route('vehicle-info.create')}}" class="dropdown-item notify-item language">
+                        <strong>Vehicle Add</strong>
+                    </a>
+                    <!-- item-->
+                    <a href="{{route('customers.create')}}" class="dropdown-item notify-item language">
+                        <strong>Customer Add</strong>
+                    </a>
+
+                    <!-- item-->
+                    <a href="{{route('payments.create')}}" class="dropdown-item notify-item language" data-lang="gr">
+                        <strong>Sell</strong>
+                    </a>
+                </div>
+            </div>
         </div>
 
+
+
         <div class="d-flex">
+
 
             <div class="dropdown d-inline-block">
                 <button type="button" class="btn header-item waves-effect" id="page-header-user-dropdown"

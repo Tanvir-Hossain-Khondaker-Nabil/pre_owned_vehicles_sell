@@ -17,6 +17,7 @@
 @show
     <!-- Begin page -->
     <div id="layout-wrapper">
+        @include('layouts.notification')
         @include('layouts.topbar')
         @include('layouts.sidebar')
         <!-- ============================================================== -->

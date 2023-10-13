@@ -68,18 +68,19 @@ class VehicleInfoController extends Controller
 
         $vehPho = $request->validated('vehicle_photo');
         $vehDoc = $request->validated('vehicle_doc');
-        if (file($vehPho)) {
+        if (file_exists($vehPho)) {
             $vehPhoName            = time() . '_photo_' . '.' . $vehPho->getClientOriginalExtension();
             $vehPhoPath            = $vehPho->move('upload/photo/', $vehPhoName);
             $data['vehicle_photo'] = $vehPhoPath;
         }
-        if (file($vehDoc)) {
+        if (file_exists($vehDoc)) {
             $vehDocName          = time() . '_doc_' . '.' . $vehDoc->getClientOriginalExtension();
             $vehDocPath          = $vehDoc->move('upload/doc/', $vehDocName);
             $data['vehicle_doc'] = $vehDocPath;
         }
 
         VehicleInfo::create(array_merge($request->validated(), $data));
+        session()->put('success', 'Item Updated successfully.');
         return redirect()->back();
     }
 
