@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Sell;
+use App\Models\Customer;
+use App\Models\BankAccount;
 use App\Http\Requests\StoreSellRequest;
 use App\Http\Requests\UpdateSellRequest;
 
@@ -13,7 +15,10 @@ class SellController extends Controller
      */
     public function index()
     {
-        //
+        $data = [
+            'sells' => Sell::with('account')->latest()->get(),
+        ];
+        return view('sells.create', $data);
     }
 
     /**
@@ -21,46 +26,49 @@ class SellController extends Controller
      */
     public function create()
     {
-        //
+        $data = [
+            'accounts' => BankAccount::latest()->get(),
+        ];
+        return view('sells.create', $data);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreSellRequest $request)
+    public function store(Request $request)
     {
-        //
+        return view('payment.create');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Sell $sell)
+    public function show(string $id)
     {
-        //
+        return view('payment.create');
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Sell $sell)
+    public function edit(Vehicle $vehicle)
     {
-        //
+        return view('vehicle.create', compact('vehicle'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateSellRequest $request, Sell $sell)
+    public function update(UpdateVehicleRequest $request, Vehicle $vehicle)
     {
-        //
+        return view('vehicle.create', compact('vehicle'));
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Sell $sell)
+    public function destroy(Vehicle $vehicle)
     {
-        //
+        return view('vehicle.create', compact('vehicle'));
     }
 }

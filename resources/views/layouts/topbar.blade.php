@@ -44,7 +44,7 @@
                     </a>
 
                     <!-- item-->
-                    <a href="{{route('payments.create')}}" class="dropdown-item notify-item language" data-lang="gr">
+                    <a href="{{route('sells.create')}}" class="dropdown-item notify-item language" data-lang="gr">
                         <strong>Sell</strong>
                     </a>
                 </div>

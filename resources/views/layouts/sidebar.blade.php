@@ -127,10 +127,10 @@
                         <li>
                             <a href="javascript: void(1);" class="has-arrow waves-effect" aria-expanded="true">
                                 <i class="bx bxs-car"></i>
-                                <span key="t-multi-level">Payment</span>
+                                <span key="t-multi-level">Sell</span>
                             </a>
                             <ul class="sub-menu" aria-expanded="true">
-                                <li><a href="{{ route('payments.create') }}" key="t-level-1-1">Add</a></li>
+                                <li><a href="{{ route('sells.create') }}" key="t-level-1-1">Add</a></li>
                                 {{-- <li><a href="{{ route('payments.index') }}" key="t-level-1-2">List</a></li> --}}
                             </ul>
                         </li>
