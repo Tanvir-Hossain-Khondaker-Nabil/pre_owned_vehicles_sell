@@ -139,7 +139,7 @@ Pre Owned Vehicles Sell
                                 <td>
                                     <div class="d-flex gap-3">
                                         <a class="text-success"
-                                            href="{{ route('vehicle.document.create', $vehiclesInfo->id) }}"
+                                            href="#"
                                             title="Add Document">
                                             <i class="mdi mdi-plus font-size-18"></i>
                                         </a>

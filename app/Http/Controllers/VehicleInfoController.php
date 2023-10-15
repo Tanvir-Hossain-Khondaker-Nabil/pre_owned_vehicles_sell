@@ -3,11 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Color;
+use App\Models\Setting;
 use App\Models\Vehicle;
 use App\Models\Customer;
 use App\Models\Supplier;
-use App\Models\VehicleInfo;
 
+use App\Models\VehicleInfo;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreVehicleInfoRequest;
 
@@ -60,10 +61,10 @@ class VehicleInfoController extends Controller
             $data['ownable_id']   = $request->validated('customer_id');
         }
 
-        if ($serial_no = 6000) {
-            $data['serial_no'] = $serial_no + 1;
+        if (VehicleInfo::latest()->first()?->serial_no) {
+            $data['serial_no'] = VehicleInfo::latest()->first()?->serial_no + 1;
         } else {
-            $data['serial_no'] = date('Y') . '0001';
+            $data['serial_no'] = Setting::where('serial_no')?->first()?->key;
         }
 
         $vehPho = $request->validated('vehicle_photo');

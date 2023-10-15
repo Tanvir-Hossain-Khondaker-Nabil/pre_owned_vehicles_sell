@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Setting;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreSettingRequest extends FormRequest
@@ -11,7 +12,7 @@ class StoreSettingRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,8 +23,7 @@ class StoreSettingRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'key' => ['required', 'max:255'],
-            'value' => ['required', 'numeric'],
+            'serial_no' => ['required', 'max:255'],
         ];
     }
 }

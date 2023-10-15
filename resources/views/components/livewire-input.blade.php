@@ -3,7 +3,7 @@
     <input type="{{ $type }}" id="formValidation{{ $label }}"
         class="form-control rounded-pill form-control-lg ps-3 @error($name) is-invalid @enderror" @if($required)
         required @endif placeholder="{{ $placeholder }}" @if ($type==='file' ) wire:model="{{ $name }}" @else
-        wire:model.live="{{ $name }}" @endif />
+        wire:model="{{ $name }}" @endif />
     @error($name)
     <div class="invalid-feedback">{{ $message }}</div>
     @enderror

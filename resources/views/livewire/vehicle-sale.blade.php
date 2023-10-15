@@ -15,9 +15,25 @@
                                 </x-livewire-input>
                             </div>
                             <div class="col-xl-6">
-                                <x-livewire-input name="amount" type="number" label='Amount' :required=true
-                                    placeholder="$">
-                                </x-livewire-input>
+                                <div class="mb-3 @error('customer_id') is-invalid @enderror">
+                                    <label class="form-label form-label-lg fs-5 mx-3">Select Customer</label>
+                                    <div class="input-group">
+                                        <select class="form-control form-control-lg" name="customer_id">
+                                            <option value="">Select--</option>
+                                            @forelse ($customers as $customer)
+                                            <option value="{{$customer->id}}">{{ $customer->name}}</option>
+                                            @empty
+                                            <option value="">No Custoner Found</option>
+                                            @endforelse
+                                        </select>
+                                        <strong type="button" class="input-group-text btn btn-success"
+                                            data-bs-toggle="modal" data-bs-target=".bs-example-modal-lg"><i
+                                                class="bx bx-plus-medical" style="line-height: 2"></i></strong>
+                                    </div>
+                                </div>
+                                @error('customer_id')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
                             </div>
                         </div>
                         <div class="col-xl-auto">
@@ -31,7 +47,7 @@
                                                 @foreach ($vehicles as $vehicle)
                                                 <h5 class="btn font-size-18 text-start p-0 my-1 d-block"
                                                     style="line-height: 1.2;"
-                                                    wire:click.prevent="addVehicle({{$vehicle->id}})">
+                                                    wire:click.prevent="addFromCart({{$vehicle->id}})">
                                                     {{$vehicle->chassis_no}} {{$vehicle->serial_no}}</h5>
                                                 @endforeach
                                             </div>
@@ -49,7 +65,7 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @foreach ($cartVehicles as $cartVehicle)
+                                                @foreach ($allCartVehicles as $cartVehicle)
                                                 <tr>
                                                     <th class="p-0">
                                                         {{$cartVehicle->vehicleModel?->name}}</th>
@@ -70,8 +86,10 @@
                                                         </select>
                                                     </td>
                                                     <td class="p-0 text-end">
-                                                        <span class="btn p-0 text-danger" type="submit"><i
-                                                                class="mdi mdi-delete font-size-18"></i></span>
+                                                        <span class="btn p-0 text-danger"
+                                                            wire:click.prevent='removeFromCart({{$cartVehicle->id}})'>
+                                                            <i class="mdi mdi-delete font-size-18"></i>
+                                                        </span>
                                                     </td>
                                                 </tr>
                                                 @endforeach
@@ -83,13 +101,11 @@
                         </div>
                     </div>
                     <!-- end card body -->
-
                     <table class="table table-borderless mb-0">
-
                         <thead>
                             <tr>
-                                <th>Item</th>
-                                <th>Total</th>
+                                <th>Item: {{count($allCartVehicles)}}</th>
+                                <th>Total: {{$allTotal }}</th>
 
                                 {{-- Discount --}}
                                 <th class=" btn-outline-primary" data-bs-toggle="modal"
@@ -108,46 +124,33 @@
                                             <div class="modal-body">
                                                 <div class="row">
                                                     <div class="col-xl-6">
-                                                        <div class="mb-3">
-                                                            <label>Order Discount Type</label>
-                                                            <select class="form-control" id="account_id"
-                                                                name="account_id">
-                                                                @if (isset($expense))
-                                                                <option value="{{ $expense->account_id }}">{{
-                                                                    $expense->account->name }}</option>
-                                                                @else
-                                                                <option value=" ">Select</option>
-                                                                @endif
-                                                                @foreach ($accounts as $key => $account)
-                                                                <option value="{{ $key }}">{{ $account }}</option>
-                                                                @endforeach
+                                                        <div class="w-100 mt-2">
+                                                            <label class="form-label-lg fs-5 mx-3">Order Discount
+                                                                Type</label>
+                                                            <select class="form-control" id="discount_type"
+                                                                wire:model="discount_type">
+                                                                <option value="percentage">Percentage (%)</option>
+                                                                <option value="fixed">Fixed</option>
                                                             </select>
                                                         </div>
                                                     </div>
                                                     <div class="col-xl-6">
-                                                        <div class="mb-3">
-                                                            <label>Value</label>
-                                                            <input class="form-control" id="formrow-firstname-input"
-                                                                type="text">
-                                                        </div>
+                                                        <x-livewire-input name="discount_amount" type="number"
+                                                            label='Discount Amount' placeholder="Discount Amount">
+                                                        </x-livewire-input>
                                                     </div>
                                                 </div>
 
                                             </div>
                                             <div class="modal-footer">
-                                                <button class="btn btn-light" data-bs-dismiss="modal"
-                                                    type="button">Close</button>
-                                                <button class="btn btn-primary" type="button">Submit</button>
+                                                <button class="btn btn-primary" data-bs-dismiss="modal" type="button"
+                                                    wire:click.prevent="discountSet()">Set</button>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </tr>
-
                             <tr>
-                                <th>Cupon</th>
-                                <th>Tax</th>
-
                                 {{-- Shipping Cost --}}
                                 <th class=" btn-outline-primary" data-bs-toggle="modal" data-bs-target="#shippingcost">
                                     Shipping</th>
@@ -164,15 +167,16 @@
                                             <div class="modal-body">
                                                 <div class="col-xl-auto">
                                                     <div class="mb-3">
-                                                        <input class="form-control" id="formrow-firstname-input"
-                                                            type="text" placeholder="Enter shipping cost">
+                                                        <x-livewire-input name="shipping_cost" type="number"
+                                                            label='Enter shipping cost'
+                                                            placeholder="Enter shipping cost">
+                                                        </x-livewire-input>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="modal-footer">
-                                                <button class="btn btn-light" data-bs-dismiss="modal"
-                                                    type="button">Close</button>
-                                                <button class="btn btn-primary" type="button">Submit</button>
+                                                <button class="btn btn-primary" data-bs-dismiss="modal" type="button"
+                                                    wire:click.prevent="shippingCost">Set</button>
                                             </div>
                                         </div>
                                     </div>
@@ -486,6 +490,11 @@
                 </div>
             </div>
         </form>
+        <!--  Large modal example -->
+        <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+            aria-hidden="true">
+            <livewire:customer></livewire:customer>
+        </div><!-- /.modal -->x
     </div>
     <!-- end card -->
 
@@ -503,7 +512,7 @@
 
             <div class="col-xl-4">
                 <button class="btn btn-primary waves-effect waves-light" type="button"
-                    style="width: 200px;">Feature</button>
+                    style="width: 200px;">Service</button>
             </div>
         </div>
 

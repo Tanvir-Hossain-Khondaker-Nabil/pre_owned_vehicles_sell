@@ -13,7 +13,7 @@ class SettingController extends Controller
      */
     public function index()
     {
-        //
+        return view('settings.create');
     }
 
     /**
@@ -29,7 +29,17 @@ class SettingController extends Controller
      */
     public function store(StoreSettingRequest $request)
     {
-        //
+
+        foreach ($request->validated() as $key => $value) {
+            Setting::updateOrCreate([
+                'key' => $key,
+            ], [
+                'key'   => $key,
+                'value' => $value,
+            ]);
+        }
+
+        return redirect()->back();
     }
 
     /**

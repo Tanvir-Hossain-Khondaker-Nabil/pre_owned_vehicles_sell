@@ -29,7 +29,7 @@ return new class extends Migration {
             $table->string('engine_no')->nullable();
             $table->string('vehicle_photo')->nullable();
             $table->string('vehicle_doc')->nullable();
-            $table->string('serial_no')->nullable();
+            $table->string('serial_no')->unique();
             $table->string('details')->nullable();
             $table->string('remark')->nullable();
             $table->enum('status', ['All-Clear', 'Processing'])->nullable();

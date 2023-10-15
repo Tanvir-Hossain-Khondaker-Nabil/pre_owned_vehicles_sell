@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Sell;
 use App\Models\Customer;
 use App\Models\BankAccount;
+use Illuminate\Http\Client\Request;
 use App\Http\Requests\StoreSellRequest;
 use App\Http\Requests\UpdateSellRequest;
 
