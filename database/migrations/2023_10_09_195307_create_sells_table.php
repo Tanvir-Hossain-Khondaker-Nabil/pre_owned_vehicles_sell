@@ -13,7 +13,7 @@ return new class extends Migration {
     {
         Schema::create('sells', function (Blueprint $table) {
             $table->id();
-            $table->date('date');
+            $table->string('date');
             $table->string('reference')->nullable();
             $table->foreignIdFor(Customer::class)->cascadeOnUpdate()->restrictOnDelete();
             $table->float('amount', 8, 2);

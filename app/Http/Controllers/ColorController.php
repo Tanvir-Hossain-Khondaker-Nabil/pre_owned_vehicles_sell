@@ -53,11 +53,11 @@ class ColorController extends Controller
      */
     public function edit(Color $color)
     {
-        $edit = '';
         $data = [
-            'colors' => Color::paginate(),
+            'color' => $color,
+            'edit'  => '',
         ];
-        return view('color.create', compact('color', 'edit'), $data);
+        return view('color.create', $data);
     }
 
     /**

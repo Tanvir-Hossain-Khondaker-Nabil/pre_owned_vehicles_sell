@@ -1,6 +1,7 @@
 <?php
 
 use App\Utility;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
@@ -14,7 +15,7 @@ return new class extends Migration {
         Schema::create('accounts', function (Blueprint $table) {
             $table->id();
             $table->enum('leaser_name', [Utility::$leaser]);
-            $table->date('date')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->string('date');
             $table->decimal('debit', 9, 2)->default(0);
             $table->decimal('credit', 9, 2)->default(0);
             $table->text('note')->nullable();

@@ -6,15 +6,6 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-xl-6">
-                                <x-livewire-input name="date" type="date" label='Date' :required=true
-                                    placeholder="Choose Date"></x-livewire-input>
-                            </div>
-                            <div class="col-xl-6">
-                                <x-livewire-input name="reference_no" type="text" label='Reference' :required=true
-                                    placeholder="Type Reference Number">
-                                </x-livewire-input>
-                            </div>
-                            <div class="col-xl-6">
                                 <div class="mb-3 @error('customer_id') is-invalid @enderror">
                                     <label class="form-label form-label-lg fs-5 mx-3">Select Customer</label>
                                     <div class="input-group">
@@ -34,6 +25,15 @@
                                 @error('customer_id')
                                 <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
+                            </div>
+                            <div class="col-xl-6">
+                                <x-livewire-input name="date" type="date" label='Date' :required=true
+                                    placeholder="Choose Date"></x-livewire-input>
+                            </div>
+                            <div class="col-xl-6">
+                                <x-livewire-input name="reference_no" type="text" label='Reference' :required=true
+                                    placeholder="Type Reference Number">
+                                </x-livewire-input>
                             </div>
                         </div>
                         <div class="col-xl-auto">
@@ -93,6 +93,27 @@
                                                     </td>
                                                 </tr>
                                                 @endforeach
+                                                <thead>
+                                                    <tr>
+                                                        <th style="width: 30%">Name</th>
+                                                        <th style="width: 30%">Price</th>
+                                                        <th style="width: 35%" colspan="1">Description</th>
+                                                        <th style="width: 5%"></th>
+                                                    </tr>
+                                                </thead>
+                                                @foreach ($allCartServices as $cartService)
+                                                <tr>
+                                                    <td class="p-0">{{$cartService->name}}</td>
+                                                    <td class="p-0">{{$cartService->price}}</td>
+                                                    <td class="p-0" colspan="1">{{$cartService->description}}</td>
+                                                    <td class="p-0 text-end">
+                                                        <span class="btn p-0 text-danger"
+                                                            wire:click.prevent='removeServiceFromCart({{$cartService->id}})'>
+                                                            <i class="mdi mdi-delete font-size-18"></i>
+                                                        </span>
+                                                    </td>
+                                                </tr>
+                                                @endforeach
                                             </tbody>
                                         </table>
                                     </div>
@@ -104,7 +125,7 @@
                     <table class="table table-borderless mb-0">
                         <thead>
                             <tr>
-                                <th>Item: {{count($allCartVehicles)}}</th>
+                                <th>Item: {{count($allCartVehicles) + count($allCartServices)}}</th>
                                 <th>Total: {{$allTotal }}</th>
 
                                 {{-- Discount --}}
@@ -302,7 +323,6 @@
                                 </div>
                                 <div class="modal-body">
                                     <div class="row">
-
                                         <div class="col-xl-3">
                                             <div class="mb-3">
                                                 <label>Received Amount</label>
@@ -501,8 +521,20 @@
     <div class="card col-xl-6">
         <div class="row">
             <div class="col-xl-4">
-                <button class="btn btn-primary waves-effect waves-light" type="button"
-                    style="width: 200px;">Catagory</button>
+                <div class="btn-group w-100" role="group">
+                    <button id="btnGroupVerticalDrop1" type="button" class="btn btn-primary waves-effect waves-light"
+                        data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Catagory <i class="mdi mdi-chevron-down"></i>
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="btnGroupVerticalDrop1">
+                        @forelse ($categories as $category)
+                        <span class="dropdown-item btn"
+                            wire:click.prevent="findVehicle({{$category->id}})">{{$category->company_name}}</span>
+                        @empty
+                        <span class="dropdown-item">Category Not Found</span>
+                        @endforelse
+                    </div>
+                </div>
             </div>
 
             <div class="col-xl-4">
@@ -511,20 +543,91 @@
             </div>
 
             <div class="col-xl-4">
-                <button class="btn btn-primary waves-effect waves-light" type="button"
-                    style="width: 200px;">Service</button>
+                <span class="btn btn-primary waves-effect waves-light w-100"
+                    wire:click.prevent="showAllServices()">Service</span>
             </div>
         </div>
 
         <div class="row">
             <div class="table-responsive">
                 <table class="table table-borderless mb-0">
-
+                    @if ($showVehicles)
                     <thead>
                         <tr>
-                            <th class="text-center">No data available in table</th>
+                            <th>Serial No</th>
+                            <th>Registration Status</th>
+                            <th>Paper Status</th>
+                            <th>Bank Payment</th>
+                            <th>Service Book</th>
+                            <th>Key</th>
                         </tr>
                     </thead>
+                    <tbody>
+                        @forelse ($showVehicles as $vehiclesInfo)
+                        <tr wire:click.prevent="addFromCart({{$vehiclesInfo->id}})" style="cursor: pointer">
+                            <td class="text-body fw-bold">{{ $vehiclesInfo->serial_no }}</td>
+                            <td>
+                                <span class="badge badge-pill {{ $vehiclesInfo->registration_status == 'Registered'
+                            												    ? 'badge-soft-success'
+                            												    : ($vehiclesInfo->registration_status == 'On-Test'
+                            												        ? 'badge-soft-danger'
+                            												        : '') }} font-size-12">
+                                    {{ $vehiclesInfo->registration_status }}
+                                </span>
+                            </td>
+                            <td>
+                                <span class="badge badge-pill {{ $vehiclesInfo->paper_status == 'Provided'
+                            												    ? 'badge-soft-success'
+                            												    : ($vehiclesInfo->paper_status == 'Due'
+                            												        ? 'badge-soft-danger'
+                            												        : '') }} font-size-12">
+                                    {{ $vehiclesInfo->paper_status }}
+                                </span>
+                            </td>
+                            <td>
+                                <span class="badge badge-pill {{ $vehiclesInfo->bank_payment == 1
+                            												    ? 'badge-soft-success'
+                            												    : ($vehiclesInfo->bank_payment == 0
+                            												        ? 'badge-soft-danger'
+                            												        : '') }} font-size-12">
+                                    {{ $vehiclesInfo->bank_payment == 1 ? 'Yes' : 'No' }}
+                                </span>
+                            </td>
+                            <td>
+                                <span class="badge badge-pill {{ $vehiclesInfo->service_book == 1
+                            												    ? 'badge-soft-success'
+                            												    : ($vehiclesInfo->service_book == 0
+                            												        ? 'badge-soft-danger'
+                            												        : '') }} font-size-12">
+                                    {{ $vehiclesInfo->service_book == 1 ? 'Yes' : 'No' }}
+                                </span>
+                            </td>
+                            <td class="text-body fw-bold">{{ $vehiclesInfo->key }}</td>
+                        </tr>
+                        @empty
+
+                        @endforelse
+                    </tbody>
+                    @elseif ($showServices)
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Price</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @forelse ($showServices as $showService)
+                        <tr wire:click.prevent="addServiceFromCart({{$showService->id}})" style="cursor: pointer">
+                            <td>{{$showService->name}}</td>
+                            <td>{{$showService->price}}</td>
+                            <td>{{$showService->description}}</td>
+                        </tr>
+                        @empty
+
+                        @endforelse
+                    </tbody>
+                    @endif
 
                 </table>
             </div>

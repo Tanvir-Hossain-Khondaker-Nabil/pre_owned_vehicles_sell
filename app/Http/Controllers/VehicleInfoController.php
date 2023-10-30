@@ -64,7 +64,8 @@ class VehicleInfoController extends Controller
         if (VehicleInfo::latest()->first()?->serial_no) {
             $data['serial_no'] = VehicleInfo::latest()->first()?->serial_no + 1;
         } else {
-            $data['serial_no'] = Setting::where('serial_no')?->first()?->key;
+            $data['serial_no'] =  2342;
+            // Setting::where('serial_no')?->first()?->key ;
         }
 
         $vehPho = $request->validated('vehicle_photo');

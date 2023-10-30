@@ -6,6 +6,7 @@ use App\Http\Controllers\ColorController;
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\ExpenseController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\VehicleController;
 use App\Http\Controllers\CustomerController;
@@ -44,10 +45,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
         'colors'             => ColorController::class,
         'vehicle-info'       => VehicleInfoController::class,
         'accounts'           => AccountController::class,
+        'expense-categories' => ExpenseCategoryController::class,
         'expenses'           => ExpenseController::class,
         'sells'              => SellController::class,
-        'expense-categories' => ExpenseCategoryController::class,
-        'settings'           => SettingController::class
+        'settings'           => SettingController::class,
+        'services'           => ServiceController::class
 
     ]);
     Route::get('balance-sheet', [BalanceSheetController::class, 'index']);

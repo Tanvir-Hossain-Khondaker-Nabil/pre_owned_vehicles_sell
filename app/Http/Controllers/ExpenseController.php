@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Account;
 use App\Models\Expense;
-use App\Models\ExpenseCategory;
+use App\Models\BankAccount;
 use Illuminate\Http\Request;
+use App\Models\ExpenseCategory;
 
 class ExpenseController extends Controller
 {
@@ -14,7 +14,7 @@ class ExpenseController extends Controller
      */
     public function index()
     {
-        $expenses = Expense::with('account','expense_category')->latest()->paginate(15);
+        $expenses = Expense::with('account', 'expense_category')->latest()->paginate(15);
         return view('expense.list', compact('expenses'));
     }
 
@@ -23,9 +23,9 @@ class ExpenseController extends Controller
      */
     public function create()
     {
-        $accounts = Account::pluck('account_name','id');
-        $expense_catagories = ExpenseCategory::pluck('name','id');
-        return view('expense.create' , compact('accounts','expense_catagories'));
+        $accounts           = BankAccount::pluck('account_name', 'id');
+        $expense_catagories = ExpenseCategory::pluck('name', 'id');
+        return view('expense.create', compact('accounts', 'expense_catagories'));
     }
 
     /**
@@ -51,9 +51,9 @@ class ExpenseController extends Controller
      */
     public function edit(Expense $expense)
     {
-        $accounts = Account::pluck('account_name','id');
-        $expense_catagories = ExpenseCategory::pluck('name','id');
-        return view('expense.create', compact('accounts','expense_catagories','expense'));
+        $accounts           = BankAccount::pluck('account_name', 'id');
+        $expense_catagories = ExpenseCategory::pluck('name', 'id');
+        return view('expense.create', compact('accounts', 'expense_catagories', 'expense'));
     }
 
     /**

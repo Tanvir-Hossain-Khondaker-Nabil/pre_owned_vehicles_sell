@@ -16,7 +16,8 @@
 <div class="card">
     <div class="card-body">
         <h4 class="card-title mb-4">Expense Form</h4>
-        <form method="POST" action="{{(@$expense) ? route('expenses.update',$expense->id) : route('expenses.store')}}" enctype="multipart/form-data">
+        <form method="POST" action="{{(@$expense) ? route('expenses.update',$expense->id) : route('expenses.store')}}"
+            enctype="multipart/form-data">
             @csrf
 
             @if(isset($expense))
@@ -25,7 +26,8 @@
             <div class="row">
 
                 <div class="col-xl-6">
-                    <x-input type="date" label='Date' :required=true name="date" value="{{@$expense->date ?? old('date')}}">
+                    <x-input type="date" label='Date' :required=true name="date"
+                        value="{{@$expense->date ?? old('date')}}">
                     </x-input>
                 </div>
                 <div class="col-xl-6 mt-2">
@@ -39,11 +41,11 @@
                             @endif
                             @foreach($accounts as $key=>$account)
                             <option value="{{$key}}">{{$account}}</option>
-                            @endforeach                         
+                            @endforeach
                         </select>
-                    @error('account_id')
-                    <code>*{{$message}}</code>
-                    @enderror
+                        @error('account_id')
+                        <code>*{{$message}}</code>
+                        @enderror
                     </div>
                 </div>
                 <div class="col-xl-6 mt-2">
@@ -51,17 +53,18 @@
                         <label class="form-label-lg fs-5 mx-3" for="status">Expense Catagory Name<code>*</code></label>
                         <select class="form-control" name="expense_category_id" id="expense_category_id">
                             @if(isset($expense))
-                            <option value="{{$expense->expense_category_id}}">{{$expense->expense_category->name}}</option>
+                            <option value="{{$expense->expense_category_id}}">{{$expense->expense_category->name}}
+                            </option>
                             @else
                             <option value=" ">Select</option>
                             @endif
                             @foreach($expense_catagories as $key=>$expense_catagory)
                             <option value="{{$key}}">{{$expense_catagory}}</option>
-                            @endforeach                         
+                            @endforeach
                         </select>
-                    @error('expense_category_id')
-                    <code>*{{$message}}</code>
-                    @enderror
+                        @error('expense_category_id')
+                        <code>*{{$message}}</code>
+                        @enderror
                     </div>
                 </div>
                 <div class="col-xl-6 mt-2">
@@ -83,8 +86,8 @@
                 </div>
                 <div class="col-xl-6 mt-2">
                     <label class="form-label-lg fs-5 mx-3" for="note">Notes</label>
-                    <textarea class="form-control form-control-lg ps-3" required name="note" id="note" cols="30" rows="2"
-                        placeholder="Enter Your Note">{{ old('note', @$expense->note)  }}</textarea>
+                    <textarea class="form-control form-control-lg ps-3" required name="note" id="note" cols="30"
+                        rows="2" placeholder="Enter Your Note">{{ old('note', @$expense->note)  }}</textarea>
                     @error('note')
                     <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
